@@ -18,14 +18,15 @@
     ::selection { background-color: var(--accent); color: var(--accent-text); }
     [v-cloak] { display: none; }
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-    body { font-family: 'Inter', system-ui, sans-serif; overscroll-behavior: none; transition: background 0.4s, color 0.4s; }
-    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+    body { font-family: 'Inter', system-ui, sans-serif; overscroll-behavior: none; transition: background 0.5s cubic-bezier(0.65,0.05,0,1), color 0.4s; }
+    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.03em; }
 
     /* ===== THEME VARIABLES ===== */
-    /* Light: Navy/slate + deep teal — secure, professional, bank-grade */
+    /* Light: Teal + Indigo dual-tone — modern, trustworthy, premium */
     :root {
       --accent: #0e7490;
       --accent-light: #0891b2;
+      --accent2: #6366f1;
       --accent-bg: rgba(14,116,144,0.06);
       --accent-text: #fff;
       --accent-glow: rgba(14,116,144,0.12);
@@ -40,47 +41,65 @@
       --text2: #3e5068;
       --text3: #8494a7;
       --text4: #c8d1dc;
-      --header-bg: rgba(247,249,251,0.92);
-      --header-border: rgba(15,23,42,0.05);
+      --header-bg: rgba(247,249,251,0.85);
+      --header-border: rgba(15,23,42,0.06);
       --glow: 0 1px 8px rgba(14,116,144,0.08);
-      --pattern-opacity: 0.018;
-      --badge-1-bg: #0e7490;
+      --pattern-opacity: 0.035;
+      --badge-1-bg: linear-gradient(135deg, #0e7490, #6366f1);
       --badge-1-text: #fff;
-      --badge-1-glow: 0 2px 12px rgba(14,116,144,0.25);
-      --accent2: #0e7490;
+      --badge-1-glow: 0 2px 12px rgba(14,116,144,0.25), 0 2px 8px rgba(99,102,241,0.15);
+      --badge-2-bg: rgba(99,102,241,0.1);
+      --badge-2-text: #6366f1;
+      --badge-2-glow: 0 1px 6px rgba(99,102,241,0.1);
+      --badge-3-bg: rgba(14,116,144,0.06);
+      --badge-3-text: #8494a7;
+      --badge-3-glow: none;
+      --neon-line: rgba(14,116,144,0.15);
+      --surface-glow: none;
+      --surface-glow-hover: 0 4px 20px rgba(14,116,144,0.08), 0 2px 10px rgba(99,102,241,0.04);
     }
 
-    /* Dark: Near-black + neon electric violet/cyan — vivid, modern */
+    /* Dark: Near-black + neon violet/cyan dual-tone — vivid, aggressive */
     .dark, body.dark-bg {
       --accent: #a855f7;
       --accent-light: #c084fc;
+      --accent2: #06b6d4;
       --accent-bg: rgba(168,85,247,0.08);
       --accent-text: #0a0a0a;
-      --accent-glow: rgba(168,85,247,0.18);
+      --accent-glow: rgba(168,85,247,0.2);
 
       --bg: #09090b;
       --bg2: #0e0e11;
       --bg3: #131318;
-      --surface: #131318;
-      --surface-border: rgba(168,85,247,0.08);
-      --surface-hover: #1a1a22;
+      --surface: rgba(20,20,26,0.8);
+      --surface-border: rgba(255,255,255,0.06);
+      --surface-hover: rgba(26,26,34,0.9);
       --text: #f0f0f5;
       --text2: rgba(240,240,245,0.65);
       --text3: rgba(240,240,245,0.32);
-      --text4: rgba(240,240,245,0.1);
-      --header-bg: rgba(9,9,11,0.9);
-      --header-border: rgba(168,85,247,0.08);
+      --text4: rgba(240,240,245,0.08);
+      --header-bg: rgba(9,9,11,0.7);
+      --header-border: rgba(168,85,247,0.1);
       --glow: 0 0 20px rgba(168,85,247,0.15), 0 0 60px rgba(168,85,247,0.04);
-      --pattern-opacity: 0.03;
-      --badge-1-bg: #a855f7;
+      --pattern-opacity: 1;
+      --badge-1-bg: linear-gradient(135deg, #a855f7, #06b6d4);
       --badge-1-text: #0a0a0a;
-      --badge-1-glow: 0 2px 16px rgba(168,85,247,0.4);
-      --accent2: #06b6d4;
+      --badge-1-glow: 0 0 16px rgba(168,85,247,0.5), 0 0 40px rgba(6,182,212,0.2);
+      --badge-2-bg: rgba(168,85,247,0.15);
+      --badge-2-text: #c084fc;
+      --badge-2-glow: 0 0 8px rgba(168,85,247,0.15);
+      --badge-3-bg: rgba(6,182,212,0.08);
+      --badge-3-text: rgba(240,240,245,0.4);
+      --badge-3-glow: none;
+      --neon-line: rgba(168,85,247,0.3);
+      --surface-glow: 0 0 0 1px rgba(168,85,247,0.04);
+      --surface-glow-hover: 0 0 24px rgba(168,85,247,0.1), 0 0 0 1px rgba(168,85,247,0.12);
     }
 
     body { background: var(--bg); color: var(--text); }
 
-    /* Background pattern — Light: subtle grid for professional feel */
+    /* ===== BACKGROUND PATTERNS ===== */
+    /* Light: diamond grid + dot matrix — refined, dual-tone */
     body::before {
       content: '';
       position: fixed;
@@ -88,12 +107,15 @@
       z-index: -1;
       opacity: var(--pattern-opacity);
       background-image:
-        linear-gradient(var(--accent) 1px, transparent 1px),
-        linear-gradient(90deg, var(--accent) 1px, transparent 1px);
-      background-size: 48px 48px;
+        linear-gradient(45deg, rgba(14,116,144,0.5) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(99,102,241,0.4) 1px, transparent 1px),
+        radial-gradient(circle 1px, rgba(14,116,144,0.35) 1px, transparent 1px),
+        radial-gradient(circle 0.5px, rgba(99,102,241,0.25) 0.5px, transparent 0.5px);
+      background-size: 40px 40px, 40px 40px, 32px 32px, 24px 24px;
+      background-position: 0 0, 0 0, 16px 16px, 0 0;
     }
 
-    /* Light mode: subtle top-left trust gradient */
+    /* Light: dual-tone gradient corners — teal top-left, indigo bottom-right */
     body::after {
       content: '';
       position: fixed;
@@ -101,77 +123,263 @@
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 700px 500px at 0% 0%, rgba(14,116,144,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 400px at 100% 100%, rgba(14,116,144,0.02) 0%, transparent 70%);
+        radial-gradient(ellipse 700px 500px at 0% 0%, rgba(14,116,144,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 100% 100%, rgba(99,102,241,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 50% 0%, rgba(14,116,144,0.02) 0%, transparent 60%);
     }
 
-    /* Dark: diagonal grid + dot accent pattern */
+    /* Dark: geometric hex-grid + triangular lattice + cyan dot matrix */
     .dark body::before, body.dark-bg::before {
       background-image:
-        linear-gradient(45deg, rgba(168,85,247,0.06) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(168,85,247,0.04) 1px, transparent 1px),
-        radial-gradient(circle, rgba(6,182,212,0.08) 0.5px, transparent 0.5px);
-      background-size: 40px 40px, 40px 40px, 24px 24px;
-      opacity: 0.4;
+        linear-gradient(30deg, rgba(168,85,247,0.05) 1px, transparent 1px),
+        linear-gradient(150deg, rgba(168,85,247,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6,182,212,0.025) 1px, transparent 1px),
+        radial-gradient(circle 0.6px, rgba(6,182,212,0.15) 0.6px, transparent 0.6px),
+        linear-gradient(60deg, rgba(168,85,247,0.02) 1px, transparent 1px),
+        linear-gradient(-60deg, rgba(6,182,212,0.015) 1px, transparent 1px);
+      background-size: 32px 56px, 32px 56px, 64px 64px, 20px 20px, 48px 48px, 48px 48px;
+      opacity: 0.6;
     }
 
-    /* Dark: mesh gradient with violet + cyan dual-glow */
+    /* Dark: mesh gradient — violet top-left, cyan bottom-right, subtle center pulse */
     .mesh-bg {
       position: fixed; inset: 0; z-index: -1; pointer-events: none;
       background: transparent;
-      transition: background 0.5s;
+      transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
     }
     .dark .mesh-bg {
       background:
-        radial-gradient(ellipse 650px 450px at 15% 5%, rgba(168,85,247,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 500px at 85% 85%, rgba(6,182,212,0.05) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 300px at 50% 50%, rgba(168,85,247,0.03) 0%, transparent 60%);
+        radial-gradient(ellipse 700px 500px at 10% 0%, rgba(168,85,247,0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 600px at 90% 95%, rgba(6,182,212,0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 300px 300px at 50% 40%, rgba(168,85,247,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 200px 200px at 70% 20%, rgba(6,182,212,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 400px 200px at 30% 80%, rgba(168,85,247,0.03) 0%, transparent 50%);
     }
 
-    /* Dark: hide light-mode body::after gradient */
     .dark body::after, body.dark-bg::after { opacity: 0; }
 
-    .glass-header { background: var(--header-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--header-border); }
-    .surface { background: var(--surface); border: 1px solid var(--surface-border); }
-    .surface-h { transition: all 0.25s cubic-bezier(0.65,0.05,0,1); }
-    .surface-h:hover { background: var(--surface-hover); border-color: var(--accent-glow); }
-    .surface-h:active { transform: scale(0.98); }
+    /* ===== GLASSMORPHISM ===== */
+    .glass-header {
+      background: var(--header-bg);
+      backdrop-filter: blur(32px) saturate(1.6);
+      -webkit-backdrop-filter: blur(32px) saturate(1.6);
+      border-bottom: 1px solid var(--header-border);
+    }
+    .dark .glass-header {
+      background: rgba(9,9,11,0.65);
+      border-bottom: 1px solid rgba(168,85,247,0.08);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
 
-    .btn-accent { background: var(--accent); color: var(--accent-text); box-shadow: var(--glow); }
-    .btn-accent:hover { filter: brightness(1.1); }
-    .btn-accent:active { transform: scale(0.97); }
+    /* ===== SURFACES ===== */
+    .surface {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      box-shadow: var(--surface-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .surface-h { transition: all 0.25s cubic-bezier(0.65,0.05,0,1); }
+    .surface-h:hover {
+      background: var(--surface-hover);
+      border-color: rgba(168,85,247,0.12);
+      box-shadow: var(--surface-glow-hover);
+      transform: translateY(-1px);
+    }
+    .surface-h:active { transform: scale(0.98) translateY(0); }
+
+    /* ===== BUTTONS ===== */
+    .btn-accent {
+      background: var(--accent);
+      color: var(--accent-text);
+      box-shadow: var(--glow);
+      transition: all 0.25s cubic-bezier(0.65,0.05,0,1);
+    }
+    .dark .btn-accent {
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      box-shadow: 0 0 20px rgba(168,85,247,0.3), 0 0 60px rgba(168,85,247,0.08);
+    }
+    .btn-accent:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-accent:active { transform: scale(0.97) translateY(0); filter: brightness(1); }
 
     .text-accent { color: var(--accent); }
+    .text-accent2 { color: var(--accent2); }
     .bg-accent { background: var(--accent); }
+    .dual-gradient-text { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .bg-accent-soft { background: var(--accent-bg); }
     .border-accent { border-color: var(--accent); }
     .glow { box-shadow: var(--glow); }
+    .text-cyan { color: var(--accent2); }
 
-    /* Animations */
+    /* ===== NEON LINE ACCENTS ===== */
+    .neon-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), transparent); border-radius: 2px; }
+    .dark .neon-line { box-shadow: 0 0 8px var(--accent-glow); }
+
+    /* ===== ANIMATIONS — Snappy cubic-bezier(0.65,0.05,0,1) ===== */
     .pop-in { animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
-    @keyframes popIn { 0%{opacity:0;transform:scale(0.92) translateY(20px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
-    .slide-up { animation: slideUp 0.5s cubic-bezier(0.65,0.05,0,1) both; }
-    @keyframes slideUp { 0%{opacity:0;transform:translateY(30px)} 100%{opacity:1;transform:translateY(0)} }
+    @keyframes popIn { 0%{opacity:0;transform:scale(0.88) translateY(24px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
+
+    .slide-up { animation: slideUp 0.55s cubic-bezier(0.65,0.05,0,1) both; }
+    @keyframes slideUp { 0%{opacity:0;transform:translateY(36px)} 100%{opacity:1;transform:translateY(0)} }
+
     .page-enter { animation: pageIn 0.5s cubic-bezier(0.65,0.05,0,1) both; }
     @keyframes pageIn { 0%{opacity:0;transform:translateY(40px)} 100%{opacity:1;transform:translateY(0)} }
+
     .fade-in { animation: fadeIn 0.6s ease both; }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-    .reveal { animation: reveal 0.6s cubic-bezier(0.65,0.05,0,1) both; }
-    @keyframes reveal { 0%{clip-path:inset(0 0 100% 0);opacity:0} 100%{clip-path:inset(0);opacity:1} }
+
+    /* Cinematic clip-path reveal — sweeps left-to-right */
+    .reveal { animation: clipReveal 0.7s cubic-bezier(0.65,0.05,0,1) both; }
+    @keyframes clipReveal {
+      0%   { clip-path: inset(0 100% 0 0); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { clip-path: inset(0 0% 0 0); opacity: 1; }
+    }
+
+    /* Clip-path reveal — vertical wipe for subtitle text */
+    .reveal-up { animation: clipRevealUp 0.6s cubic-bezier(0.65,0.05,0,1) both; }
+    @keyframes clipRevealUp {
+      0%   { clip-path: inset(100% 0 0 0); opacity: 0; }
+      100% { clip-path: inset(0% 0 0 0); opacity: 1; }
+    }
+
+    /* Neon pulse for #1 card in dark mode */
+    .dark .neon-pulse { animation: neonPulse 2.5s ease-in-out infinite alternate; }
+    @keyframes neonPulse {
+      0%   { box-shadow: 0 0 16px rgba(168,85,247,0.4), 0 0 40px rgba(6,182,212,0.1); }
+      100% { box-shadow: 0 0 24px rgba(168,85,247,0.6), 0 0 60px rgba(6,182,212,0.2); }
+    }
+
     .stagger>*:nth-child(1){animation-delay:0s} .stagger>*:nth-child(2){animation-delay:0.06s} .stagger>*:nth-child(3){animation-delay:0.12s}
     .stagger>*:nth-child(4){animation-delay:0.18s} .stagger>*:nth-child(5){animation-delay:0.24s} .stagger>*:nth-child(6){animation-delay:0.3s}
+    .stagger>*:nth-child(7){animation-delay:0.36s} .stagger>*:nth-child(8){animation-delay:0.42s}
+
     .scroll-hide::-webkit-scrollbar{display:none} .scroll-hide{-ms-overflow-style:none;scrollbar-width:none}
     input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .dark input:focus,.dark select:focus,.dark button:focus-visible{box-shadow:0 0 12px var(--accent-glow)}
     input,select{caret-color:var(--accent)}
-    .cat-btn{transition:all 0.25s cubic-bezier(0.65,0.05,0,1)} .cat-btn:active{transform:scale(0.93)}
-    .modal-backdrop{animation:fadeIn 0.25s ease} .modal-content{animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1)}
-    .tab-active{position:relative} .tab-active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:20px;height:3px;background:var(--accent);border-radius:3px}
-    .rank-badge{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;letter-spacing:-0.5px}
+
+    .cat-btn{transition:all 0.25s cubic-bezier(0.65,0.05,0,1);position:relative}
+    .cat-btn:hover{transform:translateY(-2px);box-shadow:var(--surface-glow-hover);border-color:var(--accent) !important}
+    .cat-btn:active{transform:scale(0.93) translateY(0)}
+
+    /* Shimmer on #1 result card */
+    .shimmer{position:relative;overflow:hidden}
+    .shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:shimmer 3s ease-in-out infinite}
+    @keyframes shimmer{0%{left:-100%}50%{left:150%}100%{left:150%}}
+
+    .modal-backdrop{animation:fadeIn 0.25s ease}
+    .modal-content{animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1)}
+
+    /* Bottom nav active tab — neon underline */
+    .tab-active{position:relative}
+    .tab-active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:24px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px}
+    .dark .tab-active::after{box-shadow:0 0 10px var(--accent-glow)}
+
+    /* ===== RANK BADGES — Progressive glow ===== */
+    .rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
     .rank-1{background:var(--badge-1-bg);color:var(--badge-1-text);box-shadow:var(--badge-1-glow)}
-    .rank-2{background:var(--accent-bg);color:var(--text2)} .rank-3{background:var(--accent-bg);color:var(--text3)} .rank-other{background:var(--text4);color:var(--text3)}
-    .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.05) 100%)}
-    .theme-toggle{width:52px;height:28px;border-radius:14px;position:relative;cursor:pointer;transition:background 0.3s}
-    .theme-toggle .knob{width:22px;height:22px;border-radius:50%;position:absolute;top:3px;transition:transform 0.3s cubic-bezier(0.65,0.05,0,1)}
+    .rank-2{background:var(--badge-2-bg);color:var(--badge-2-text);box-shadow:var(--badge-2-glow)}
+    .rank-3{background:var(--badge-3-bg);color:var(--badge-3-text);box-shadow:var(--badge-3-glow)}
+    .rank-other{background:var(--text4);color:var(--text3);box-shadow:none}
+
+    .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.04) 100%)}
+    .dark .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,rgba(255,255,255,0) 40%,rgba(168,85,247,0.04) 100%)}
+
+    .theme-toggle{width:52px;height:28px;border-radius:14px;position:relative;cursor:pointer;transition:background 0.3s cubic-bezier(0.65,0.05,0,1)}
+    .theme-toggle .knob{width:22px;height:22px;border-radius:50%;position:absolute;top:3px;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
+    .dark .theme-toggle .knob{box-shadow:0 0 8px rgba(168,85,247,0.4)}
+
+    /* Dark mode bottom nav glass */
+    .dark nav.glass-header {
+      background: rgba(9,9,11,0.65);
+      border-top: 1px solid rgba(168,85,247,0.06);
+      border-bottom: none;
+      box-shadow: 0 -4px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    /* ===== CARD TILE — Mini credit card with neon highlights ===== */
+    .card-tile {
+      position: relative;
+      width: 56px; height: 36px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.65,0.05,0,1);
+    }
+    .card-tile::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.06) 100%);
+      z-index: 1;
+    }
+    .card-tile::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.15);
+      z-index: 2;
+    }
+    .card-tile .card-label {
+      position: relative; z-index: 3;
+      font-size: 7px; font-weight: 800;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      letter-spacing: 0.3px;
+      line-height: 1;
+    }
+    .card-tile .card-chip {
+      width: 8px; height: 6px;
+      border-radius: 1px;
+      background: linear-gradient(135deg, #d4a853, #c9975c);
+      position: absolute; top: 7px; left: 6px; z-index: 3;
+    }
+    .card-tile .card-network {
+      position: absolute; bottom: 3px; right: 4px; z-index: 3;
+      font-size: 5px; font-weight: 900;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.2px;
+    }
+    /* Neon border glow on selected cards */
+    .card-tile-selected {
+      box-shadow: 0 0 8px var(--accent-glow), 0 0 0 1.5px var(--accent);
+    }
+    .dark .card-tile-selected {
+      box-shadow: 0 0 12px var(--accent-glow), 0 0 20px rgba(6,182,212,0.08), 0 0 0 1.5px var(--accent);
+    }
+    .card-tile-selected::after {
+      border-color: var(--accent) !important;
+    }
+
+    /* Credit/Debit tab filter */
+    .type-tab {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.65,0.05,0,1);
+      border: 1px solid transparent;
+    }
+    .type-tab-active {
+      background: var(--accent);
+      color: var(--accent-text);
+      box-shadow: var(--glow);
+    }
+    .type-tab-inactive {
+      background: var(--accent-bg);
+      color: var(--text2);
+      border-color: var(--surface-border);
+    }
+    .type-tab-inactive:hover { border-color: var(--accent); }
+
+    /* Color swatches for custom cards */
+    .color-swatch{width:32px;height:22px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:all 0.2s}
+    .color-swatch-active{border-color:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+    .rate-input{width:72px;padding:6px 8px;border-radius:8px;border:1px solid var(--surface-border);background:var(--bg3);color:var(--text);font-size:13px;text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:600}
+    .rate-input:focus{border-color:var(--accent);outline:none}
   </style>
 </head>
 <body>
@@ -187,7 +395,7 @@
         <div class="w-9 h-9 rounded-xl bg-accent flex items-center justify-center">
           <svg class="w-5 h-5" :style="{color: isDark?'#09090b':'#fff'}" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
         </div>
-        <span class="font-display text-lg font-bold tracking-tight" :style="{color:'var(--text)'}">CARD<span class="text-accent">WISE</span></span>
+        <span class="font-display text-lg font-bold tracking-tight" :style="{color:'var(--text)'}">CARD<span class="dual-gradient-text">WISE</span></span>
       </div>
       <div class="flex items-center gap-3">
         <!-- Theme toggle -->
@@ -206,10 +414,10 @@
 
     <!-- ONBOARDING -->
     <div v-if="page==='onboarding'" class="pt-20 text-center">
-      <div class="w-16 h-1 bg-accent mx-auto mb-8 rounded-full glow"></div>
-      <h1 class="font-display text-5xl font-bold tracking-tight mb-4 reveal" :style="{color:'var(--text)'}">CARD<span class="text-accent">WISE</span></h1>
-      <p class="text-xl mb-2 slide-up" style="animation-delay:0.1s;color:var(--text2)">Never use the wrong card again.</p>
-      <p class="mb-14 max-w-xs mx-auto slide-up" style="animation-delay:0.15s;color:var(--text3)">Instant recommendations on which card maximizes your rewards at every merchant in Singapore.</p>
+      <div class="neon-line w-20 mx-auto mb-8 glow"></div>
+      <h1 class="font-display text-5xl font-black tracking-tighter mb-4 reveal" :style="{color:'var(--text)'}">CARD<span class="dual-gradient-text">WISE</span></h1>
+      <p class="text-xl mb-2 reveal-up" style="animation-delay:0.25s;color:var(--text2)">Never use the wrong card again.</p>
+      <p class="mb-14 max-w-xs mx-auto reveal-up" style="animation-delay:0.4s;color:var(--text3)">Instant recommendations on which card maximizes your rewards at every merchant in Singapore.</p>
       <div class="space-y-4 text-left mb-12">
         <div v-for="(step,si) in [{n:'1',t:'Select your cards',d:'Tell us which cards are in your wallet'},{n:'2',t:'Where are you paying?',d:'Type a store or pick a category'},{n:'3',t:'See your best card',d:'Ranked by reward rate, instantly'}]" :key="si"
              class="surface rounded-2xl p-5 flex items-start gap-4 slide-up" :style="{'animation-delay':(0.2+si*0.05)+'s'}">
@@ -229,13 +437,13 @@
         <span class="text-xs font-medium" style="color:var(--text3)">Dark</span>
       </div>
       <button @click="go('setup-name')" class="w-full py-4 rounded-2xl btn-accent font-display font-bold text-lg tracking-tight transition-all slide-up" style="animation-delay:0.4s">GET STARTED</button>
-      <p class="text-xs mt-5" style="color:var(--text4)">All data stored on your device. No sign-up.</p>
+      <div class="neon-line w-12 mx-auto mt-8 mb-3"></div><p class="text-xs" style="color:var(--text4)">All data stored on your device. No sign-up.</p>
     </div>
 
     <!-- SETUP NAME -->
     <div v-if="page==='setup-name'" class="pt-10 page-enter">
       <div class="flex items-center gap-2 mb-10"><div class="flex-1 h-1 rounded-full bg-accent"></div><div class="flex-1 h-1 rounded-full" style="background:var(--text4)"></div></div>
-      <h2 class="font-display text-3xl font-bold tracking-tight mb-2" :style="{color:'var(--text)'}">What's your <span class="text-accent">name</span>?</h2>
+      <h2 class="font-display text-3xl font-black tracking-tighter mb-2" :style="{color:'var(--text)'}">What's your <span class="text-accent">name</span>?</h2>
       <p class="mb-10" style="color:var(--text3)">So we can personalize your experience.</p>
       <div class="mb-8">
         <input v-model="profile.name" @keyup.enter="profile.name.trim()&&go('setup-cards')" type="text" placeholder="e.g. Sarah" maxlength="30"
@@ -251,8 +459,13 @@
     <!-- SETUP CARDS -->
     <div v-if="page==='setup-cards'" class="pt-6 page-enter">
       <div class="flex items-center gap-2 mb-8"><div class="flex-1 h-1 rounded-full bg-accent"></div><div class="flex-1 h-1 rounded-full bg-accent"></div></div>
-      <h2 class="font-display text-3xl font-bold tracking-tight mb-1" :style="{color:'var(--text)'}">Your <span class="text-accent">wallet</span></h2>
-      <p class="mb-6" style="color:var(--text3)">Tap to select all the cards you have.</p>
+      <h2 class="font-display text-3xl font-black tracking-tighter mb-1" :style="{color:'var(--text)'}">Your <span class="dual-gradient-text">wallet</span></h2>
+      <p class="mb-5" style="color:var(--text3)">Tap to select all the cards you have.</p>
+      <!-- Credit / Debit tabs -->
+      <div class="flex gap-2 mb-4">
+        <button @click="cardTypeFilter='credit'" class="type-tab" :class="cardTypeFilter==='credit'?'type-tab-active':'type-tab-inactive'">Credit Cards</button>
+        <button @click="cardTypeFilter='debit'" class="type-tab" :class="cardTypeFilter==='debit'?'type-tab-active':'type-tab-inactive'">Debit Cards</button>
+      </div>
       <div class="relative mb-4">
         <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         <input v-model="cardSearch" type="text" placeholder="Search cards..." class="w-full pl-12 pr-10 py-3.5 rounded-2xl border transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}">
@@ -269,7 +482,11 @@
       <div class="space-y-2 mb-6">
         <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
-          <div class="w-12 h-8 rounded-lg flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0" :style="{background:card.color}">{{card.bank.substring(0,4).toUpperCase()}}</div>
+          <div class="card-tile flex items-end justify-start p-1.5" :class="isSelected(card.id)?'card-tile-selected':''" :style="{background:card.color}">
+            <div class="card-chip"></div>
+            <div class="card-network">{{card.network||'VISA'}}</div>
+            <span class="card-label" style="position:absolute;bottom:3px;left:6px">{{card.bank.length>8?card.bank.substring(0,8):card.bank}}</span>
+          </div>
           <div class="flex-1 min-w-0">
             <p class="font-semibold text-sm leading-tight truncate" :style="{color:'var(--text)'}">{{card.name}}</p>
             <p class="text-xs truncate" style="color:var(--text3)">{{card.bank}} &middot; {{card.type}} &middot; {{card.highlight}}</p>
@@ -280,6 +497,9 @@
         </div>
         <p v-if="filteredCards.length===0" class="text-center py-8 text-sm" style="color:var(--text3)">No cards found.</p>
       </div>
+      <button @click="startAddCard()" class="w-full py-3 rounded-2xl border-2 border-dashed text-sm font-semibold transition-all mb-4" :style="{borderColor:'var(--accent)',color:'var(--accent)',background:'var(--accent-bg)'}">
+        <span class="flex items-center justify-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Can't find your card? Add it manually</span>
+      </button>
       <div class="sticky bottom-4 z-10" v-if="userCards.length>0">
         <button @click="finishSetup()" class="w-full py-4 rounded-2xl btn-accent font-display font-bold text-lg tracking-tight transition-all">DONE &mdash; LET'S GO</button>
       </div>
@@ -289,7 +509,7 @@
     <div v-if="page==='home'" class="pt-5 page-enter">
       <div class="mb-6">
         <p class="text-sm font-medium uppercase tracking-widest mb-1" style="color:var(--text3)">Welcome back</p>
-        <h2 class="font-display text-3xl font-bold tracking-tight" :style="{color:'var(--text)'}">{{profile.name.split(' ')[0]}}<span class="text-accent">.</span></h2>
+        <h2 class="font-display text-3xl font-black tracking-tighter" :style="{color:'var(--text)'}">{{profile.name.split(' ')[0]}}<span class="dual-gradient-text">.</span></h2>
       </div>
       <div class="relative mb-4 store-search-wrap">
         <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -300,7 +520,7 @@
             <span class="text-lg">{{catIcon(s.category)}}</span>
             <div class="flex-1 min-w-0">
               <p class="font-medium text-sm truncate" :style="{color:'var(--text)'}">{{s.name}}</p>
-              <p class="text-xs truncate" style="color:var(--text3)">{{catLabel(s.category)}}</p>
+              <p class="text-xs truncate" style="color:var(--text3)">{{s.sub||catLabel(s.category)}}</p>
             </div>
           </button>
         </div>
@@ -309,7 +529,16 @@
         <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         {{geoLoading?'Detecting...':'Use my location'}}
       </button>
-      <div class="flex items-center gap-4 mb-5"><div class="flex-1 h-px" style="background:var(--surface-border)"></div><span class="text-[10px] font-bold uppercase tracking-[0.2em]" style="color:var(--text4)">or pick category</span><div class="flex-1 h-px" style="background:var(--surface-border)"></div></div>
+      <!-- Recent searches -->
+      <div v-if="recentSearches.length>0" class="mb-5">
+        <p class="text-[10px] font-display font-bold uppercase tracking-[0.2em] mb-2" style="color:var(--text3)">Recent</p>
+        <div class="flex gap-2 overflow-x-auto scroll-hide pb-1 -mx-4 px-4">
+          <button v-for="rs in recentSearches" :key="rs.name" @click="pickStore(rs)" class="flex items-center gap-1.5 px-3 py-2 rounded-full border whitespace-nowrap flex-shrink-0 text-xs font-medium transition-all surface-h" :style="{borderColor:'var(--surface-border)',background:'var(--surface)',color:'var(--text2)'}">
+            <span class="text-sm">{{catIcon(rs.category)}}</span>{{rs.name}}
+          </button>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 mb-5"><div class="flex-1 neon-line" style="opacity:0.4"></div><span class="text-[10px] font-display font-bold uppercase tracking-[0.2em]" style="color:var(--text3)">or pick category</span><div class="flex-1 neon-line" style="opacity:0.4;transform:scaleX(-1)"></div></div>
       <div class="grid grid-cols-4 gap-2 mb-8">
         <button v-for="cat in categories" :key="cat.id" @click="pickCategory(cat.id)" class="cat-btn flex flex-col items-center gap-1.5 p-3 rounded-2xl border" :style="{borderColor:'var(--surface-border)',background:'var(--surface)'}">
           <span class="text-2xl leading-none">{{cat.icon}}</span>
@@ -317,17 +546,27 @@
         </button>
       </div>
       <div v-if="userCards.length>0&&topCategories.length>0">
-        <div class="flex items-center gap-3 mb-4"><div class="w-1 h-5 bg-accent rounded-full"></div><p class="font-display font-bold tracking-tight" :style="{color:'var(--text)'}">YOUR BEST CARDS</p></div>
+        <div class="flex items-center gap-3 mb-4"><div class="w-1 h-6 rounded-full" style="background:linear-gradient(180deg,var(--accent),var(--accent2))"></div><p class="font-display font-black tracking-tighter uppercase" :style="{color:'var(--text)'}">YOUR BEST CARDS</p></div>
         <div class="space-y-2">
           <div v-for="tc in topCategories" :key="tc.id" @click="pickCategory(tc.id)" class="flex items-center gap-3 p-3.5 rounded-2xl surface surface-h cursor-pointer">
             <span class="text-lg">{{tc.icon}}</span>
-            <div class="flex-1 min-w-0"><p class="text-sm font-semibold truncate" :style="{color:'var(--text)'}">{{tc.label}}</p><p class="text-[11px] truncate" style="color:var(--text3)">{{tc.cardName}}</p></div>
+            <div class="flex-1 min-w-0"><p class="text-sm font-semibold truncate" :style="{color:'var(--text)'}">{{tc.label}}</p><p class="text-[11px] truncate" style="color:var(--text3)">{{tc.cardName}}</p><p v-if="tc.minSpend" class="text-[10px] font-semibold" style="color:#d97706">Min S${{tc.minSpend}}/mo</p></div>
             <span class="text-sm font-display font-bold text-accent flex-shrink-0">{{tc.rate}}</span>
           </div>
         </div>
       </div>
-      <div class="mt-6 p-4 rounded-2xl surface">
-        <div class="flex items-center justify-between mb-3"><p class="text-sm font-display font-bold uppercase tracking-wider" style="color:var(--text3)">Wallet</p><button @click="go('mycards')" class="text-xs text-accent font-bold uppercase tracking-wider">Edit</button></div>
+      <!-- Daily Tip -->
+      <div v-if="dailyTip" class="mt-6 p-4 rounded-2xl surface" style="border-left:3px solid var(--accent2)">
+        <div class="flex items-start gap-3">
+          <span class="text-lg flex-shrink-0">{{dailyTip.icon}}</span>
+          <div>
+            <p class="text-[10px] font-display font-bold uppercase tracking-widest mb-1" style="color:var(--accent2)">Daily Tip</p>
+            <p class="text-sm leading-relaxed" style="color:var(--text2)">{{dailyTip.text}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-2xl surface">
+        <div class="flex items-center justify-between mb-3"><p class="text-sm font-display font-bold uppercase tracking-wider" style="color:var(--text3)">Wallet</p><button @click="go('mycards')" class="text-xs font-bold uppercase tracking-wider dual-gradient-text">Edit</button></div>
         <div class="flex -space-x-2">
           <div v-for="cid in userCards.slice(0,8)" :key="cid" class="w-9 h-6 rounded-md border-2 flex items-center justify-center text-white text-[7px] font-bold" :style="{borderColor:'var(--bg)',background:getCard(cid)?getCard(cid).color:'#333'}">{{(getCard(cid)?getCard(cid).bank:'').substring(0,3).toUpperCase()}}</div>
           <div v-if="userCards.length>8" class="w-9 h-6 rounded-md border-2 flex items-center justify-center text-[8px] font-bold" :style="{borderColor:'var(--bg)',background:'var(--text4)',color:'var(--text3)'}">+{{userCards.length-8}}</div>
@@ -345,34 +584,72 @@
       <div class="mb-6"><div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm" style="color:var(--text3)">S$</span><input v-model.number="spendAmount" type="number" placeholder="Enter amount for estimate" min="0" class="w-full pl-11 pr-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div></div>
 
       <div v-if="recommendations.length>0" class="stagger space-y-3">
-        <div v-for="(rec,idx) in recommendations" :key="rec.card.id" class="pop-in rounded-2xl overflow-hidden" :class="idx===0?'glow':''">
+        <div v-for="(rec,idx) in recommendations" :key="rec.card.id" class="pop-in rounded-2xl overflow-hidden" :class="idx===0?'glow neon-pulse':''">
           <template v-if="idx===0">
-            <div class="p-5 relative" :style="{background:rec.card.color}"><div class="card-gradient absolute inset-0"></div>
+            <div class="p-5 relative shimmer" :style="{background:rec.card.color}"><div class="card-gradient absolute inset-0"></div>
               <div class="relative">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center gap-2"><div class="rank-badge rank-1">1</div><span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border" :style="{background:'rgba(255,255,255,0.1)',borderColor:'rgba(255,255,255,0.2)',color:'#fff'}">BEST CARD</span></div>
                   <div class="text-right"><p class="text-4xl font-display font-black leading-none text-white">{{fmtRate(rec.rate)}}</p><p class="text-[10px] text-white/40 uppercase tracking-widest mt-0.5">{{rec.card.type}}</p></div>
                 </div>
-                <h3 class="text-xl font-display font-bold text-white mb-0.5 tracking-tight">{{rec.card.name}}</h3><p class="text-sm text-white/40">{{rec.card.bank}}</p>
+                <h3 class="text-xl font-display font-bold text-white mb-0.5 tracking-tight cursor-pointer" @click.stop="selectedCardDetail=rec.card" style="text-decoration-style:dotted;text-underline-offset:3px" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{rec.card.name}}</h3><p class="text-sm text-white/40">{{rec.card.bank}}</p>
               </div>
             </div>
             <div class="p-4" :style="{background:'var(--surface)',borderTop:'1px solid var(--surface-border)'}">
               <div class="flex items-start gap-2 mb-2"><svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><p class="text-sm" style="color:var(--text2)">{{rec.reason}}</p></div>
               <div v-if="rec.conditions" class="flex items-start gap-2"><svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#f59e0b" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg><p class="text-xs" style="color:#d97706">{{rec.conditions}}</p></div>
+              <div v-if="rec.card.minSpend" class="flex items-center gap-2 mt-2 px-3 py-2 rounded-xl" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15)">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#f59e0b" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-xs font-semibold" style="color:#d97706">Requires min. S${{rec.card.minSpend}}/month spend to earn bonus rates</p>
+              </div>
               <div v-if="spendAmount>0" class="mt-3 pt-3 flex items-center justify-between" :style="{borderTop:'1px solid var(--surface-border)'}"><span class="text-sm" style="color:var(--text3)">Estimated reward</span><span class="text-lg font-display font-bold text-accent">{{estSavings(rec,spendAmount)}}</span></div>
             </div>
           </template>
           <template v-else>
             <div class="p-4 surface"><div class="flex items-start gap-3"><div class="rank-badge" :class="idx===1?'rank-2':idx===2?'rank-3':'rank-other'">{{idx+1}}</div>
-              <div class="w-11 h-7 rounded-lg flex items-center justify-center text-white text-[9px] font-bold flex-shrink-0" :style="{background:rec.card.color}">{{rec.card.bank.substring(0,4).toUpperCase()}}</div>
+              <div class="card-tile flex items-end justify-start p-1" :style="{background:rec.card.color,width:'48px',height:'32px'}"><div class="card-chip" style="width:6px;height:5px;top:5px;left:4px"></div><div class="card-network" style="font-size:4px">{{rec.card.network||'VISA'}}</div><span class="card-label" style="position:absolute;bottom:2px;left:4px;font-size:6px">{{rec.card.bank.length>6?rec.card.bank.substring(0,6):rec.card.bank}}</span></div>
               <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between"><p class="font-semibold text-sm truncate" :style="{color:'var(--text)'}">{{rec.card.name}}</p><span class="text-base font-display font-bold ml-2 flex-shrink-0" :style="{color:idx===1?'var(--text)':'var(--text2)'}">{{fmtRate(rec.rate)}}</span></div>
+                <div class="flex items-center justify-between"><p class="font-semibold text-sm truncate cursor-pointer" :style="{color:'var(--text)'}" @click.stop="selectedCardDetail=rec.card">{{rec.card.name}}</p><span class="text-base font-display font-bold ml-2 flex-shrink-0" :style="{color:idx===1?'var(--text)':'var(--text2)'}">{{fmtRate(rec.rate)}}</span></div>
                 <p class="text-xs" style="color:var(--text3)">{{rec.card.bank}} &middot; {{rec.card.type}}</p><p class="text-xs mt-1" style="color:var(--text2)">{{rec.reason}}</p>
                 <p v-if="rec.conditions" class="text-[11px] mt-1" style="color:#d97706">{{rec.conditions}}</p>
+                <p v-if="rec.card.minSpend" class="text-[11px] mt-0.5 font-semibold" style="color:#d97706">&#9888; Min. spend: S${{rec.card.minSpend}}/mo required</p>
                 <p v-if="spendAmount>0" class="text-xs mt-1" style="color:var(--text3)">Est: <span class="font-semibold text-accent">{{estSavings(rec,spendAmount)}}</span></p>
               </div>
             </div></div>
           </template>
+        </div>
+      </div>
+      <!-- Card Detail Modal -->
+      <div v-if="selectedCardDetail" class="fixed inset-0 z-50 flex items-end justify-center modal-backdrop" style="background:rgba(0,0,0,0.5)" @click.self="selectedCardDetail=null">
+        <div class="w-full max-w-lg rounded-t-3xl border-t border-x overflow-hidden modal-content" :style="{background:'var(--bg)',borderColor:'var(--surface-border)'}">
+          <div class="p-5" :style="{background:selectedCardDetail.color}">
+            <div class="card-gradient absolute inset-0" style="border-radius:24px 24px 0 0"></div>
+            <div class="relative">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xl font-display font-bold text-white tracking-tight">{{selectedCardDetail.name}}</h3>
+                <button @click="selectedCardDetail=null" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,0.15)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+              </div>
+              <p class="text-sm text-white/50">{{selectedCardDetail.bank}} &middot; {{selectedCardDetail.type}} &middot; {{selectedCardDetail.network}}</p>
+              <p class="text-xs text-white/30 mt-1">{{selectedCardDetail.highlight}}</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-[10px] font-display font-bold uppercase tracking-widest mb-3" style="color:var(--text3)">Reward Rates</p>
+            <div class="grid grid-cols-2 gap-2">
+              <div v-for="cat in categories" :key="cat.id" class="flex items-center justify-between p-2.5 rounded-xl" :style="{background: selectedCardDetail.rates[cat.id]>=3?'var(--accent-bg)':'var(--bg3)'}">
+                <span class="text-xs" :style="{color: selectedCardDetail.rates[cat.id]>=3?'var(--text)':'var(--text3)'}">{{cat.icon}} {{cat.label}}</span>
+                <span class="text-xs font-display font-bold" :style="{color: selectedCardDetail.rates[cat.id]>=3?'var(--accent)':'var(--text3)'}">{{fmtRate(selectedCardDetail.rates[cat.id]||0)}}</span>
+              </div>
+            </div>
+            <div v-if="selectedCardDetail.fee||selectedCardDetail.minSpend" class="mt-4 pt-3 flex gap-4" :style="{borderTop:'1px solid var(--surface-border)'}">
+              <div v-if="selectedCardDetail.fee"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Annual Fee</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">{{selectedCardDetail.fee}}</p></div>
+              <div v-if="selectedCardDetail.minSpend"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Min Spend</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">S${{selectedCardDetail.minSpend}}/mo</p></div>
+            </div>
+            <div v-if="selectedCardDetail.isCustom" class="mt-4 pt-3 flex gap-2" :style="{borderTop:'1px solid var(--surface-border)'}">
+              <button @click="editCustomCard(selectedCardDetail)" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" :style="{background:'var(--accent-bg)',color:'var(--accent)'}">Edit Card</button>
+              <button @click="deleteCustomCard(selectedCardDetail.id);selectedCardDetail=null" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete</button>
+            </div>
+          </div>
         </div>
       </div>
       <div v-if="recommendations.length===0" class="text-center py-16 pop-in">
@@ -383,7 +660,11 @@
 
     <!-- MY CARDS -->
     <div v-if="page==='mycards'" class="pt-6 page-enter">
-      <div class="flex items-center justify-between mb-6"><div><h2 class="font-display text-2xl font-bold tracking-tight" :style="{color:'var(--text)'}">My <span class="text-accent">Wallet</span></h2><p class="text-sm" style="color:var(--text3)">{{userCards.length}} cards</p></div><button @click="go('home')" class="text-sm text-accent font-bold uppercase tracking-wider">Done</button></div>
+      <div class="flex items-center justify-between mb-6"><div><h2 class="font-display text-2xl font-black tracking-tighter" :style="{color:'var(--text)'}">My <span class="dual-gradient-text">Wallet</span></h2><p class="text-sm" style="color:var(--text3)">{{userCards.length}} cards</p></div><button @click="go('home')" class="text-sm text-accent font-bold uppercase tracking-wider">Done</button></div>
+      <div class="flex gap-2 mb-4">
+        <button @click="cardTypeFilter='credit'" class="type-tab" :class="cardTypeFilter==='credit'?'type-tab-active':'type-tab-inactive'">Credit</button>
+        <button @click="cardTypeFilter='debit'" class="type-tab" :class="cardTypeFilter==='debit'?'type-tab-active':'type-tab-inactive'">Debit</button>
+      </div>
       <div class="relative mb-4"><svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><input v-model="cardSearch" type="text" placeholder="Search cards..." class="w-full pl-12 pr-4 py-3 rounded-2xl border transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
       <div class="flex gap-2 mb-4 overflow-x-auto scroll-hide pb-1 -mx-4 px-4">
         <button @click="bankFilter=''" class="px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-all" :class="bankFilter===''?'btn-accent':''" :style="bankFilter!==''?{background:'var(--accent-bg)',color:'var(--text2)'}:{}">All</button>
@@ -392,11 +673,104 @@
       <div class="space-y-2">
         <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
-          <div class="w-12 h-8 rounded-lg flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0" :style="{background:card.color}">{{card.bank.substring(0,4).toUpperCase()}}</div>
+          <div class="card-tile flex items-end justify-start p-1.5" :class="isSelected(card.id)?'card-tile-selected':''" :style="{background:card.color}">
+            <div class="card-chip"></div>
+            <div class="card-network">{{card.network||'VISA'}}</div>
+            <span class="card-label" style="position:absolute;bottom:3px;left:6px">{{card.bank.length>8?card.bank.substring(0,8):card.bank}}</span>
+          </div>
           <div class="flex-1 min-w-0"><p class="font-semibold text-sm truncate" :style="{color:'var(--text)'}">{{card.name}}</p><p class="text-xs truncate" style="color:var(--text3)">{{card.bank}} &middot; {{card.type}}</p></div>
           <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all" :style="{borderColor:isSelected(card.id)?'var(--accent)':'var(--text4)',background:isSelected(card.id)?'var(--accent)':'transparent'}"><svg v-if="isSelected(card.id)" class="w-3.5 h-3.5" :style="{color:'var(--accent-text)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
         </div>
       </div>
+      <button @click="startAddCard()" class="w-full py-3 rounded-2xl border-2 border-dashed text-sm font-semibold transition-all mt-3" :style="{borderColor:'var(--accent)',color:'var(--accent)',background:'var(--accent-bg)'}">
+        <span class="flex items-center justify-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Add a card manually</span>
+      </button>
+    </div>
+
+    <!-- ADD CUSTOM CARD -->
+    <div v-if="page==='add-card'" class="pt-6 page-enter">
+      <button @click="go(addCardReturnPage)" class="flex items-center gap-2 mb-6 transition-colors" style="color:var(--text3)"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg><span class="text-sm font-medium">Back</span></button>
+      <h2 class="font-display text-2xl font-black tracking-tighter mb-1" :style="{color:'var(--text)'}">Add <span class="dual-gradient-text">Custom Card</span></h2>
+      <p class="text-sm mb-6" style="color:var(--text3)">Add a card that's not in our database.</p>
+
+      <!-- Bank & Card Name -->
+      <div class="space-y-3 mb-5">
+        <div><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Bank Name</label>
+        <input v-model="newCard.bank" type="text" placeholder="e.g. HSBC, Maybank" class="w-full px-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
+        <div><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Card Name</label>
+        <input v-model="newCard.name" type="text" placeholder="e.g. Platinum Rewards Card" class="w-full px-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
+      </div>
+
+      <!-- Search online button -->
+      <button v-if="newCard.bank&&newCard.name" @click="searchCardOnline()" class="w-full py-3 rounded-xl border text-sm font-medium transition-all flex items-center justify-center gap-2 mb-5" :style="{borderColor:'var(--accent)',color:'var(--accent)',background:'var(--accent-bg)'}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        Search online for card details
+      </button>
+
+      <!-- Card Type & Network -->
+      <div class="flex gap-3 mb-5">
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Type</label>
+        <div class="flex gap-2">
+          <button @click="newCard.ct='credit'" class="type-tab flex-1" :class="newCard.ct==='credit'?'type-tab-active':'type-tab-inactive'">Credit</button>
+          <button @click="newCard.ct='debit'" class="type-tab flex-1" :class="newCard.ct==='debit'?'type-tab-active':'type-tab-inactive'">Debit</button>
+        </div></div>
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Network</label>
+        <div class="flex gap-1.5">
+          <button v-for="net in ['VISA','MC','AMEX']" :key="net" @click="newCard.network=net" class="type-tab flex-1 text-[11px] px-2" :class="newCard.network===net?'type-tab-active':'type-tab-inactive'">{{net}}</button>
+        </div></div>
+      </div>
+
+      <!-- Reward Type -->
+      <div class="mb-5"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Reward Type</label>
+      <div class="flex gap-2">
+        <button v-for="rt in ['Cashback','Miles','Rewards']" :key="rt" @click="newCard.type=rt" class="type-tab flex-1" :class="newCard.type===rt?'type-tab-active':'type-tab-inactive'">{{rt}}</button>
+      </div></div>
+
+      <!-- Card Color -->
+      <div class="mb-5"><label class="text-[10px] font-bold uppercase tracking-widest mb-2 block" style="color:var(--text3)">Card Color</label>
+      <div class="flex gap-2 flex-wrap">
+        <div v-for="(clr,ci) in cardColors" :key="ci" @click="newCard.color=clr" class="color-swatch" :class="newCard.color===clr?'color-swatch-active':''" :style="{background:clr}"></div>
+      </div></div>
+
+      <!-- Reward Rates -->
+      <div class="mb-5"><label class="text-[10px] font-bold uppercase tracking-widest mb-2 block" style="color:var(--text3)">Reward Rates (%)</label>
+      <p class="text-[11px] mb-3" style="color:var(--text4)">Enter the cashback/rewards % for each category. Leave 0 for no bonus.</p>
+      <div class="space-y-2">
+        <div v-for="cat in categories" :key="cat.id" class="flex items-center justify-between p-2.5 rounded-xl" :style="{background:'var(--bg3)'}">
+          <span class="text-sm flex items-center gap-2" :style="{color:'var(--text2)'}"><span>{{cat.icon}}</span>{{cat.label}}</span>
+          <div class="flex items-center gap-1"><input v-model.number="newCard.rates[cat.id]" type="number" min="0" max="100" step="0.1" class="rate-input"><span class="text-xs" style="color:var(--text3)">%</span></div>
+        </div>
+      </div></div>
+
+      <!-- Min Spend & Annual Fee -->
+      <div class="flex gap-3 mb-5">
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Min Spend ($/mo)</label>
+        <input v-model.number="newCard.minSpend" type="number" min="0" placeholder="0" class="w-full px-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Annual Fee</label>
+        <input v-model="newCard.fee" type="text" placeholder="$0" class="w-full px-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
+      </div>
+
+      <!-- Highlight / Notes -->
+      <div class="mb-6"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Highlight (short summary)</label>
+      <input v-model="newCard.highlight" type="text" placeholder="e.g. 5% dining & groceries" maxlength="40" class="w-full px-4 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div>
+
+      <!-- Preview -->
+      <div v-if="newCard.bank&&newCard.name" class="mb-6 p-4 rounded-2xl surface">
+        <p class="text-[10px] font-display font-bold uppercase tracking-widest mb-3" style="color:var(--text3)">Preview</p>
+        <div class="flex items-center gap-3.5">
+          <div class="card-tile flex items-end justify-start p-1.5" :style="{background:newCard.color}">
+            <div class="card-chip"></div>
+            <div class="card-network">{{newCard.network}}</div>
+            <span class="card-label" style="position:absolute;bottom:3px;left:6px">{{newCard.bank.length>8?newCard.bank.substring(0,8):newCard.bank}}</span>
+          </div>
+          <div class="flex-1 min-w-0"><p class="font-semibold text-sm truncate" :style="{color:'var(--text)'}">{{newCard.name}}</p><p class="text-xs truncate" style="color:var(--text3)">{{newCard.bank}} &middot; {{newCard.type}} &middot; {{newCard.highlight||'Custom card'}}</p></div>
+        </div>
+      </div>
+
+      <button @click="saveCustomCard()" :disabled="!newCard.bank.trim()||!newCard.name.trim()" class="w-full py-4 rounded-2xl btn-accent font-display font-bold text-lg tracking-tight transition-all disabled:opacity-20 disabled:cursor-not-allowed mb-4">ADD TO WALLET</button>
+
+      <!-- Edit mode: delete button -->
+      <button v-if="editingCardId" @click="deleteCustomCard(editingCardId)" class="w-full py-3 rounded-2xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete This Card</button>
     </div>
 
     <!-- PROFILE -->
@@ -436,7 +810,7 @@
             <button @click="showDeleteConfirm=true" class="w-full py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete All Data</button>
           </div>
         </div>
-        <div class="p-4 rounded-2xl surface text-center"><p class="text-xs" style="color:var(--text4)">CardWise SG v2.0 &middot; All data stored locally</p></div>
+        <div class="p-4 rounded-2xl surface text-center"><div class="neon-line w-10 mx-auto mb-3"></div><p class="text-[10px] font-display font-bold uppercase tracking-widest" style="color:var(--text4)">CardWise SG v3.0 &middot; Local only</p></div>
       </div>
       <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="background:rgba(0,0,0,0.6)" @click.self="showDeleteConfirm=false">
         <div class="rounded-2xl p-6 w-full max-w-sm border modal-content" :style="{background:'var(--surface)',borderColor:'var(--surface-border)'}">
@@ -465,50 +839,190 @@
 </div>
 
 <script>
-var CARDS_DB=[{id:'dbs-live-fresh',name:'Live Fresh Card',bank:'DBS',type:'Cashback',highlight:'5% contactless/online',color:'linear-gradient(135deg,#e63946,#d62828)',rates:{dining:5,groceries:5,online:5,transport:5,contactless:5,petrol:0.3,travel:0.3,entertainment:5,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'5% cashback on contactless dining',groceries:'5% on contactless supermarkets',online:'5% on online spend'},conditions:{dining:'Cap $20/cat/mo. Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20,contactless:20,entertainment:20},minSpend:600},{id:'dbs-altitude',name:'Altitude Visa',bank:'DBS',type:'Miles',highlight:'3 mpd travel',color:'linear-gradient(135deg,#1d3557,#457b9d)',rates:{dining:2.2,groceries:0.7,online:2.2,transport:0.7,contactless:0.7,petrol:0.7,travel:5.4,entertainment:0.7,telco:0.7,utilities:0.7,general:0.7},notes:{travel:'3 mpd on online flights/hotels (~5.4%)'},conditions:{travel:'Book via online travel portals.'},caps:{},minSpend:0},{id:'dbs-womans-world',name:"Woman's World Card",bank:'DBS',type:'Miles',highlight:'4 mpd online',color:'linear-gradient(135deg,#c77dba,#9b5de5)',rates:{dining:1.6,groceries:1.6,online:7.2,transport:1.6,contactless:1.6,petrol:0.7,travel:1.6,entertainment:1.6,telco:1.6,utilities:0.7,general:0.7},notes:{online:'4 mpd = ~7.2% on online spend'},conditions:{online:'Cap 10X on $2,000/mo.'},caps:{online:144},minSpend:0},{id:'dbs-esso',name:'Esso Card',bank:'DBS',type:'Cashback',highlight:'21% at Esso',color:'linear-gradient(135deg,#003566,#001d3d)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:21,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{petrol:'Up to 21.3% savings at Esso'},conditions:{petrol:'Esso only.'},caps:{},minSpend:0},{id:'dbs-yuu-amex',name:'yuu DBS AMEX',bank:'DBS',type:'Cashback',highlight:'7% FairPrice',color:'linear-gradient(135deg,#ff6b6b,#ee5a24)',rates:{dining:3,groceries:7,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{groceries:'7% at FairPrice, Cold Storage, Giant'},conditions:{groceries:'Cap ~3,000 yuu pts/mo.'},caps:{groceries:30},minSpend:0},{id:'dbs-compass',name:'Compass Visa',bank:'DBS',type:'Cashback',highlight:'5% Grab/Shopee/grocery',color:'linear-gradient(135deg,#e11d48,#be123c)',rates:{dining:2,groceries:5,online:5,transport:5,contactless:2,petrol:2,travel:2,entertainment:2,telco:2,utilities:2,general:0.3},notes:{groceries:'5% on FairPrice, Giant',online:'5% on Shopee, Lazada',transport:'5% on Grab'},conditions:{groceries:'Min $800/mo. Cap $20/cat.'},caps:{groceries:20,online:20,transport:20},minSpend:800},{id:'dbs-takashimaya',name:'Takashimaya Card',bank:'DBS',type:'Cashback',highlight:'5% Takashimaya',color:'linear-gradient(135deg,#7c2d12,#9a3412)',rates:{dining:2,groceries:2,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:2,telco:0.3,utilities:0.3,general:5},notes:{general:'5% at Takashimaya'},conditions:{general:'Takashimaya only.'},caps:{general:25},minSpend:0},{id:'posb-everyday',name:'Everyday Card',bank:'POSB',type:'Cashback',highlight:'5% on 6 categories',color:'linear-gradient(135deg,#3b82f6,#1d4ed8)',rates:{dining:5,groceries:5,online:5,transport:5,contactless:5,petrol:0.3,travel:0.3,entertainment:5,telco:5,utilities:0.3,general:0.3},notes:{dining:'5% on dining, grocery, transport, online, telco'},conditions:{dining:'Min $800/mo. Cap $20/cat.'},caps:{dining:20,groceries:20,online:20,transport:20,telco:20,entertainment:20},minSpend:800},{id:'uob-one',name:'One Card',bank:'UOB',type:'Cashback',highlight:'10% dining/Grab',color:'linear-gradient(135deg,#00509d,#003f88)',rates:{dining:10,groceries:5,online:5,transport:10,contactless:5,petrol:5,travel:3.33,entertainment:3.33,telco:3.33,utilities:3.33,general:3.33},notes:{dining:'Up to 10% on dining',transport:'Up to 10% on Grab'},conditions:{dining:'5 txns + $500/mo + salary credit. Cap $50/cat.'},caps:{dining:50,groceries:50,online:50,transport:50},minSpend:500},{id:'uob-prvi-miles',name:'PRVI Miles',bank:'UOB',type:'Miles',highlight:'1.4 mpd everything',color:'linear-gradient(135deg,#2d6a4f,#40916c)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:10.8,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{general:'1.4 mpd on all local',travel:'6 mpd UOB Travel (~10.8%)'},conditions:{travel:'UOB Travel portal only.'},caps:{},minSpend:0},{id:'uob-ladys',name:"Lady's Card",bank:'UOB',type:'Miles',highlight:'4 mpd dining',color:'linear-gradient(135deg,#e7717d,#c2185b)',rates:{dining:7.2,groceries:7.2,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:7.2,telco:1.6,utilities:1.6,general:1.6},notes:{dining:'4 mpd dining, beauty (~7.2%)'},conditions:{dining:'Cap 10X on $1,000/mo.'},caps:{dining:72,groceries:72},minSpend:0},{id:'uob-absolute',name:'Absolute Cashback',bank:'UOB',type:'Cashback',highlight:'1.7% everything',color:'linear-gradient(135deg,#343a40,#212529)',rates:{dining:1.7,groceries:1.7,online:1.7,transport:1.7,contactless:1.7,petrol:1.7,travel:1.7,entertainment:1.7,telco:1.7,utilities:1.7,general:1.7},notes:{general:'1.7% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0},{id:'uob-evol',name:'EVOL Card',bank:'UOB',type:'Cashback',highlight:'8% mobile contactless',color:'linear-gradient(135deg,#0ea5e9,#0284c7)',rates:{dining:8,groceries:8,online:3,transport:8,contactless:8,petrol:3,travel:3,entertainment:8,telco:3,utilities:3,general:0.3},notes:{contactless:'8% on mobile contactless'},conditions:{contactless:'Mobile tap only. Cap $20/mo. Min $600/mo.'},caps:{dining:20,groceries:20,transport:20,contactless:20,entertainment:20},minSpend:600},{id:'ocbc-365',name:'365 Credit Card',bank:'OCBC',type:'Cashback',highlight:'6% dining',color:'linear-gradient(135deg,#e63946,#c1121f)',rates:{dining:6,groceries:3,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:3,utilities:1,general:0.3},notes:{dining:'6% on dining',groceries:'3% on groceries'},conditions:{dining:'Cap $80/mo. Min $800/mo.'},caps:{dining:80,groceries:80,online:80,transport:80},minSpend:800},{id:'ocbc-frank',name:'FRANK Card',bank:'OCBC',type:'Cashback',highlight:'6% online',color:'linear-gradient(135deg,#06d6a0,#0cb78d)',rates:{dining:1,groceries:1,online:6,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{online:'6% on online spend'},conditions:{online:'Min $400/mo. Cap $25.'},caps:{online:25},minSpend:400},{id:'ocbc-90n',name:'90N Card',bank:'OCBC',type:'Miles',highlight:'1.3 mpd local',color:'linear-gradient(135deg,#023e8a,#0077b6)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.8,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{general:'1.3 mpd all local',travel:'2.1 mpd overseas (~3.8%)'},conditions:{},caps:{},minSpend:0},{id:'citi-cashback',name:'Cash Back Card',bank:'Citi',type:'Cashback',highlight:'8% dining/grocery/petrol',color:'linear-gradient(135deg,#003566,#0a1128)',rates:{dining:8,groceries:8,online:0.25,transport:0.25,contactless:0.25,petrol:8,travel:0.25,entertainment:0.25,telco:0.25,utilities:0.25,general:0.25},notes:{dining:'8% on dining',groceries:'8% on groceries',petrol:'8% on petrol'},conditions:{dining:'Cap $25/cat/mo. Min $800/mo.'},caps:{dining:25,groceries:25,petrol:25},minSpend:800},{id:'citi-rewards',name:'Rewards Card',bank:'Citi',type:'Miles',highlight:'4 mpd dining/online',color:'linear-gradient(135deg,#0466c8,#023e7d)',rates:{dining:7.2,groceries:1.6,online:7.2,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:7.2,telco:1.6,utilities:1.6,general:0.4},notes:{dining:'4 mpd dining & online (~7.2%)'},conditions:{dining:'Cap 10X on $1,000/mo.'},caps:{dining:72,online:72},minSpend:0},{id:'citi-smrt',name:'SMRT Card',bank:'Citi',type:'Cashback',highlight:'5% transport',color:'linear-gradient(135deg,#1e40af,#1e3a8a)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:5,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{transport:'5% on public transport'},conditions:{transport:'Cap applies.'},caps:{transport:25},minSpend:0},{id:'citi-prestige',name:'Prestige Card',bank:'Citi',type:'Miles',highlight:'2 mpd overseas',color:'linear-gradient(135deg,#1e293b,#0f172a)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.6,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{travel:'2 mpd overseas. 4th night free.'},conditions:{travel:'$535 annual fee.'},caps:{},minSpend:0},{id:'hsbc-revolution',name:'Revolution Card',bank:'HSBC',type:'Cashback',highlight:'4% dining/online',color:'linear-gradient(135deg,#dc2626,#991b1b)',rates:{dining:4,groceries:1,online:4,transport:1,contactless:4,petrol:1,travel:1,entertainment:4,telco:1,utilities:1,general:0.4},notes:{dining:'~4% dining, entertainment, online contactless'},conditions:{dining:'Contactless tap required.'},caps:{dining:40},minSpend:0},{id:'hsbc-live',name:'Live+ Card',bank:'HSBC',type:'Cashback',highlight:'3% on 6 categories',color:'linear-gradient(135deg,#ef4444,#dc2626)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:1,travel:1,entertainment:3,telco:3,utilities:1,general:0.25},notes:{dining:'3% dining, groceries, transport, telco, online'},conditions:{dining:'Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20},minSpend:600},{id:'hsbc-travelone',name:'TravelOne Card',bank:'HSBC',type:'Miles',highlight:'2.4 mpd overseas',color:'linear-gradient(135deg,#b91c1c,#7f1d1d)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:4.3,entertainment:2,telco:2,utilities:2,general:2},notes:{travel:'2.4 mpd overseas, 0% FX (~4.3%)'},conditions:{},caps:{},minSpend:0},{id:'sc-unlimited',name:'Unlimited Cashback',bank:'Standard Chartered',type:'Cashback',highlight:'1.5% everything',color:'linear-gradient(135deg,#065f46,#047857)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0},{id:'sc-smart',name:'Smart Card',bank:'Standard Chartered',type:'Cashback',highlight:'5% dining/grocery/petrol',color:'linear-gradient(135deg,#0f766e,#14b8a6)',rates:{dining:5,groceries:5,online:2,transport:5,contactless:2,petrol:5,travel:2,entertainment:2,telco:5,utilities:2,general:0.5},notes:{dining:'5% dining, groceries, petrol, transport, telco'},conditions:{dining:'Cap $15/cat/mo. Min $500/mo.'},caps:{dining:15,groceries:15,petrol:15,transport:15,telco:15},minSpend:500},{id:'sc-visa-inf',name:'Visa Infinite',bank:'Standard Chartered',type:'Miles',highlight:'3 mpd overseas',color:'linear-gradient(135deg,#1e293b,#334155)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:5.4,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{general:'1.4 mpd local',travel:'3 mpd overseas (~5.4%)'},conditions:{},caps:{},minSpend:0},{id:'maybank-ff',name:'Family & Friends',bank:'Maybank',type:'Cashback',highlight:'8% weekend dining',color:'linear-gradient(135deg,#fbbf24,#f59e0b)',rates:{dining:8,groceries:5,online:0.3,transport:0.3,contactless:0.3,petrol:5,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'8% weekend dining (Fri-Sun)'},conditions:{dining:'Fri-Sun only. Cap $25/cat. Min $500/mo.'},caps:{dining:25,groceries:25,petrol:25},minSpend:500},{id:'amex-true-cb',name:'True Cashback',bank:'AMEX',type:'Cashback',highlight:'1.5% everything',color:'linear-gradient(135deg,#0369a1,#075985)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0},{id:'amex-kf-ascend',name:'KrisFlyer Ascend',bank:'AMEX',type:'Miles',highlight:'3 KF mpd SIA',color:'linear-gradient(135deg,#1e3a5f,#0a1628)',rates:{dining:3.6,groceries:2.2,online:2.2,transport:2.2,contactless:2.2,petrol:2.2,travel:5.4,entertainment:2.2,telco:2.2,utilities:2.2,general:2.2},notes:{dining:'2 KF mpd dining (~3.6%)',travel:'3 KF mpd SIA/Scoot (~5.4%)'},conditions:{travel:'SIA/Scoot only. $195 annual fee.'},caps:{},minSpend:0},{id:'trust-card',name:'Trust Card',bank:'Trust Bank',type:'Cashback',highlight:'6% FairPrice',color:'linear-gradient(135deg,#7c3aed,#5b21b6)',rates:{dining:1.5,groceries:6,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{groceries:'Up to 6% at FairPrice'},conditions:{groceries:'Link FairPrice membership.'},caps:{groceries:30},minSpend:0},{id:'grab-mc',name:'Grab-Mastercard',bank:'Grab',type:'Cashback',highlight:'8 pts/$1 Grab',color:'linear-gradient(135deg,#059669,#047857)',rates:{dining:2,groceries:2,online:2,transport:8,contactless:2,petrol:2,travel:1,entertainment:2,telco:2,utilities:2,general:1},notes:{transport:'8 GrabRewards pts/$1 (~8%)'},conditions:{transport:'Value varies.'},caps:{},minSpend:0},{id:'shopback-visa',name:'ShopBack Visa',bank:'ShopBack',type:'Cashback',highlight:'3% Shopee/Grab',color:'linear-gradient(135deg,#dc2626,#f97316)',rates:{dining:1,groceries:1,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{online:'3% on Shopee',transport:'3% on Grab'},conditions:{online:'Rates change monthly.'},caps:{online:10,transport:10},minSpend:0},{id:'youtrip',name:'YouTrip Card',bank:'YouTrip',type:'Cashback',highlight:'Best FX overseas',color:'linear-gradient(135deg,#6366f1,#8b5cf6)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:3,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'Best FX. No markup. Up to 3% overseas.'},conditions:{travel:'Prepaid. No local rewards.'},caps:{},minSpend:0},{id:'singlife',name:'Singlife Account',bank:'Singlife',type:'Cashback',highlight:'0.5% + savings',color:'linear-gradient(135deg,#f97316,#ea580c)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:0.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{general:'0.5% cashback + high savings interest'},conditions:{},caps:{},minSpend:0},{id:'boc-family',name:'Family Card',bank:'Bank of China',type:'Cashback',highlight:'5% dining/groceries',color:'linear-gradient(135deg,#dc2626,#991b1b)',rates:{dining:5,groceries:5,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{dining:'5% dining & groceries'},conditions:{dining:'Min $500/mo.'},caps:{dining:30,groceries:30},minSpend:500}];
-var STORES=[{name:"McDonald's",category:'dining'},{name:'KFC',category:'dining'},{name:'Starbucks',category:'dining'},{name:'Coffee Bean',category:'dining'},{name:'Toast Box',category:'dining'},{name:'Ya Kun',category:'dining'},{name:'Subway',category:'dining'},{name:'Burger King',category:'dining'},{name:'Pizza Hut',category:'dining'},{name:"Domino's",category:'dining'},{name:'Sushi Tei',category:'dining'},{name:'Din Tai Fung',category:'dining'},{name:'Crystal Jade',category:'dining'},{name:'Thai Express',category:'dining'},{name:"Nando's",category:'dining'},{name:"Swensen's",category:'dining'},{name:'Genki Sushi',category:'dining'},{name:'Tim Ho Wan',category:'dining'},{name:'Hai Di Lao',category:'dining'},{name:'Hawker Centre',category:'dining'},{name:'Food Court',category:'dining'},{name:'Kopitiam',category:'dining'},{name:'Jollibee',category:'dining'},{name:'Mos Burger',category:'dining'},{name:'Koufu',category:'dining'},{name:'Wingstop',category:'dining'},{name:'Shake Shack',category:'dining'},{name:'Pepper Lunch',category:'dining'},{name:'Poulet',category:'dining'},{name:'Keong Saik Bakery',category:'dining'},{name:'Tiong Bahru Bakery',category:'dining'},{name:'Breadtalk',category:'dining'},{name:'Old Chang Kee',category:'dining'},{name:'LiHO',category:'dining'},{name:'Gong Cha',category:'dining'},{name:'KOI',category:'dining'},{name:'GrabFood',category:'online'},{name:'foodpanda',category:'online'},{name:'Deliveroo',category:'online'},{name:'NTUC FairPrice',category:'groceries'},{name:'Cold Storage',category:'groceries'},{name:'Giant',category:'groceries'},{name:'Sheng Siong',category:'groceries'},{name:'Don Don Donki',category:'groceries'},{name:'RedMart',category:'groceries'},{name:'Shopee',category:'online'},{name:'Lazada',category:'online'},{name:'Amazon',category:'online'},{name:'Qoo10',category:'online'},{name:'Taobao',category:'online'},{name:'SHEIN',category:'online'},{name:'Zalora',category:'online'},{name:'Grab',category:'transport'},{name:'Gojek',category:'transport'},{name:'TADA',category:'transport'},{name:'ComfortDelGro',category:'transport'},{name:'MRT / Bus',category:'transport'},{name:'EZ-Link',category:'transport'},{name:'Shell',category:'petrol'},{name:'Esso',category:'petrol'},{name:'Caltex',category:'petrol'},{name:'SPC',category:'petrol'},{name:'Singapore Airlines',category:'travel'},{name:'Scoot',category:'travel'},{name:'AirAsia',category:'travel'},{name:'Agoda',category:'travel'},{name:'Booking.com',category:'travel'},{name:'Klook',category:'travel'},{name:'Trip.com',category:'travel'},{name:'Airbnb',category:'travel'},{name:'Golden Village',category:'entertainment'},{name:'Cathay Cineplexes',category:'entertainment'},{name:'Netflix',category:'entertainment'},{name:'Spotify',category:'entertainment'},{name:'Singtel',category:'telco'},{name:'StarHub',category:'telco'},{name:'M1',category:'telco'},{name:'SP Group',category:'utilities'},{name:'PUB Water',category:'utilities'},{name:'Uniqlo',category:'general'},{name:'Daiso',category:'general'},{name:'Watsons',category:'general'},{name:'Guardian',category:'general'},{name:'IKEA',category:'general'},{name:'Courts',category:'general'}];
+/* ===== COMPREHENSIVE SINGAPORE CARDS DATABASE ===== */
+/* ct: 'credit' or 'debit', network: VISA/MC/AMEX */
+var CARDS_DB=[
+/* ===== DBS ===== */
+{id:'dbs-live-fresh',name:'Live Fresh Card',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% contactless/online',color:'linear-gradient(135deg,#e63946,#d62828)',rates:{dining:5,groceries:5,online:5,transport:5,contactless:5,petrol:0.3,travel:0.3,entertainment:5,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'5% cashback on contactless',online:'5% on online spend'},conditions:{dining:'Cap $20/cat/mo. Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20,contactless:20,entertainment:20},minSpend:600,fee:'$194.40'},
+{id:'dbs-altitude',name:'Altitude Visa',bank:'DBS',type:'Miles',ct:'credit',network:'VISA',highlight:'3 mpd travel',color:'linear-gradient(135deg,#1d3557,#457b9d)',rates:{dining:2.2,groceries:0.7,online:2.2,transport:0.7,contactless:0.7,petrol:0.7,travel:5.4,entertainment:0.7,telco:0.7,utilities:0.7,general:0.7},notes:{travel:'3 mpd on online travel (~5.4%)'},conditions:{travel:'Online travel portals only.'},caps:{},minSpend:0,fee:'$192.60'},
+{id:'dbs-womans-world',name:"Woman's World Card",bank:'DBS',type:'Miles',ct:'credit',network:'VISA',highlight:'4 mpd online',color:'linear-gradient(135deg,#c77dba,#9b5de5)',rates:{dining:1.6,groceries:1.6,online:7.2,transport:1.6,contactless:1.6,petrol:0.7,travel:1.6,entertainment:1.6,telco:1.6,utilities:0.7,general:0.7},notes:{online:'4 mpd = ~7.2% on online'},conditions:{online:'Cap 10X on $2,000/mo.'},caps:{online:144},minSpend:0,fee:'$194.40'},
+{id:'dbs-esso',name:'Esso Card',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'21% at Esso',color:'linear-gradient(135deg,#003566,#001d3d)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:21,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{petrol:'Up to 21.3% savings at Esso'},conditions:{petrol:'Esso stations only.'},caps:{},minSpend:0,fee:'$194.40'},
+{id:'dbs-yuu-amex',name:'yuu Card (AMEX)',bank:'DBS',type:'Cashback',ct:'credit',network:'AMEX',highlight:'7% FairPrice/Cold Storage',color:'linear-gradient(135deg,#ff6b6b,#ee5a24)',rates:{dining:3,groceries:7,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{groceries:'7% at FairPrice, Cold Storage, Giant'},conditions:{groceries:'Cap ~3,000 yuu pts/mo.'},caps:{groceries:30},minSpend:0,fee:'$0'},
+{id:'dbs-yuu-visa',name:'yuu Card (Visa)',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'3% yuu partners',color:'linear-gradient(135deg,#ff4757,#c0392b)',rates:{dining:2,groceries:3,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{groceries:'3% at FairPrice, Cold Storage'},conditions:{groceries:'Cap applies.'},caps:{groceries:20},minSpend:0,fee:'$0'},
+{id:'dbs-compass',name:'Compass Visa',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% Grab/Shopee/grocery',color:'linear-gradient(135deg,#e11d48,#be123c)',rates:{dining:2,groceries:5,online:5,transport:5,contactless:2,petrol:2,travel:2,entertainment:2,telco:2,utilities:2,general:0.3},notes:{groceries:'5% FairPrice, Giant',online:'5% Shopee, Lazada',transport:'5% Grab'},conditions:{groceries:'Min $800/mo. Cap $20/cat.'},caps:{groceries:20,online:20,transport:20},minSpend:800,fee:'$194.40'},
+{id:'dbs-vantage',name:'Vantage Card',bank:'DBS',type:'Miles',ct:'credit',network:'VISA',highlight:'6 mpd overseas dining',color:'linear-gradient(135deg,#1a1a2e,#0f0f1a)',rates:{dining:3.6,groceries:2.2,online:2.2,transport:2.2,contactless:2.2,petrol:2.2,travel:10.8,entertainment:2.2,telco:2.2,utilities:2.2,general:2.2},notes:{travel:'6 mpd overseas dining (~10.8%)',dining:'2 mpd local dining (~3.6%)'},conditions:{travel:'Visa Infinite. $650 annual fee.'},caps:{},minSpend:0,fee:'$650'},
+{id:'dbs-takashimaya',name:'Takashimaya Card',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% Takashimaya',color:'linear-gradient(135deg,#7c2d12,#9a3412)',rates:{dining:2,groceries:2,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:2,telco:0.3,utilities:0.3,general:5},notes:{general:'5% at Takashimaya'},conditions:{general:'Takashimaya only.'},caps:{general:25},minSpend:0,fee:'$194.40'},
+/* ===== POSB ===== */
+{id:'posb-everyday',name:'Everyday Card',bank:'POSB',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% on 6 categories',color:'linear-gradient(135deg,#3b82f6,#1d4ed8)',rates:{dining:5,groceries:5,online:5,transport:5,contactless:5,petrol:0.3,travel:0.3,entertainment:5,telco:5,utilities:0.3,general:0.3},notes:{dining:'5% on dining, grocery, transport, online, telco'},conditions:{dining:'Min $800/mo. Cap $20/cat.'},caps:{dining:20,groceries:20,online:20,transport:20,telco:20,entertainment:20},minSpend:800,fee:'$0'},
+/* ===== UOB ===== */
+{id:'uob-one',name:'One Card',bank:'UOB',type:'Cashback',ct:'credit',network:'VISA',highlight:'10% dining/Grab',color:'linear-gradient(135deg,#00509d,#003f88)',rates:{dining:10,groceries:5,online:5,transport:10,contactless:5,petrol:5,travel:3.33,entertainment:3.33,telco:3.33,utilities:3.33,general:3.33},notes:{dining:'Up to 10% on dining',transport:'Up to 10% on Grab'},conditions:{dining:'5 txns + $500/mo + salary credit. Cap $50/cat.'},caps:{dining:50,groceries:50,online:50,transport:50},minSpend:500,fee:'$0 (waived w/ salary)'},
+{id:'uob-prvi-miles',name:'PRVI Miles',bank:'UOB',type:'Miles',ct:'credit',network:'VISA',highlight:'1.4 mpd all local',color:'linear-gradient(135deg,#2d6a4f,#40916c)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:10.8,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{general:'1.4 mpd on all local',travel:'6 mpd UOB Travel (~10.8%)'},conditions:{travel:'UOB Travel portal only.'},caps:{},minSpend:0,fee:'$256.80'},
+{id:'uob-ladys',name:"Lady's Card",bank:'UOB',type:'Miles',ct:'credit',network:'VISA',highlight:'4 mpd dining/beauty',color:'linear-gradient(135deg,#e7717d,#c2185b)',rates:{dining:7.2,groceries:7.2,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:7.2,telco:1.6,utilities:1.6,general:1.6},notes:{dining:'4 mpd dining, beauty (~7.2%)'},conditions:{dining:'Cap 10X on $1,000/mo.'},caps:{dining:72,groceries:72},minSpend:0,fee:'$194.40'},
+{id:'uob-absolute',name:'Absolute Cashback',bank:'UOB',type:'Cashback',ct:'credit',network:'MC',highlight:'1.7% unlimited',color:'linear-gradient(135deg,#343a40,#212529)',rates:{dining:1.7,groceries:1.7,online:1.7,transport:1.7,contactless:1.7,petrol:1.7,travel:1.7,entertainment:1.7,telco:1.7,utilities:1.7,general:1.7},notes:{general:'1.7% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'uob-evol',name:'EVOL Card',bank:'UOB',type:'Cashback',ct:'credit',network:'VISA',highlight:'8% mobile contactless',color:'linear-gradient(135deg,#0ea5e9,#0284c7)',rates:{dining:8,groceries:8,online:3,transport:8,contactless:8,petrol:3,travel:3,entertainment:8,telco:3,utilities:3,general:0.3},notes:{contactless:'8% on mobile contactless'},conditions:{contactless:'Mobile tap only. Cap $20/mo. Min $600/mo.'},caps:{dining:20,groceries:20,transport:20,contactless:20,entertainment:20},minSpend:600,fee:'$0'},
+{id:'uob-krisflyer',name:'KrisFlyer Card',bank:'UOB',type:'Miles',ct:'credit',network:'VISA',highlight:'2 KF mpd',color:'linear-gradient(135deg,#1e3a5f,#2563eb)',rates:{dining:3.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:3.6,entertainment:1.6,telco:1.6,utilities:1.6,general:1.6},notes:{dining:'2 KF mpd dining (~3.6%)',travel:'2 KF mpd travel (~3.6%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'uob-preferred-plat',name:'Preferred Platinum',bank:'UOB',type:'Rewards',ct:'credit',network:'VISA',highlight:'10X UNI$ dining',color:'linear-gradient(135deg,#6b7280,#4b5563)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X UNI$ on dining & entertainment (~4%)'},conditions:{dining:'Cap 2,000 UNI$/mo.'},caps:{dining:80},minSpend:0,fee:'$194.40'},
+/* ===== OCBC ===== */
+{id:'ocbc-365',name:'365 Credit Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% dining',color:'linear-gradient(135deg,#e63946,#c1121f)',rates:{dining:6,groceries:3,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:3,utilities:1,general:0.3},notes:{dining:'6% on dining',groceries:'3% on groceries'},conditions:{dining:'Cap $80/mo. Min $800/mo.'},caps:{dining:80,groceries:80,online:80,transport:80},minSpend:800,fee:'$194.40'},
+{id:'ocbc-frank',name:'FRANK Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% online',color:'linear-gradient(135deg,#06d6a0,#0cb78d)',rates:{dining:1,groceries:1,online:6,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{online:'6% on online spend'},conditions:{online:'Min $400/mo. Cap $25.'},caps:{online:25},minSpend:400,fee:'$0'},
+{id:'ocbc-90n',name:'90\u00b0N Card',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'1.3 mpd local',color:'linear-gradient(135deg,#023e8a,#0077b6)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.8,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{general:'1.3 mpd all local',travel:'2.1 mpd overseas (~3.8%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-infinity',name:'INFINITY Cashback',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'1.5% unlimited',color:'linear-gradient(135deg,#18181b,#3f3f46)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited cashback. No cap.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'ocbc-titanium',name:'Titanium Rewards',bank:'OCBC',type:'Rewards',ct:'credit',network:'MC',highlight:'10X VOYAGE$',color:'linear-gradient(135deg,#9ca3af,#6b7280)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X VOYAGE$ on dining & online (~4%)'},conditions:{dining:'Cap $1,000/mo.'},caps:{dining:40},minSpend:0,fee:'$194.40'},
+{id:'ocbc-ntuc',name:'NTUC Plus! Visa',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% FairPrice',color:'linear-gradient(135deg,#dc2626,#1e40af)',rates:{dining:1,groceries:6,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.5},notes:{groceries:'Up to 6% at FairPrice/Unity'},conditions:{groceries:'NTUC members. Cap applies.'},caps:{groceries:30},minSpend:0,fee:'$0'},
+/* ===== CITI ===== */
+{id:'citi-cashback',name:'Cash Back Card',bank:'Citi',type:'Cashback',ct:'credit',network:'MC',highlight:'8% dining/grocery/petrol',color:'linear-gradient(135deg,#003566,#0a1128)',rates:{dining:8,groceries:8,online:0.25,transport:0.25,contactless:0.25,petrol:8,travel:0.25,entertainment:0.25,telco:0.25,utilities:0.25,general:0.25},notes:{dining:'8% on dining',groceries:'8% on groceries',petrol:'8% on petrol'},conditions:{dining:'Cap $25/cat/mo. Min $800/mo.'},caps:{dining:25,groceries:25,petrol:25},minSpend:800,fee:'$194.40'},
+{id:'citi-cashback-plus',name:'Cashback+ Card',bank:'Citi',type:'Cashback',ct:'credit',network:'MC',highlight:'1.6% unlimited',color:'linear-gradient(135deg,#0ea5e9,#0284c7)',rates:{dining:1.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:1.6,telco:1.6,utilities:1.6,general:1.6},notes:{general:'1.6% unlimited cashback'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'citi-rewards',name:'Rewards Card',bank:'Citi',type:'Miles',ct:'credit',network:'VISA',highlight:'4 mpd dining/online',color:'linear-gradient(135deg,#0466c8,#023e7d)',rates:{dining:7.2,groceries:1.6,online:7.2,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:7.2,telco:1.6,utilities:1.6,general:0.4},notes:{dining:'4 mpd dining & online (~7.2%)'},conditions:{dining:'Cap 10X on $1,000/mo.'},caps:{dining:72,online:72},minSpend:0,fee:'$194.40'},
+{id:'citi-smrt',name:'SMRT Card',bank:'Citi',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% transport',color:'linear-gradient(135deg,#1e40af,#1e3a8a)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:5,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{transport:'5% on public transport'},conditions:{transport:'Auto-rebate on MRT/Bus.'},caps:{transport:25},minSpend:0,fee:'$0'},
+{id:'citi-prestige',name:'Prestige Card',bank:'Citi',type:'Miles',ct:'credit',network:'VISA',highlight:'2 mpd overseas',color:'linear-gradient(135deg,#1e293b,#0f172a)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.6,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{travel:'2 mpd overseas. 4th night free.'},conditions:{travel:'$535 annual fee.'},caps:{},minSpend:0,fee:'$535'},
+{id:'citi-premiermiles',name:'PremierMiles Card',bank:'Citi',type:'Miles',ct:'credit',network:'VISA',highlight:'2 mpd overseas',color:'linear-gradient(135deg,#334155,#64748b)',rates:{dining:1.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:3.6,entertainment:1.6,telco:1.6,utilities:1.6,general:0.7},notes:{travel:'2 mpd overseas (~3.6%)',general:'0.4 mpd local'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+/* ===== HSBC ===== */
+{id:'hsbc-revolution',name:'Revolution Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'4% dining/online',color:'linear-gradient(135deg,#dc2626,#991b1b)',rates:{dining:4,groceries:1,online:4,transport:1,contactless:4,petrol:1,travel:1,entertainment:4,telco:1,utilities:1,general:0.4},notes:{dining:'~4% dining, entertainment, online contactless'},conditions:{dining:'Contactless tap required.'},caps:{dining:40},minSpend:0,fee:'$0'},
+{id:'hsbc-live',name:'Live+ Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3% on 6 categories',color:'linear-gradient(135deg,#ef4444,#dc2626)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:1,travel:1,entertainment:3,telco:3,utilities:1,general:0.25},notes:{dining:'3% dining, groceries, transport, telco, online'},conditions:{dining:'Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20},minSpend:600,fee:'$0'},
+{id:'hsbc-travelone',name:'TravelOne Card',bank:'HSBC',type:'Miles',ct:'credit',network:'VISA',highlight:'2.4 mpd overseas, 0% FX',color:'linear-gradient(135deg,#b91c1c,#7f1d1d)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:4.3,entertainment:2,telco:2,utilities:2,general:2},notes:{travel:'2.4 mpd overseas, 0% FX markup (~4.3%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'hsbc-premier-mc',name:'Premier Mastercard',bank:'HSBC',type:'Miles',ct:'credit',network:'MC',highlight:'3 mpd overseas',color:'linear-gradient(135deg,#111827,#1f2937)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:5.4,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{travel:'3 mpd overseas (~5.4%)',general:'1.4 mpd local'},conditions:{travel:'HSBC Premier banking required.'},caps:{},minSpend:0,fee:'$0 (Premier)'},
+{id:'hsbc-advance',name:'Advance Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3.5% cashback',color:'linear-gradient(135deg,#3b82f6,#1d4ed8)',rates:{dining:3.5,groceries:3.5,online:3.5,transport:3.5,contactless:3.5,petrol:1,travel:1,entertainment:3.5,telco:1,utilities:1,general:0.25},notes:{dining:'3.5% on dining, grocery, transport, online'},conditions:{dining:'Advance banking. Min $600/mo.'},caps:{dining:25,groceries:25,online:25,transport:25},minSpend:600,fee:'$0'},
+/* ===== STANDARD CHARTERED ===== */
+{id:'sc-simply-cash',name:'Simply Cash Card',bank:'Std Chartered',type:'Cashback',ct:'credit',network:'VISA',highlight:'1.5% unlimited',color:'linear-gradient(135deg,#065f46,#047857)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'sc-smart',name:'Smart Card',bank:'Std Chartered',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% dining/grocery/petrol',color:'linear-gradient(135deg,#0f766e,#14b8a6)',rates:{dining:5,groceries:5,online:2,transport:5,contactless:2,petrol:5,travel:2,entertainment:2,telco:5,utilities:2,general:0.5},notes:{dining:'5% dining, groceries, petrol, transport, telco'},conditions:{dining:'Cap $15/cat/mo. Min $500/mo.'},caps:{dining:15,groceries:15,petrol:15,transport:15,telco:15},minSpend:500,fee:'$0'},
+{id:'sc-visa-inf',name:'Visa Infinite',bank:'Std Chartered',type:'Miles',ct:'credit',network:'VISA',highlight:'3 mpd overseas',color:'linear-gradient(135deg,#1e293b,#334155)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:5.4,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{general:'1.4 mpd local',travel:'3 mpd overseas (~5.4%)'},conditions:{travel:'$588.50 annual fee.'},caps:{},minSpend:0,fee:'$588.50'},
+{id:'sc-journey',name:'Journey Card',bank:'Std Chartered',type:'Miles',ct:'credit',network:'VISA',highlight:'3 mpd rides/food',color:'linear-gradient(135deg,#0369a1,#0284c7)',rates:{dining:2.5,groceries:5.4,online:2.5,transport:5.4,contactless:2.5,petrol:2.5,travel:2.5,entertainment:2.5,telco:2.5,utilities:2.5,general:1.6},notes:{transport:'3 mpd rides & food deliveries (~5.4%)',groceries:'3 mpd groceries (~5.4%)'},conditions:{},caps:{},minSpend:0,fee:'$180'},
+{id:'sc-rewards-plus',name:'Rewards+ Card',bank:'Std Chartered',type:'Rewards',ct:'credit',network:'VISA',highlight:'10X rewards dining',color:'linear-gradient(135deg,#16a34a,#15803d)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X rewards on dining & online (~4%)'},conditions:{dining:'Cap 10,000 pts/mo.'},caps:{dining:40},minSpend:0,fee:'$194.40'},
+{id:'sc-spree',name:'Spree Card',bank:'Std Chartered',type:'Cashback',ct:'credit',network:'VISA',highlight:'2% online shopping',color:'linear-gradient(135deg,#ec4899,#be185d)',rates:{dining:1,groceries:1,online:2,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{online:'2% on online shopping'},conditions:{},caps:{online:20},minSpend:0,fee:'$0'},
+/* ===== MAYBANK ===== */
+{id:'maybank-ff',name:'Family & Friends',bank:'Maybank',type:'Cashback',ct:'credit',network:'VISA',highlight:'8% weekend dining',color:'linear-gradient(135deg,#fbbf24,#f59e0b)',rates:{dining:8,groceries:5,online:0.3,transport:0.3,contactless:0.3,petrol:5,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'8% weekend dining (Fri-Sun)'},conditions:{dining:'Fri-Sun only. Cap $25/cat. Min $500/mo.'},caps:{dining:25,groceries:25,petrol:25},minSpend:500,fee:'$0'},
+{id:'maybank-horizon',name:'Horizon Visa Signature',bank:'Maybank',type:'Miles',ct:'credit',network:'VISA',highlight:'3.2 mpd overseas',color:'linear-gradient(135deg,#1e3a5f,#374151)',rates:{dining:2.2,groceries:2.2,online:2.2,transport:2.2,contactless:2.2,petrol:2.2,travel:5.8,entertainment:2.2,telco:2.2,utilities:2.2,general:1.6},notes:{travel:'3.2 mpd overseas (~5.8%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'maybank-evibes',name:'eVibes Card',bank:'Maybank',type:'Cashback',ct:'credit',network:'VISA',highlight:'3.33% online',color:'linear-gradient(135deg,#84cc16,#65a30d)',rates:{dining:0.3,groceries:0.3,online:3.33,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:3.33,telco:3.33,utilities:0.3,general:0.3},notes:{online:'3.33% online, entertainment, telco'},conditions:{online:'Min $300/mo. Cap $20.'},caps:{online:20,entertainment:20,telco:20},minSpend:300,fee:'$0'},
+/* ===== AMEX ===== */
+{id:'amex-true-cb',name:'True Cashback Card',bank:'AMEX',type:'Cashback',ct:'credit',network:'AMEX',highlight:'1.5% unlimited',color:'linear-gradient(135deg,#0369a1,#075985)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited. No cap. No min.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'amex-kf-ascend',name:'KrisFlyer Ascend',bank:'AMEX',type:'Miles',ct:'credit',network:'AMEX',highlight:'3 KF mpd SIA',color:'linear-gradient(135deg,#1e3a5f,#0a1628)',rates:{dining:3.6,groceries:2.2,online:2.2,transport:2.2,contactless:2.2,petrol:2.2,travel:5.4,entertainment:2.2,telco:2.2,utilities:2.2,general:2.2},notes:{dining:'2 KF mpd dining (~3.6%)',travel:'3 KF mpd SIA/Scoot (~5.4%)'},conditions:{travel:'SIA/Scoot only. $195 annual fee.'},caps:{},minSpend:0,fee:'$195'},
+{id:'amex-kf-credit',name:'KrisFlyer Credit Card',bank:'AMEX',type:'Miles',ct:'credit',network:'AMEX',highlight:'1.1 KF mpd',color:'linear-gradient(135deg,#2563eb,#1d4ed8)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:3.6,entertainment:2,telco:2,utilities:2,general:2},notes:{general:'1.1 KF mpd on all spend (~2%)',travel:'2 KF mpd on SIA (~3.6%)'},conditions:{},caps:{},minSpend:0,fee:'$176.55'},
+{id:'amex-capitaland',name:'CapitaCard',bank:'AMEX',type:'Rewards',ct:'credit',network:'AMEX',highlight:'10X STAR$ CapitaLand',color:'linear-gradient(135deg,#18181b,#27272a)',rates:{dining:3,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:3},notes:{general:'10X STAR$ at CapitaLand malls (~3%)'},conditions:{general:'CapitaLand properties only for bonus.'},caps:{general:30},minSpend:0,fee:'$171.20'},
+/* ===== BANK OF CHINA ===== */
+{id:'boc-family',name:'Family Card',bank:'Bank of China',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% dining/groceries',color:'linear-gradient(135deg,#dc2626,#991b1b)',rates:{dining:5,groceries:5,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{dining:'5% dining & groceries'},conditions:{dining:'Min $500/mo.'},caps:{dining:30,groceries:30},minSpend:500,fee:'$0'},
+{id:'boc-shengsiong',name:'Sheng Siong Card',bank:'Bank of China',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% Sheng Siong',color:'linear-gradient(135deg,#16a34a,#15803d)',rates:{dining:1,groceries:6,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{groceries:'6% at Sheng Siong'},conditions:{groceries:'Sheng Siong only. Cap $60.'},caps:{groceries:60},minSpend:0,fee:'$0'},
+{id:'boc-lazcard',name:'LazCard',bank:'Bank of China',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% Lazada',color:'linear-gradient(135deg,#6d28d9,#4c1d95)',rates:{dining:1,groceries:1,online:6,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{online:'6% on Lazada'},conditions:{online:'Lazada only. Cap $20.'},caps:{online:20},minSpend:0,fee:'$0'},
+/* ===== RHB ===== */
+{id:'rhb-shell',name:'Shell Card',bank:'RHB',type:'Cashback',ct:'credit',network:'VISA',highlight:'8.8% Shell',color:'linear-gradient(135deg,#eab308,#ca8a04)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:8.8,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{petrol:'Up to 8.8% savings at Shell'},conditions:{petrol:'Shell stations only. Min $500/mo.'},caps:{petrol:50},minSpend:500,fee:'$0'},
+/* ===== TRUST BANK ===== */
+{id:'trust-card',name:'Trust Card',bank:'Trust Bank',type:'Cashback',ct:'credit',network:'MC',highlight:'6% FairPrice',color:'linear-gradient(135deg,#7c3aed,#5b21b6)',rates:{dining:1.5,groceries:6,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{groceries:'Up to 6% at FairPrice'},conditions:{groceries:'Link FairPrice membership.'},caps:{groceries:30},minSpend:0,fee:'$0'},
+/* ===== GXS ===== */
+{id:'gxs-flexicard',name:'FlexiCard',bank:'GXS',type:'Cashback',ct:'credit',network:'VISA',highlight:'Up to 3% cashback',color:'linear-gradient(135deg,#2563eb,#7c3aed)',rates:{dining:3,groceries:3,online:3,transport:1,contactless:1,petrol:1,travel:1,entertainment:3,telco:1,utilities:1,general:0.3},notes:{dining:'Up to 3% on dining, groceries, online, entertainment'},conditions:{dining:'Rates rotate monthly. Cap applies.'},caps:{dining:10,groceries:10,online:10,entertainment:10},minSpend:0,fee:'$0'},
+
+/* ===== DEBIT & PREPAID CARDS ===== */
+{id:'dbs-visa-debit',name:'Visa Debit',bank:'DBS',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.3% base cashback',color:'linear-gradient(135deg,#1e40af,#1d4ed8)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'0.3% base cashback on all spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'posb-everyday-debit',name:'Everyday Debit',bank:'POSB',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#2563eb,#3b82f6)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on dining & grocery contactless'},conditions:{dining:'Contactless only.'},caps:{dining:5},minSpend:0,fee:'$0'},
+{id:'uob-one-debit',name:'One Debit',bank:'UOB',type:'Cashback',ct:'debit',network:'MC',highlight:'Up to 3% cashback',color:'linear-gradient(135deg,#003f88,#00509d)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:3,travel:3,entertainment:3,telco:3,utilities:3,general:3},notes:{general:'Up to 3% cashback on all spend'},conditions:{general:'Min $500/mo spend + salary credit.'},caps:{general:50},minSpend:500,fee:'$0'},
+{id:'ocbc-debit',name:'Debit Card',bank:'OCBC',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#dc2626,#e63946)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on selected categories'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'trust-debit',name:'Trust Debit',bank:'Trust Bank',type:'Cashback',ct:'debit',network:'MC',highlight:'1% cashback',color:'linear-gradient(135deg,#8b5cf6,#6d28d9)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% cashback on all spend'},conditions:{general:'Base rate. Higher with link-ups.'},caps:{},minSpend:0,fee:'$0'},
+{id:'gxs-debit',name:'GXS Debit',bank:'GXS',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.5% cashback',color:'linear-gradient(135deg,#3b82f6,#6366f1)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:0.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{general:'0.5% cashback on all spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'grab-mc',name:'Grab-Mastercard',bank:'Grab',type:'Cashback',ct:'debit',network:'MC',highlight:'8 pts/$1 Grab',color:'linear-gradient(135deg,#059669,#047857)',rates:{dining:2,groceries:2,online:2,transport:8,contactless:2,petrol:2,travel:1,entertainment:2,telco:2,utilities:2,general:1},notes:{transport:'8 GrabRewards pts/$1 (~8%)'},conditions:{transport:'Value varies.'},caps:{},minSpend:0,fee:'$0'},
+{id:'shopback-visa',name:'ShopBack Card',bank:'ShopBack',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 5% ShopBack',color:'linear-gradient(135deg,#dc2626,#f97316)',rates:{dining:1,groceries:1,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{online:'Up to 5% on selected merchants'},conditions:{online:'Rates change monthly.'},caps:{online:10,transport:10},minSpend:0,fee:'$0'},
+{id:'youtrip',name:'YouTrip Card',bank:'YouTrip',type:'Cashback',ct:'debit',network:'MC',highlight:'Best FX overseas',color:'linear-gradient(135deg,#6366f1,#8b5cf6)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:3,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'Best FX. No markup. Up to 3% overseas.'},conditions:{travel:'Prepaid. No local rewards.'},caps:{},minSpend:0,fee:'$0'},
+{id:'revolut',name:'Revolut Card',bank:'Revolut',type:'Cashback',ct:'debit',network:'VISA',highlight:'Best FX, multi-currency',color:'linear-gradient(135deg,#18181b,#27272a)',rates:{dining:0.1,groceries:0.1,online:0.1,transport:0.1,contactless:0.1,petrol:0.1,travel:2,entertainment:0.1,telco:0.1,utilities:0.1,general:0.1},notes:{travel:'Interbank FX rate. ~2% effective savings vs banks.'},conditions:{travel:'Free plan: $1,000/mo FX limit.'},caps:{},minSpend:0,fee:'$0'},
+{id:'wise',name:'Wise Card',bank:'Wise',type:'Cashback',ct:'debit',network:'VISA',highlight:'Mid-market FX',color:'linear-gradient(135deg,#84cc16,#16a34a)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:2.5,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'Mid-market FX rate. ~2.5% effective savings.'},conditions:{travel:'Small FX fee applies.'},caps:{},minSpend:0,fee:'$0'},
+{id:'singlife',name:'Singlife Account',bank:'Singlife',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.5% + savings',color:'linear-gradient(135deg,#f97316,#ea580c)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:0.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{general:'0.5% cashback + high savings interest'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'bigpay',name:'BigPay Card',bank:'BigPay',type:'Cashback',ct:'debit',network:'MC',highlight:'Multi-currency, no FX fee',color:'linear-gradient(135deg,#2563eb,#1e40af)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:2,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'No FX markup. ~2% effective overseas savings.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'instarem-amaze',name:'Amaze Card',bank:'Instarem',type:'Cashback',ct:'debit',network:'VISA',highlight:'Multi-currency + rewards',color:'linear-gradient(135deg,#7c3aed,#a855f7)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:2,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% InstaPoints on all spend',travel:'Up to 2% on overseas'},conditions:{},caps:{},minSpend:0,fee:'$0'}
+];
+
+var STORES=[
+/* Dining */
+{name:"McDonald's",category:'dining'},{name:'KFC',category:'dining'},{name:'Starbucks',category:'dining'},{name:'Coffee Bean',category:'dining'},{name:'Toast Box',category:'dining'},{name:'Ya Kun',category:'dining'},{name:'Subway',category:'dining'},{name:'Burger King',category:'dining'},{name:'Pizza Hut',category:'dining'},{name:"Domino's",category:'dining'},{name:'Sushi Tei',category:'dining'},{name:'Din Tai Fung',category:'dining'},{name:'Crystal Jade',category:'dining'},{name:'Thai Express',category:'dining'},{name:"Nando's",category:'dining'},{name:"Swensen's",category:'dining'},{name:'Genki Sushi',category:'dining'},{name:'Tim Ho Wan',category:'dining'},{name:'Hai Di Lao',category:'dining'},{name:'Hawker Centre',category:'dining'},{name:'Food Court',category:'dining'},{name:'Kopitiam',category:'dining'},{name:'Jollibee',category:'dining'},{name:'Mos Burger',category:'dining'},{name:'Koufu',category:'dining'},{name:'Wingstop',category:'dining'},{name:'Shake Shack',category:'dining'},{name:'Pepper Lunch',category:'dining'},{name:'Poulet',category:'dining'},{name:'Keong Saik Bakery',category:'dining'},{name:'Tiong Bahru Bakery',category:'dining'},{name:'Breadtalk',category:'dining'},{name:'Old Chang Kee',category:'dining'},{name:'LiHO',category:'dining'},{name:'Gong Cha',category:'dining'},{name:'KOI',category:'dining'},
+/* Online — Food Delivery */
+{name:'GrabFood',category:'online',sub:'Food Delivery'},{name:'foodpanda',category:'online',sub:'Food Delivery'},{name:'Deliveroo',category:'online',sub:'Food Delivery'},{name:'WhyQ',category:'online',sub:'Food Delivery'},{name:'Oddle Eats',category:'online',sub:'Food Delivery'},
+/* Online — E-commerce */
+{name:'Shopee',category:'online',sub:'E-commerce'},{name:'Lazada',category:'online',sub:'E-commerce'},{name:'Amazon',category:'online',sub:'E-commerce'},{name:'Qoo10',category:'online',sub:'E-commerce'},{name:'Taobao',category:'online',sub:'E-commerce'},{name:'SHEIN',category:'online',sub:'E-commerce'},{name:'Zalora',category:'online',sub:'E-commerce'},{name:'Love Bonito',category:'online',sub:'E-commerce'},{name:'Charles & Keith Online',category:'online',sub:'E-commerce'},{name:'iHerb',category:'online',sub:'E-commerce'},{name:'Carousell',category:'online',sub:'Marketplace'},
+/* Online — Payments & E-wallets */
+{name:'GrabPay',category:'online',sub:'E-wallet'},{name:'ShopeePay',category:'online',sub:'E-wallet'},{name:'PayLah!',category:'online',sub:'E-wallet'},{name:'FavePay',category:'online',sub:'E-wallet'},{name:'Atome',category:'online',sub:'Buy Now Pay Later'},{name:'Grab (Online Payment)',category:'online',sub:'E-wallet'},
+/* Online — Ticketing & Events */
+{name:'SISTIC',category:'online',sub:'Ticketing'},{name:'Ticketmaster',category:'online',sub:'Ticketing'},{name:'Peatix',category:'online',sub:'Ticketing'},{name:'Eventbrite',category:'online',sub:'Ticketing'},{name:'APACTix',category:'online',sub:'Ticketing'},{name:'Klook',category:'online',sub:'Ticketing'},
+/* Online — Subscriptions & Streaming */
+{name:'Netflix',category:'online',sub:'Streaming'},{name:'Spotify',category:'online',sub:'Streaming'},{name:'Disney+',category:'online',sub:'Streaming'},{name:'YouTube Premium',category:'online',sub:'Streaming'},{name:'HBO Go',category:'online',sub:'Streaming'},{name:'Amazon Prime Video',category:'online',sub:'Streaming'},{name:'Apple TV+',category:'online',sub:'Streaming'},{name:'Apple Music',category:'online',sub:'Streaming'},
+/* Online — Travel booking */
+{name:'Agoda',category:'online',sub:'Travel Booking'},{name:'Booking.com',category:'online',sub:'Travel Booking'},{name:'Trip.com',category:'online',sub:'Travel Booking'},{name:'Airbnb',category:'online',sub:'Travel Booking'},{name:'Expedia',category:'online',sub:'Travel Booking'},
+/* Groceries */
+{name:'NTUC FairPrice',category:'groceries'},{name:'Cold Storage',category:'groceries'},{name:'Giant',category:'groceries'},{name:'Sheng Siong',category:'groceries'},{name:'Don Don Donki',category:'groceries'},{name:'RedMart',category:'online',sub:'Groceries Online'},
+/* Transport */
+{name:'Grab',category:'transport'},{name:'Gojek',category:'transport'},{name:'TADA',category:'transport'},{name:'ComfortDelGro',category:'transport'},{name:'MRT / Bus',category:'transport'},{name:'EZ-Link',category:'transport'},
+/* Petrol */
+{name:'Shell',category:'petrol'},{name:'Esso',category:'petrol'},{name:'Caltex',category:'petrol'},{name:'SPC',category:'petrol'},
+/* Travel */
+{name:'Singapore Airlines',category:'travel'},{name:'Scoot',category:'travel'},{name:'AirAsia',category:'travel'},
+/* Entertainment */
+{name:'Golden Village',category:'entertainment'},{name:'Cathay Cineplexes',category:'entertainment'},{name:'Shaw Theatres',category:'entertainment'},
+/* Telco */
+{name:'Singtel',category:'telco'},{name:'StarHub',category:'telco'},{name:'M1',category:'telco'},{name:'Circles.Life',category:'telco'},{name:'GIGA',category:'telco'},
+/* Utilities */
+{name:'SP Group',category:'utilities'},{name:'PUB Water',category:'utilities'},
+/* General */
+{name:'Uniqlo',category:'general'},{name:'Daiso',category:'general'},{name:'Watsons',category:'general'},{name:'Guardian',category:'general'},{name:'IKEA',category:'general'},{name:'Courts',category:'general'},{name:'Decathlon',category:'general'},{name:'Apple Store',category:'general'},{name:'Takashimaya',category:'general'},{name:'CapitaLand Mall',category:'general'}];
+
 var PTYPE={restaurant:'dining',food:'dining',meal_delivery:'online',cafe:'dining',bakery:'dining',bar:'dining',supermarket:'groceries',grocery_or_supermarket:'groceries',convenience_store:'groceries',gas_station:'petrol',transit_station:'transport',subway_station:'transport',travel_agency:'travel',airport:'travel',lodging:'travel',movie_theater:'entertainment',electronics_store:'general',clothing_store:'general',shopping_mall:'general',department_store:'general',pharmacy:'general',store:'general'};
 
 var V=Vue;
 V.createApp({
   setup:function(){
     var page=V.ref('onboarding'),userCards=V.ref([]),profile=V.ref({name:'',googleApiKey:''}),isDark=V.ref(false);
-    var cardSearch=V.ref(''),bankFilter=V.ref(''),storeSearch=V.ref(''),selectedCategory=V.ref(null),spendAmount=V.ref(null),matchedStore=V.ref(null);
+    var cardSearch=V.ref(''),bankFilter=V.ref(''),cardTypeFilter=V.ref('credit'),storeSearch=V.ref(''),selectedCategory=V.ref(null),spendAmount=V.ref(null),matchedStore=V.ref(null);
     var storeSuggestions=V.ref([]),showDrop=V.ref(false),showDeleteConfirm=V.ref(false),placesSearching=V.ref(false);
     var geoSupported=V.ref(false),geoLoading=V.ref(false),toast=V.ref({show:false,message:'',type:'success'}),placesTimer=null;
-    var categories=[{id:'dining',label:'Dining',icon:'\uD83C\uDF7D\uFE0F'},{id:'groceries',label:'Groceries',icon:'\uD83D\uDED2'},{id:'online',label:'Online',icon:'\uD83D\uDECD\uFE0F'},{id:'transport',label:'Transport',icon:'\uD83D\uDE97'},{id:'petrol',label:'Petrol',icon:'\u26FD'},{id:'travel',label:'Travel',icon:'\u2708\uFE0F'},{id:'entertainment',label:'Movies',icon:'\uD83C\uDFAC'},{id:'telco',label:'Telco',icon:'\uD83D\uDCF1'},{id:'utilities',label:'Utilities',icon:'\uD83D\uDCA1'},{id:'contactless',label:'Tap & Pay',icon:'\uD83D\uDCF6'},{id:'general',label:'Others',icon:'\uD83D\uDCB3'}];
+    var recentSearches=V.ref([]),selectedCardDetail=V.ref(null);
+    var customCards=V.ref([]),editingCardId=V.ref(null),addCardReturnPage=V.ref('mycards');
+    var cardColors=['linear-gradient(135deg,#6b7280,#4b5563)','linear-gradient(135deg,#dc2626,#991b1b)','linear-gradient(135deg,#2563eb,#1d4ed8)','linear-gradient(135deg,#059669,#047857)','linear-gradient(135deg,#7c3aed,#5b21b6)','linear-gradient(135deg,#0e7490,#155e75)','linear-gradient(135deg,#ea580c,#c2410c)','linear-gradient(135deg,#d946ef,#a21caf)','linear-gradient(135deg,#1e293b,#0f172a)','linear-gradient(135deg,#fbbf24,#d97706)'];
+    function getEmptyCard(){return{id:'',name:'',bank:'',type:'Cashback',ct:'credit',network:'VISA',highlight:'',color:cardColors[0],rates:{online:0,dining:0,groceries:0,transport:0,contactless:0,petrol:0,travel:0,entertainment:0,telco:0,utilities:0,general:0},notes:{},conditions:{},caps:{},minSpend:0,fee:'$0',isCustom:true};}
+    var newCard=V.ref(getEmptyCard());
+    var TIPS=[
+      {icon:'\uD83D\uDCA1',text:'Always use your highest-reward card for each category. Even 1% difference adds up to hundreds per year.'},
+      {icon:'\uD83C\uDFAF',text:'Hit minimum spend thresholds to unlock bonus rates. Track your monthly spend to stay on top.'},
+      {icon:'\u26A0\uFE0F',text:'Watch out for category caps. Once you hit the cap, switch to your next-best card.'},
+      {icon:'\uD83D\uDCB0',text:'Pair cashback cards with miles cards: use cashback for capped categories, miles for uncapped.'},
+      {icon:'\uD83D\uDED2',text:'Grocery spending adds up fast. Make sure you have a dedicated high-reward grocery card.'},
+      {icon:'\u2708\uFE0F',text:'For overseas spending, check FX markup fees. A 1.5% cashback card with 3.25% FX fee loses money.'},
+      {icon:'\uD83D\uDE95',text:'Transport apps like Grab often code as online or transport. Test which gives better rewards.'},
+      {icon:'\uD83C\uDF1F',text:'Annual fee cards can pay for themselves if you spend enough in bonus categories. Do the math!'}
+    ];
+    var dailyTip=V.computed(function(){if(userCards.value.length===0)return null;var day=Math.floor(Date.now()/86400000)%TIPS.length;return TIPS[day];});
+    var categories=[{id:'online',label:'Online',icon:'\uD83C\uDF10'},{id:'dining',label:'Dining',icon:'\uD83C\uDF7D\uFE0F'},{id:'groceries',label:'Groceries',icon:'\uD83D\uDED2'},{id:'transport',label:'Transport',icon:'\uD83D\uDE97'},{id:'contactless',label:'Tap & Pay',icon:'\uD83D\uDCF6'},{id:'petrol',label:'Petrol',icon:'\u26FD'},{id:'travel',label:'Travel',icon:'\u2708\uFE0F'},{id:'entertainment',label:'Movies',icon:'\uD83C\uDFAC'},{id:'telco',label:'Telco',icon:'\uD83D\uDCF1'},{id:'utilities',label:'Utilities',icon:'\uD83D\uDCA1'},{id:'general',label:'Others',icon:'\uD83D\uDCB3'}];
 
-    var showHeader=V.computed(function(){return page.value!=='onboarding'&&page.value!=='setup-name'&&page.value!=='setup-cards';});
+    var allCards=V.computed(function(){return CARDS_DB.concat(customCards.value);});
+    var showHeader=V.computed(function(){return page.value!=='onboarding'&&page.value!=='setup-name'&&page.value!=='setup-cards'&&page.value!=='add-card';});
     var avatarInitial=V.computed(function(){return(profile.value.name||'?')[0].toUpperCase();});
-    var allBanks=V.computed(function(){return CARDS_DB.map(function(c){return c.bank;}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();});
-    var filteredCards=V.computed(function(){var cards=CARDS_DB;if(bankFilter.value)cards=cards.filter(function(c){return c.bank===bankFilter.value;});if(cardSearch.value.trim()){var q=cardSearch.value.toLowerCase().trim();cards=cards.filter(function(c){return(c.name+' '+c.bank+' '+c.type+' '+c.highlight).toLowerCase().indexOf(q)>=0;});}return cards;});
-    var topCategories=V.computed(function(){var mc=['dining','groceries','online','transport','petrol','travel','entertainment','telco'],r=[];for(var ci=0;ci<mc.length;ci++){var catId=mc[ci],best=null,br=0;for(var ui=0;ui<userCards.value.length;ui++){var card=CARDS_DB.find(function(c){return c.id===userCards.value[ui];});if(!card)continue;var rt=card.rates[catId]||0;if(rt>br){br=rt;best=card;}}if(best){var cat=categories.find(function(c){return c.id===catId;});r.push({id:catId,icon:cat?cat.icon:'',label:cat?cat.label:catId,cardName:best.bank+' '+best.name,rate:br>=10?br.toFixed(0)+'%':br+'%'});}}return r;});
-    var recommendations=V.computed(function(){if(!selectedCategory.value)return[];var cat=selectedCategory.value,recs=[];for(var i=0;i<userCards.value.length;i++){var cid=userCards.value[i],card=CARDS_DB.find(function(c){return c.id===cid;});if(!card)continue;var rr=card.rates[cat]||0;if(rr<=0)continue;recs.push({card:card,rate:rr,effectiveRate:rr,score:rr,reason:(card.notes&&card.notes[cat])||(card.notes&&card.notes.general)||(rr+'% on '+catLabel(cat)),conditions:card.conditions&&card.conditions[cat]?card.conditions[cat]:null,rewardType:card.type});}recs.sort(function(a,b){return b.score-a.score;});return recs;});
+    var allBanks=V.computed(function(){var ct=cardTypeFilter.value;return allCards.value.filter(function(c){return c.ct===ct;}).map(function(c){return c.bank;}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();});
+    var filteredCards=V.computed(function(){var cards=allCards.value.filter(function(c){return c.ct===cardTypeFilter.value;});if(bankFilter.value)cards=cards.filter(function(c){return c.bank===bankFilter.value;});if(cardSearch.value.trim()){var q=cardSearch.value.toLowerCase().trim();cards=cards.filter(function(c){return(c.name+' '+c.bank+' '+c.type+' '+c.highlight).toLowerCase().indexOf(q)>=0;});}return cards;});
+    var topCategories=V.computed(function(){var mc=['dining','groceries','online','transport','petrol','travel','entertainment','telco'],r=[];for(var ci=0;ci<mc.length;ci++){var catId=mc[ci],best=null,br=0;for(var ui=0;ui<userCards.value.length;ui++){var card=allCards.value.find(function(c){return c.id===userCards.value[ui];});if(!card)continue;var rt=card.rates[catId]||0;if(rt>br){br=rt;best=card;}}if(best){var cat=categories.find(function(c){return c.id===catId;});r.push({id:catId,icon:cat?cat.icon:'',label:cat?cat.label:catId,cardName:best.bank+' '+best.name,rate:br>=10?br.toFixed(0)+'%':br+'%',minSpend:best.minSpend||0});}}return r;});
+    var recommendations=V.computed(function(){if(!selectedCategory.value)return[];var cat=selectedCategory.value,recs=[];for(var i=0;i<userCards.value.length;i++){var cid=userCards.value[i],card=allCards.value.find(function(c){return c.id===cid;});if(!card)continue;var rr=card.rates[cat]||0;if(rr<=0)continue;recs.push({card:card,rate:rr,effectiveRate:rr,score:rr,reason:(card.notes&&card.notes[cat])||(card.notes&&card.notes.general)||(rr+'% on '+catLabel(cat)),conditions:card.conditions&&card.conditions[cat]?card.conditions[cat]:null,rewardType:card.type});}recs.sort(function(a,b){return b.score-a.score;});return recs;});
 
     function go(p){window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){page.value=p;},50);}
     function toggleCard(id){var i=userCards.value.indexOf(id);if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);save();}
     function isSelected(id){return userCards.value.indexOf(id)>=0;}
-    function getCard(id){return CARDS_DB.find(function(c){return c.id===id;});}
+    function getCard(id){return allCards.value.find(function(c){return c.id===id;});}
     function catIcon(id){var c=categories.find(function(x){return x.id===id;});return c?c.icon:'';}
     function catLabel(id){var c=categories.find(function(x){return x.id===id;});return c?c.label:id;}
     function fmtRate(r){if(r>=10)return r.toFixed(0)+'%';if(r===Math.floor(r))return r+'%';return r.toFixed(1)+'%';}
     function estSavings(rec,amt){var s=(rec.effectiveRate/100)*amt;if(rec.rewardType==='Miles')return'~'+Math.round(s/0.018).toLocaleString()+' miles (~S$'+s.toFixed(2)+')';return'S$'+s.toFixed(2)+' cashback';}
-    function save(){try{localStorage.setItem('cw_cards',JSON.stringify(userCards.value));localStorage.setItem('cw_profile',JSON.stringify(profile.value));localStorage.setItem('cw_theme',isDark.value?'dark':'light');}catch(e){}}
+    function save(){try{localStorage.setItem('cw_cards',JSON.stringify(userCards.value));localStorage.setItem('cw_profile',JSON.stringify(profile.value));localStorage.setItem('cw_theme',isDark.value?'dark':'light');localStorage.setItem('cw_custom_cards',JSON.stringify(customCards.value));}catch(e){}}
     function toggleTheme(){isDark.value=!isDark.value;document.body.classList.toggle('dark-bg',isDark.value);save();}
-    function loadAll(){try{var c=JSON.parse(localStorage.getItem('cw_cards'));if(Array.isArray(c)&&c.length)userCards.value=c;}catch(e){}try{var p=JSON.parse(localStorage.getItem('cw_profile'));if(p&&p.name){profile.value.name=p.name||'';profile.value.googleApiKey=p.googleApiKey||'';}}catch(e){}var t=localStorage.getItem('cw_theme');if(t==='dark'){isDark.value=true;document.body.classList.add('dark-bg');}else if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){isDark.value=true;document.body.classList.add('dark-bg');}if(profile.value.name&&userCards.value.length)page.value='home';else page.value='onboarding';}
+    function loadAll(){try{var c=JSON.parse(localStorage.getItem('cw_cards'));if(Array.isArray(c)&&c.length)userCards.value=c;}catch(e){}try{var p=JSON.parse(localStorage.getItem('cw_profile'));if(p&&p.name){profile.value.name=p.name||'';profile.value.googleApiKey=p.googleApiKey||'';}}catch(e){}try{var rs=JSON.parse(localStorage.getItem('cw_recent'));if(Array.isArray(rs))recentSearches.value=rs.slice(0,6);}catch(e){}try{var cc=JSON.parse(localStorage.getItem('cw_custom_cards'));if(Array.isArray(cc))customCards.value=cc;}catch(e){}var t=localStorage.getItem('cw_theme');if(t==='dark'){isDark.value=true;document.body.classList.add('dark-bg');}else if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){isDark.value=true;document.body.classList.add('dark-bg');}if(profile.value.name&&userCards.value.length)page.value='home';else page.value='onboarding';}
     function finishSetup(){save();go('home');showMsg("All set! Let's find the best card.");}
     function pickCategory(catId){selectedCategory.value=catId;matchedStore.value=null;storeSearch.value='';go('results');}
-    function pickStore(store){storeSearch.value=store.name;selectedCategory.value=store.category;matchedStore.value=store.name;storeSuggestions.value=[];showDrop.value=false;go('results');}
+    function pickStore(store){storeSearch.value=store.name;selectedCategory.value=store.category;matchedStore.value=store.name;storeSuggestions.value=[];showDrop.value=false;addRecent(store);go('results');}
+    function addRecent(store){var rs=recentSearches.value.filter(function(r){return r.name!==store.name;});rs.unshift({name:store.name,category:store.category});if(rs.length>6)rs=rs.slice(0,6);recentSearches.value=rs;try{localStorage.setItem('cw_recent',JSON.stringify(rs));}catch(e){}}
     function onStoreInput(){var q=storeSearch.value.toLowerCase().trim();if(!q){storeSuggestions.value=[];return;}showDrop.value=true;var local=STORES.filter(function(s){return s.name.toLowerCase().indexOf(q)>=0;}).slice(0,8);storeSuggestions.value=local;if(profile.value.googleApiKey&&q.length>=2){clearTimeout(placesTimer);placesTimer=setTimeout(function(){fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':profile.value.googleApiKey,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({textQuery:storeSearch.value.trim()+' Singapore',locationBias:{circle:{center:{latitude:1.3521,longitude:103.8198},radius:50000}},maxResultCount:5})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){if(!storeSearch.value.trim())return;var goog=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'',category:cat,source:'google'};});var names={};for(var i=0;i<local.length;i++)names[local[i].name.toLowerCase()]=true;var merged=local.slice();for(var j=0;j<goog.length;j++){if(goog[j].name&&!names[goog[j].name.toLowerCase()])merged.push(goog[j]);}storeSuggestions.value=merged.slice(0,10);}).catch(function(){});},400);}}
-    function useMyLocation(){if(!navigator.geolocation)return;geoLoading.value=true;navigator.geolocation.getCurrentPosition(function(pos){geoLoading.value=false;var key=profile.value.googleApiKey;if(key&&key.length>=10){placesSearching.value=true;showDrop.value=true;fetch('https://places.googleapis.com/v1/places:searchNearby',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':key,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({locationRestriction:{circle:{center:{latitude:pos.coords.latitude,longitude:pos.coords.longitude},radius:200}},maxResultCount:8})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){storeSuggestions.value=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'Unknown',category:cat,source:'google'};});}).catch(function(){showMsg('Could not find nearby places');}).finally(function(){placesSearching.value=false;});}else{showMsg('Add Google API key in Profile for location search');}},function(){geoLoading.value=false;showMsg('Location access denied');},{enableHighAccuracy:true,timeout:10000});}
+    function useMyLocation(){if(!navigator.geolocation)return;geoLoading.value=true;navigator.geolocation.getCurrentPosition(function(pos){geoLoading.value=false;var lat=pos.coords.latitude,lon=pos.coords.longitude;var key=profile.value.googleApiKey;if(key&&key.length>=10){placesSearching.value=true;showDrop.value=true;fetch('https://places.googleapis.com/v1/places:searchNearby',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':key,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({locationRestriction:{circle:{center:{latitude:lat,longitude:lon},radius:200}},maxResultCount:8})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){storeSuggestions.value=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'Unknown',category:cat,source:'google'};});}).catch(function(){showMsg('Could not find nearby places');}).finally(function(){placesSearching.value=false;});}else{placesSearching.value=true;showDrop.value=true;var query='[out:json][timeout:10];(node["amenity"~"restaurant|cafe|fast_food|bar|pub"](around:200,'+lat+','+lon+');node["shop"~"supermarket|convenience|mall|department_store|clothes|electronics"](around:200,'+lat+','+lon+');node["amenity"~"fuel"](around:500,'+lat+','+lon+'););out body 10;';fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(query)}).then(function(r){return r.ok?r.json():{elements:[]};}).then(function(d){var results=(d.elements||[]).map(function(el){var tags=el.tags||{};var name=tags.name||tags['name:en']||'';if(!name)return null;var cat='general';if(tags.amenity==='restaurant'||tags.amenity==='cafe'||tags.amenity==='fast_food'||tags.amenity==='bar'||tags.amenity==='pub')cat='dining';else if(tags.shop==='supermarket'||tags.shop==='convenience')cat='groceries';else if(tags.amenity==='fuel')cat='petrol';else if(tags.shop==='mall'||tags.shop==='department_store')cat='general';else if(tags.shop==='clothes'||tags.shop==='electronics')cat='general';return{name:name,category:cat,source:'osm'};}).filter(function(x){return x!==null;});if(results.length>0){storeSuggestions.value=results.slice(0,10);}else{showMsg('No places found nearby. Try searching instead.');}}).catch(function(){showMsg('Could not find nearby places. Try searching instead.');}).finally(function(){placesSearching.value=false;});}},function(){geoLoading.value=false;showMsg('Location access denied');},{enableHighAccuracy:true,timeout:10000});}
     function showMsg(msg,type){toast.value={show:true,message:msg,type:type||'success'};setTimeout(function(){toast.value.show=false;},2500);}
-    function exportData(){var d={cards:userCards.value,profile:profile.value};var b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='cardwise-backup.json';a.click();showMsg('Exported!');}
-    function importData(evt){var file=evt.target.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(e){try{var d=JSON.parse(e.target.result);if(d.cards&&Array.isArray(d.cards))userCards.value=d.cards;if(d.profile){profile.value.name=d.profile.name||profile.value.name;profile.value.googleApiKey=d.profile.googleApiKey||'';}save();showMsg('Imported!');}catch(err){showMsg('Invalid file','error');}};reader.readAsText(file);evt.target.value='';}
-    function deleteAll(){localStorage.removeItem('cw_cards');localStorage.removeItem('cw_profile');localStorage.removeItem('cw_theme');userCards.value=[];profile.value={name:'',googleApiKey:''};showDeleteConfirm.value=false;page.value='onboarding';}
+    function exportData(){var d={cards:userCards.value,profile:profile.value,customCards:customCards.value};var b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='cardwise-backup.json';a.click();showMsg('Exported!');}
+    function importData(evt){var file=evt.target.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(e){try{var d=JSON.parse(e.target.result);if(d.cards&&Array.isArray(d.cards))userCards.value=d.cards;if(d.customCards&&Array.isArray(d.customCards))customCards.value=d.customCards;if(d.profile){profile.value.name=d.profile.name||profile.value.name;profile.value.googleApiKey=d.profile.googleApiKey||'';}save();showMsg('Imported!');}catch(err){showMsg('Invalid file','error');}};reader.readAsText(file);evt.target.value='';}
+    function startAddCard(fromPage){addCardReturnPage.value=fromPage||page.value;editingCardId.value=null;newCard.value=getEmptyCard();go('add-card');}
+    function saveCustomCard(){var c=JSON.parse(JSON.stringify(newCard.value));if(!c.bank.trim()||!c.name.trim())return;if(editingCardId.value){var idx=customCards.value.findIndex(function(x){return x.id===editingCardId.value;});if(idx>=0){c.id=editingCardId.value;customCards.value.splice(idx,1,c);}}else{c.id='custom-'+Date.now();customCards.value.push(c);userCards.value.push(c.id);}save();showMsg(editingCardId.value?'Card updated!':'Card added to wallet!');go(addCardReturnPage.value);}
+    function deleteCustomCard(id){customCards.value=customCards.value.filter(function(c){return c.id!==id;});userCards.value=userCards.value.filter(function(cid){return cid!==id;});save();showMsg('Card deleted');go(addCardReturnPage.value);}
+    function editCustomCard(card){addCardReturnPage.value=page.value;editingCardId.value=card.id;newCard.value=JSON.parse(JSON.stringify(card));selectedCardDetail.value=null;go('add-card');}
+    function searchCardOnline(){var q=encodeURIComponent(newCard.value.bank+' '+newCard.value.name+' credit card Singapore rewards cashback rates');window.open('https://www.google.com/search?q='+q,'_blank');}
+    function deleteAll(){localStorage.removeItem('cw_cards');localStorage.removeItem('cw_profile');localStorage.removeItem('cw_theme');localStorage.removeItem('cw_recent');localStorage.removeItem('cw_custom_cards');userCards.value=[];profile.value={name:'',googleApiKey:''};recentSearches.value=[];customCards.value=[];showDeleteConfirm.value=false;page.value='onboarding';}
 
     V.onMounted(function(){geoSupported.value=!!navigator.geolocation;loadAll();document.addEventListener('click',function(e){if(!e.target.closest('.store-search-wrap'))showDrop.value=false;});});
 
-    return{page:page,userCards:userCards,profile:profile,isDark:isDark,cardSearch:cardSearch,bankFilter:bankFilter,storeSearch:storeSearch,selectedCategory:selectedCategory,spendAmount:spendAmount,matchedStore:matchedStore,storeSuggestions:storeSuggestions,showDrop:showDrop,showDeleteConfirm:showDeleteConfirm,placesSearching:placesSearching,geoSupported:geoSupported,geoLoading:geoLoading,toast:toast,categories:categories,showHeader:showHeader,avatarInitial:avatarInitial,allBanks:allBanks,filteredCards:filteredCards,topCategories:topCategories,recommendations:recommendations,go:go,toggleCard:toggleCard,isSelected:isSelected,getCard:getCard,catIcon:catIcon,catLabel:catLabel,fmtRate:fmtRate,estSavings:estSavings,save:save,toggleTheme:toggleTheme,finishSetup:finishSetup,pickCategory:pickCategory,pickStore:pickStore,onStoreInput:onStoreInput,useMyLocation:useMyLocation,showMsg:showMsg,exportData:exportData,importData:importData,deleteAll:deleteAll};
+    return{page:page,userCards:userCards,profile:profile,isDark:isDark,cardSearch:cardSearch,bankFilter:bankFilter,cardTypeFilter:cardTypeFilter,storeSearch:storeSearch,selectedCategory:selectedCategory,spendAmount:spendAmount,matchedStore:matchedStore,storeSuggestions:storeSuggestions,showDrop:showDrop,showDeleteConfirm:showDeleteConfirm,placesSearching:placesSearching,geoSupported:geoSupported,geoLoading:geoLoading,toast:toast,categories:categories,showHeader:showHeader,avatarInitial:avatarInitial,allBanks:allBanks,filteredCards:filteredCards,topCategories:topCategories,recommendations:recommendations,recentSearches:recentSearches,selectedCardDetail:selectedCardDetail,dailyTip:dailyTip,customCards:customCards,newCard:newCard,editingCardId:editingCardId,addCardReturnPage:addCardReturnPage,cardColors:cardColors,go:go,toggleCard:toggleCard,isSelected:isSelected,getCard:getCard,catIcon:catIcon,catLabel:catLabel,fmtRate:fmtRate,estSavings:estSavings,save:save,toggleTheme:toggleTheme,finishSetup:finishSetup,pickCategory:pickCategory,pickStore:pickStore,onStoreInput:onStoreInput,useMyLocation:useMyLocation,showMsg:showMsg,exportData:exportData,importData:importData,deleteAll:deleteAll,startAddCard:startAddCard,saveCustomCard:saveCustomCard,deleteCustomCard:deleteCustomCard,editCustomCard:editCustomCard,searchCardOnline:searchCardOnline};
   }
 }).mount('#app');
 </script>
