@@ -22,112 +22,146 @@
     .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.03em; }
 
     /* ===== THEME VARIABLES ===== */
-    /* Light: Electric cyan + vivid violet — bold, modern, fresh */
+    /* Light: Hot cyan + electric violet — INSANELY vibrant */
     :root {
-      --accent: #0891b2;
+      --accent: #06b6d4;
       --accent-light: #22d3ee;
-      --accent2: #8b5cf6;
-      --accent-bg: rgba(8,145,178,0.07);
+      --accent2: #a855f7;
+      --accent-bg: rgba(6,182,212,0.1);
       --accent-text: #fff;
-      --accent-glow: rgba(8,145,178,0.18);
+      --accent-glow: rgba(6,182,212,0.25);
 
-      --bg: #f0f4f8;
+      --bg: #f0f5fa;
       --bg2: #ffffff;
-      --bg3: #e8eef4;
-      --surface: rgba(255,255,255,0.85);
-      --surface-border: rgba(15,23,42,0.08);
-      --surface-hover: #edf2f7;
+      --bg3: #e4ecf4;
+      --surface: rgba(255,255,255,0.88);
+      --surface-border: rgba(6,182,212,0.1);
+      --surface-hover: #eaf0f8;
       --text: #0a1628;
-      --text2: #334a6e;
-      --text3: #7088a8;
-      --text4: #bcc8d8;
-      --header-bg: rgba(240,244,248,0.88);
-      --header-border: rgba(8,145,178,0.08);
-      --glow: 0 2px 12px rgba(8,145,178,0.12), 0 1px 4px rgba(139,92,246,0.06);
+      --text2: #2d4466;
+      --text3: #5a7a9e;
+      --text4: #aabdd4;
+      --header-bg: rgba(240,245,250,0.9);
+      --header-border: rgba(6,182,212,0.12);
+      --glow: 0 2px 16px rgba(6,182,212,0.18), 0 2px 8px rgba(168,85,247,0.1);
       --pattern-opacity: 1;
-      --badge-1-bg: linear-gradient(135deg, #0891b2, #8b5cf6);
+      --badge-1-bg: linear-gradient(135deg, #06b6d4, #a855f7);
       --badge-1-text: #fff;
-      --badge-1-glow: 0 2px 16px rgba(8,145,178,0.3), 0 2px 10px rgba(139,92,246,0.2);
-      --badge-2-bg: rgba(139,92,246,0.12);
+      --badge-1-glow: 0 2px 20px rgba(6,182,212,0.35), 0 4px 16px rgba(168,85,247,0.25);
+      --badge-2-bg: rgba(168,85,247,0.14);
       --badge-2-text: #7c3aed;
-      --badge-2-glow: 0 2px 8px rgba(139,92,246,0.12);
-      --badge-3-bg: rgba(8,145,178,0.06);
-      --badge-3-text: #7088a8;
+      --badge-2-glow: 0 2px 12px rgba(168,85,247,0.15);
+      --badge-3-bg: rgba(6,182,212,0.08);
+      --badge-3-text: #5a7a9e;
       --badge-3-glow: none;
-      --neon-line: rgba(8,145,178,0.2);
-      --surface-glow: 0 1px 3px rgba(8,145,178,0.04);
-      --surface-glow-hover: 0 4px 24px rgba(8,145,178,0.1), 0 2px 12px rgba(139,92,246,0.06);
+      --neon-line: rgba(6,182,212,0.3);
+      --surface-glow: 0 1px 4px rgba(6,182,212,0.06), 0 0 0 1px rgba(6,182,212,0.04);
+      --surface-glow-hover: 0 4px 30px rgba(6,182,212,0.15), 0 4px 16px rgba(168,85,247,0.1);
     }
 
-    /* Dark: Neon violet + electric cyan — vivid, aggressive, sleek */
+    /* Dark: Neon violet + electric cyan — MAXIMUM GLOW */
     .dark, body.dark-bg {
-      --accent: #a855f7;
-      --accent-light: #c084fc;
+      --accent: #c084fc;
+      --accent-light: #d8b4fe;
       --accent2: #22d3ee;
-      --accent-bg: rgba(168,85,247,0.1);
+      --accent-bg: rgba(192,132,252,0.12);
       --accent-text: #0a0a0a;
-      --accent-glow: rgba(168,85,247,0.25);
+      --accent-glow: rgba(192,132,252,0.35);
 
-      --bg: #07070a;
-      --bg2: #0c0c10;
-      --bg3: #111116;
-      --surface: rgba(16,16,22,0.85);
-      --surface-border: rgba(255,255,255,0.07);
-      --surface-hover: rgba(24,24,32,0.9);
-      --text: #f2f2f8;
-      --text2: rgba(242,242,248,0.7);
-      --text3: rgba(242,242,248,0.35);
-      --text4: rgba(242,242,248,0.1);
-      --header-bg: rgba(7,7,10,0.75);
-      --header-border: rgba(168,85,247,0.12);
-      --glow: 0 0 24px rgba(168,85,247,0.2), 0 0 60px rgba(34,211,238,0.06);
+      --bg: #050508;
+      --bg2: #09090d;
+      --bg3: #0f0f16;
+      --surface: rgba(14,14,22,0.88);
+      --surface-border: rgba(192,132,252,0.08);
+      --surface-hover: rgba(22,22,35,0.92);
+      --text: #f4f4fb;
+      --text2: rgba(244,244,251,0.75);
+      --text3: rgba(244,244,251,0.4);
+      --text4: rgba(244,244,251,0.12);
+      --header-bg: rgba(5,5,8,0.8);
+      --header-border: rgba(192,132,252,0.15);
+      --glow: 0 0 30px rgba(192,132,252,0.25), 0 0 60px rgba(34,211,238,0.1);
       --pattern-opacity: 1;
-      --badge-1-bg: linear-gradient(135deg, #a855f7, #22d3ee);
+      --badge-1-bg: linear-gradient(135deg, #c084fc, #22d3ee);
       --badge-1-text: #0a0a0a;
-      --badge-1-glow: 0 0 20px rgba(168,85,247,0.5), 0 0 40px rgba(34,211,238,0.25);
-      --badge-2-bg: rgba(168,85,247,0.18);
-      --badge-2-text: #c084fc;
-      --badge-2-glow: 0 0 10px rgba(168,85,247,0.2);
-      --badge-3-bg: rgba(34,211,238,0.08);
-      --badge-3-text: rgba(242,242,248,0.4);
+      --badge-1-glow: 0 0 24px rgba(192,132,252,0.6), 0 0 48px rgba(34,211,238,0.3);
+      --badge-2-bg: rgba(192,132,252,0.2);
+      --badge-2-text: #d8b4fe;
+      --badge-2-glow: 0 0 14px rgba(192,132,252,0.25);
+      --badge-3-bg: rgba(34,211,238,0.1);
+      --badge-3-text: rgba(244,244,251,0.45);
       --badge-3-glow: none;
-      --neon-line: rgba(168,85,247,0.35);
-      --surface-glow: 0 0 0 1px rgba(168,85,247,0.06);
-      --surface-glow-hover: 0 0 28px rgba(168,85,247,0.14), 0 0 0 1px rgba(168,85,247,0.15);
+      --neon-line: rgba(192,132,252,0.45);
+      --surface-glow: 0 0 0 1px rgba(192,132,252,0.08), 0 0 8px rgba(192,132,252,0.04);
+      --surface-glow-hover: 0 0 36px rgba(192,132,252,0.2), 0 0 0 1px rgba(192,132,252,0.2);
     }
 
     body { background: var(--bg); color: var(--text); }
 
-    /* ===== BACKGROUND PATTERNS ===== */
-    /* Geometric SVG pattern layer */
+    /* ===== BACKGROUND PATTERNS — PREMIUM FINTECH AESTHETIC ===== */
+
+    /* LAYER 1: Primary circuit-board grid with precision nodes */
     .geo-pattern {
       position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      opacity: 1;
     }
-    /* Light: clean diamond grid */
+    /* Light: precision isometric grid — clean, trustworthy, techy */
     .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%230891b2' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%238b5cf6' opacity='0.06'/%3E%3Ccircle cx='0' cy='0' r='1' fill='%230891b2' opacity='0.05'/%3E%3Ccircle cx='60' cy='0' r='1' fill='%230891b2' opacity='0.05'/%3E%3Ccircle cx='0' cy='60' r='1' fill='%230891b2' opacity='0.05'/%3E%3Ccircle cx='60' cy='60' r='1' fill='%230891b2' opacity='0.05'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%2306b6d4' stroke-width='0.4' opacity='0.15'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%23a855f7' stroke-width='0.4' opacity='0.08'/%3E%3Ccircle cx='0' cy='0' r='1.8' fill='%2306b6d4' opacity='0.2'/%3E%3Ccircle cx='40' cy='0' r='1.8' fill='%2306b6d4' opacity='0.2'/%3E%3Ccircle cx='0' cy='40' r='1.8' fill='%23a855f7' opacity='0.12'/%3E%3Ccircle cx='40' cy='40' r='1.8' fill='%23a855f7' opacity='0.12'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%2306b6d4' opacity='0.1'/%3E%3C/svg%3E");
+      background-size: 40px 40px;
     }
-    /* Dark: neon hex grid */
+    /* Dark: neon circuit traces — cyberpunk fintech */
     .dark .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0L30 8.66L30 25.98L15 34.64L0 25.98L0 8.66Z' fill='none' stroke='%23a855f7' stroke-width='0.4' opacity='0.12'/%3E%3Cpath d='M45 17.32L60 25.98L60 43.3L45 51.96L30 43.3L30 25.98Z' fill='none' stroke='%2322d3ee' stroke-width='0.4' opacity='0.08'/%3E%3Ccircle cx='15' cy='0' r='1' fill='%23a855f7' opacity='0.15'/%3E%3Ccircle cx='45' cy='26' r='1' fill='%2322d3ee' opacity='0.12'/%3E%3C/svg%3E");
-      background-size: 60px 52px;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%23c084fc' stroke-width='0.5' opacity='0.2'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%2322d3ee' stroke-width='0.5' opacity='0.12'/%3E%3Ccircle cx='0' cy='0' r='2' fill='%23c084fc' opacity='0.35'/%3E%3Ccircle cx='40' cy='0' r='2' fill='%23c084fc' opacity='0.35'/%3E%3Ccircle cx='0' cy='40' r='2' fill='%2322d3ee' opacity='0.22'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%2322d3ee' opacity='0.22'/%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23c084fc' opacity='0.18'/%3E%3C/svg%3E");
+      background-size: 40px 40px;
     }
 
-    /* Secondary geometric layer — triangles + crosses */
+    /* LAYER 2: Large hexagonal overlay — depth & sophistication */
     .geo-pattern-2 {
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      opacity: 1;
     }
+    /* Light: large hex outlines with connector dots */
     .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L50 30L30 30Z' fill='none' stroke='%238b5cf6' stroke-width='0.4' opacity='0.06'/%3E%3Cline x1='0' y1='40' x2='80' y2='40' stroke='%230891b2' stroke-width='0.3' opacity='0.04'/%3E%3Cline x1='40' y1='0' x2='40' y2='80' stroke='%230891b2' stroke-width='0.3' opacity='0.04'/%3E%3Cpath d='M36 76L40 68L44 76' fill='none' stroke='%238b5cf6' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 80px 80px;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%2306b6d4' stroke-width='0.6' opacity='0.12'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%23a855f7' stroke-width='0.6' opacity='0.08'/%3E%3Ccircle cx='30' cy='0' r='2.5' fill='%2306b6d4' opacity='0.14'/%3E%3Ccircle cx='60' cy='17.32' r='2' fill='%2306b6d4' opacity='0.1'/%3E%3Ccircle cx='90' cy='34.64' r='2.5' fill='%23a855f7' opacity='0.1'/%3E%3Cline x1='60' y1='17.32' x2='90' y2='34.64' stroke='%2306b6d4' stroke-width='0.3' opacity='0.08' stroke-dasharray='2 4'/%3E%3Ccircle cx='30' cy='69.28' r='1.5' fill='%23a855f7' opacity='0.06'/%3E%3Ccircle cx='120' cy='51.96' r='1.5' fill='%2306b6d4' opacity='0.06'/%3E%3C/svg%3E");
+      background-size: 120px 104px;
     }
+    /* Dark: neon hex grid with glowing nodes + trace lines */
     .dark .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 15L48 30L32 30Z' fill='none' stroke='%2322d3ee' stroke-width='0.5' opacity='0.08'/%3E%3Cline x1='0' y1='0' x2='80' y2='80' stroke='%23a855f7' stroke-width='0.3' opacity='0.06'/%3E%3Cline x1='80' y1='0' x2='0' y2='80' stroke='%23a855f7' stroke-width='0.3' opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%2322d3ee' stroke-width='0.3' opacity='0.05'/%3E%3Cpath d='M36 70L40 62L44 70' fill='none' stroke='%23a855f7' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
-      background-size: 80px 80px;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%23c084fc' stroke-width='0.7' opacity='0.18'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%2322d3ee' stroke-width='0.7' opacity='0.14'/%3E%3Ccircle cx='30' cy='0' r='3' fill='%23c084fc' opacity='0.25'/%3E%3Ccircle cx='60' cy='17.32' r='2.5' fill='%23c084fc' opacity='0.2'/%3E%3Ccircle cx='90' cy='34.64' r='3' fill='%2322d3ee' opacity='0.2'/%3E%3Cline x1='60' y1='17.32' x2='90' y2='34.64' stroke='%2322d3ee' stroke-width='0.4' opacity='0.15' stroke-dasharray='3 5'/%3E%3Cline x1='30' y1='0' x2='60' y2='17.32' stroke='%23c084fc' stroke-width='0.4' opacity='0.12' stroke-dasharray='3 5'/%3E%3Ccircle cx='30' cy='69.28' r='2' fill='%23c084fc' opacity='0.12'/%3E%3Ccircle cx='120' cy='51.96' r='2' fill='%2322d3ee' opacity='0.1'/%3E%3Ccircle cx='0' cy='17.32' r='1.5' fill='%23c084fc' opacity='0.15'/%3E%3C/svg%3E");
+      background-size: 120px 104px;
     }
 
-    /* Gradient wash overlay */
+    /* LAYER 3: Animated floating orbs — adds life & premium feel */
+    @keyframes floatOrbs {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(10px, -15px) scale(1.05); }
+      50% { transform: translate(-5px, 10px) scale(0.98); }
+      75% { transform: translate(15px, 5px) scale(1.02); }
+    }
+    .mesh-bg {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: transparent;
+      transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
+    }
+    /* Light: soft cyan & violet radial washes */
+    .mesh-bg {
+      background:
+        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(6,182,212,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(168,85,247,0.07) 0%, transparent 70%),
+        radial-gradient(circle 200px at 60% 30%, rgba(6,182,212,0.04) 0%, transparent 60%);
+    }
+    /* Dark: neon glow orbs — violet top-left, cyan bottom-right */
+    .dark .mesh-bg {
+      background:
+        radial-gradient(ellipse 600px 500px at 8% 0%, rgba(192,132,252,0.28) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 500px at 92% 95%, rgba(34,211,238,0.2) 0%, transparent 65%),
+        radial-gradient(circle 300px at 50% 40%, rgba(192,132,252,0.12) 0%, transparent 50%),
+        radial-gradient(circle 200px at 75% 20%, rgba(34,211,238,0.1) 0%, transparent 60%),
+        radial-gradient(circle 150px at 25% 70%, rgba(192,132,252,0.08) 0%, transparent 50%);
+    }
+
+    /* Gradient wash base layer */
     body::before {
       content: '';
       position: fixed;
@@ -135,29 +169,15 @@
       z-index: -4;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 800px 600px at 5% 5%, rgba(8,145,178,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 600px 500px at 95% 90%, rgba(139,92,246,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 300px at 50% 50%, rgba(8,145,178,0.03) 0%, transparent 60%);
+        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(6,182,212,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(168,85,247,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 50% 50%, rgba(6,182,212,0.05) 0%, transparent 60%);
     }
     body::after { content: none; }
-
-    /* Dark: mesh gradient — violet top-left, cyan bottom-right */
-    .mesh-bg {
-      position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      background: transparent;
-      transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
-    }
-    .dark .mesh-bg {
-      background:
-        radial-gradient(ellipse 700px 500px at 10% 0%, rgba(168,85,247,0.14) 0%, transparent 65%),
-        radial-gradient(ellipse 600px 600px at 90% 95%, rgba(34,211,238,0.1) 0%, transparent 65%),
-        radial-gradient(ellipse 300px 300px at 50% 40%, rgba(168,85,247,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 250px 250px at 70% 20%, rgba(34,211,238,0.05) 0%, transparent 60%);
-    }
     .dark body::before, body.dark-bg::before {
       background:
-        radial-gradient(ellipse 800px 600px at 0% 0%, rgba(168,85,247,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 600px 500px at 100% 100%, rgba(34,211,238,0.05) 0%, transparent 70%);
+        radial-gradient(ellipse 900px 700px at 0% 0%, rgba(192,132,252,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 100% 100%, rgba(34,211,238,0.12) 0%, transparent 70%);
     }
 
     /* ===== GLASSMORPHISM ===== */
@@ -168,9 +188,9 @@
       border-bottom: 1px solid var(--header-border);
     }
     .dark .glass-header {
-      background: rgba(9,9,11,0.65);
-      border-bottom: 1px solid rgba(168,85,247,0.08);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.02);
+      background: rgba(5,5,10,0.7);
+      border-bottom: 1px solid rgba(192,132,252,0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(192,132,252,0.03);
     }
 
     /* ===== SURFACES ===== */
@@ -198,8 +218,8 @@
       transition: all 0.25s cubic-bezier(0.65,0.05,0,1);
     }
     .dark .btn-accent {
-      background: linear-gradient(135deg, #a855f7, #22d3ee);
-      box-shadow: 0 0 24px rgba(168,85,247,0.35), 0 0 60px rgba(34,211,238,0.12);
+      background: linear-gradient(135deg, #c084fc, #22d3ee);
+      box-shadow: 0 0 28px rgba(192,132,252,0.4), 0 0 60px rgba(34,211,238,0.15);
     }
     .btn-accent:hover { filter: brightness(1.15); transform: translateY(-1px); }
     .btn-accent:active { transform: scale(0.97) translateY(0); filter: brightness(1); }
@@ -269,8 +289,8 @@
     /* Neon pulse for #1 card in dark mode */
     .dark .neon-pulse { animation: neonPulse 2.5s ease-in-out infinite alternate; }
     @keyframes neonPulse {
-      0%   { box-shadow: 0 0 16px rgba(168,85,247,0.4), 0 0 40px rgba(34,211,238,0.1); }
-      100% { box-shadow: 0 0 24px rgba(168,85,247,0.6), 0 0 60px rgba(34,211,238,0.2); }
+      0%   { box-shadow: 0 0 20px rgba(192,132,252,0.5), 0 0 50px rgba(34,211,238,0.15); }
+      100% { box-shadow: 0 0 32px rgba(192,132,252,0.7), 0 0 70px rgba(34,211,238,0.3); }
     }
 
     .stagger>*:nth-child(1){animation-delay:0s} .stagger>*:nth-child(2){animation-delay:0.06s} .stagger>*:nth-child(3){animation-delay:0.12s}
@@ -297,7 +317,7 @@
     /* Bottom nav active tab — dual-tone neon underline */
     .tab-active{position:relative}
     .tab-active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:28px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;box-shadow:0 1px 6px var(--accent-glow)}
-    .dark .tab-active::after{box-shadow:0 0 12px var(--accent-glow),0 0 4px rgba(34,211,238,0.2)}
+    .dark .tab-active::after{box-shadow:0 0 16px var(--accent-glow),0 0 6px rgba(34,211,238,0.25)}
 
     /* ===== RANK BADGES — Progressive glow ===== */
     .rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
@@ -307,18 +327,18 @@
     .rank-other{background:var(--text4);color:var(--text3);box-shadow:none}
 
     .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.04) 100%)}
-    .dark .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,rgba(255,255,255,0) 40%,rgba(168,85,247,0.04) 100%)}
+    .dark .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0) 40%,rgba(192,132,252,0.06) 100%)}
 
     .theme-toggle{width:52px;height:28px;border-radius:14px;position:relative;cursor:pointer;transition:background 0.3s cubic-bezier(0.65,0.05,0,1)}
     .theme-toggle .knob{width:22px;height:22px;border-radius:50%;position:absolute;top:3px;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
-    .dark .theme-toggle .knob{box-shadow:0 0 8px rgba(168,85,247,0.4)}
+    .dark .theme-toggle .knob{box-shadow:0 0 12px rgba(192,132,252,0.5)}
 
     /* Dark mode bottom nav glass */
     .dark nav.glass-header {
-      background: rgba(9,9,11,0.65);
-      border-top: 1px solid rgba(168,85,247,0.06);
+      background: rgba(5,5,10,0.72);
+      border-top: 1px solid rgba(192,132,252,0.08);
       border-bottom: none;
-      box-shadow: 0 -4px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.02);
+      box-shadow: 0 -4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(192,132,252,0.04);
     }
 
     /* ===== CARD TILE — Mini credit card with neon highlights ===== */
@@ -368,7 +388,7 @@
       box-shadow: 0 0 8px var(--accent-glow), 0 0 0 1.5px var(--accent);
     }
     .dark .card-tile-selected {
-      box-shadow: 0 0 12px var(--accent-glow), 0 0 20px rgba(34,211,238,0.08), 0 0 0 1.5px var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow), 0 0 24px rgba(34,211,238,0.12), 0 0 0 1.5px var(--accent);
     }
     .card-tile-selected::after {
       border-color: var(--accent) !important;
@@ -424,8 +444,8 @@
       </div>
       <div class="flex items-center gap-3">
         <!-- Theme toggle -->
-        <div class="theme-toggle" :style="{background: isDark?'rgba(168,85,247,0.18)':'rgba(8,145,178,0.12)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#a855f7':'#0891b2'}">
+        <div class="theme-toggle" :style="{background: isDark?'rgba(192,132,252,0.2)':'rgba(6,182,212,0.14)'}" @click="toggleTheme">
+          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#c084fc':'#06b6d4'}">
             <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
             <svg v-else class="w-3.5 h-3.5 text-dark-600" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
           </div>
@@ -453,8 +473,8 @@
       <!-- Theme toggle on onboarding -->
       <div class="flex items-center justify-center gap-3 mb-6 slide-up" style="animation-delay:0.35s">
         <span class="text-xs font-medium" style="color:var(--text3)">Light</span>
-        <div class="theme-toggle" :style="{background: isDark?'rgba(168,85,247,0.18)':'rgba(8,145,178,0.12)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#a855f7':'#0891b2'}">
+        <div class="theme-toggle" :style="{background: isDark?'rgba(192,132,252,0.2)':'rgba(6,182,212,0.14)'}" @click="toggleTheme">
+          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#c084fc':'#06b6d4'}">
             <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
             <svg v-else class="w-3.5 h-3.5" style="color:#09090b" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
           </div>
@@ -835,7 +855,7 @@
             <button @click="showDeleteConfirm=true" class="w-full py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete All Data</button>
           </div>
         </div>
-        <div class="p-4 rounded-2xl surface text-center"><div class="neon-line w-10 mx-auto mb-3"></div><p class="text-[10px] font-display font-bold uppercase tracking-widest" style="color:var(--text4)">CardWise SG v3.0 &middot; Local only</p></div>
+        <div class="p-4 rounded-2xl surface text-center"><div class="neon-line w-10 mx-auto mb-3"></div><p class="text-[10px] font-display font-bold uppercase tracking-widest" style="color:var(--text4)">CardWise SG v4.0 &middot; Local only</p></div>
       </div>
       <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="background:rgba(0,0,0,0.6)" @click.self="showDeleteConfirm=false">
         <div class="rounded-2xl p-6 w-full max-w-sm border modal-content" :style="{background:'var(--surface)',borderColor:'var(--surface-border)'}">
@@ -888,12 +908,21 @@ var CARDS_DB=[
 {id:'uob-krisflyer',name:'KrisFlyer Card',bank:'UOB',type:'Miles',ct:'credit',network:'VISA',highlight:'2 KF mpd',color:'linear-gradient(135deg,#003d6b,#0066b3)',rates:{dining:3.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:3.6,entertainment:1.6,telco:1.6,utilities:1.6,general:1.6},notes:{dining:'2 KF mpd dining (~3.6%)',travel:'2 KF mpd travel (~3.6%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
 {id:'uob-preferred-plat',name:'Preferred Platinum',bank:'UOB',type:'Rewards',ct:'credit',network:'VISA',highlight:'10X UNI$ dining',color:'linear-gradient(135deg,#8c8c8c,#b3b3b3)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X UNI$ on dining & entertainment (~4%)'},conditions:{dining:'Cap 2,000 UNI$/mo.'},caps:{dining:80},minSpend:0,fee:'$194.40'},
 /* ===== OCBC ===== */
-{id:'ocbc-365',name:'365 Credit Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% dining',color:'linear-gradient(135deg,#cc0000,#e60000)',rates:{dining:6,groceries:3,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:3,utilities:1,general:0.3},notes:{dining:'6% on dining',groceries:'3% on groceries'},conditions:{dining:'Cap $80/mo. Min $800/mo.'},caps:{dining:80,groceries:80,online:80,transport:80},minSpend:800,fee:'$194.40'},
-{id:'ocbc-frank',name:'FRANK Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% online',color:'linear-gradient(135deg,#ff6b00,#ff8c33)',rates:{dining:1,groceries:1,online:6,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{online:'6% on online spend'},conditions:{online:'Min $400/mo. Cap $25.'},caps:{online:25},minSpend:400,fee:'$0'},
-{id:'ocbc-90n',name:'9000b0N Card',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'1.3 mpd local',color:'linear-gradient(135deg,#1a2e5a,#2e4a8a)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.8,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{general:'1.3 mpd all local',travel:'2.1 mpd overseas (~3.8%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-365',name:'365 Credit Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% dining',color:'linear-gradient(135deg,#e8eef4,#c8d6e5)',rates:{dining:6,groceries:3,online:3,transport:3,contactless:1,petrol:1,travel:1,entertainment:1,telco:3,utilities:1,general:0.3},notes:{dining:'6% on dining',groceries:'3% on groceries'},conditions:{dining:'Cap $80/mo. Min $800/mo.'},caps:{dining:80,groceries:80,online:80,transport:80},minSpend:800,fee:'$194.40'},
+{id:'ocbc-frank',name:'FRANK Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% online',color:'linear-gradient(135deg,#1a2744,#2c3e6b)',rates:{dining:1,groceries:1,online:6,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.3},notes:{online:'6% on online spend'},conditions:{online:'Min $400/mo. Cap $25.'},caps:{online:25},minSpend:400,fee:'$0'},
+{id:'ocbc-90n',name:'90°N Card',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'1.3 mpd local',color:'linear-gradient(135deg,#0d0d0d,#1a1a2e)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.8,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{general:'1.3 mpd all local',travel:'2.1 mpd overseas (~3.8%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
 {id:'ocbc-infinity',name:'INFINITY Cashback',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'1.5% unlimited',color:'linear-gradient(135deg,#0d0d0d,#262626)',rates:{dining:1.5,groceries:1.5,online:1.5,transport:1.5,contactless:1.5,petrol:1.5,travel:1.5,entertainment:1.5,telco:1.5,utilities:1.5,general:1.5},notes:{general:'1.5% unlimited cashback. No cap.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
 {id:'ocbc-titanium',name:'Titanium Rewards',bank:'OCBC',type:'Rewards',ct:'credit',network:'MC',highlight:'10X VOYAGE$',color:'linear-gradient(135deg,#7a7a7a,#a0a0a0)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X VOYAGE$ on dining & online (~4%)'},conditions:{dining:'Cap $1,000/mo.'},caps:{dining:40},minSpend:0,fee:'$194.40'},
 {id:'ocbc-ntuc',name:'NTUC Plus! Visa',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'6% FairPrice',color:'linear-gradient(135deg,#d42020,#0039a6)',rates:{dining:1,groceries:6,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:0.5},notes:{groceries:'Up to 6% at FairPrice/Unity'},conditions:{groceries:'NTUC members. Cap applies.'},caps:{groceries:30},minSpend:0,fee:'$0'},
+{id:'ocbc-rewards',name:'Rewards Card',bank:'OCBC',type:'Rewards',ct:'credit',network:'VISA',highlight:'15 OCBC$ Watsons',color:'linear-gradient(135deg,#9b7ec8,#c4a5e0)',rates:{dining:2,groceries:2,online:2.7,transport:1,contactless:1,petrol:1,travel:1,entertainment:2,telco:1,utilities:1,general:0.4},notes:{online:'15 OCBC$ per $1 at Watsons & online (~2.7%)'},conditions:{online:'Selected merchants only.'},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-voyage',name:'VOYAGE Card',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'2.2 mpd overseas',color:'linear-gradient(135deg,#c4b0dc,#ddd0ec)',rates:{dining:2,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:4,entertainment:1.6,telco:1.6,utilities:1.6,general:1.6},notes:{travel:'2.2 VOYAGE Miles per $1 overseas (~4%)',general:'1.3 VOYAGE Miles per $1 local'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-premier-voyage',name:'Premier VOYAGE Card',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'2.3 mpd overseas',color:'linear-gradient(135deg,#0d0d14,#1a1a2e)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:4.2,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{travel:'2.3 VOYAGE Miles per $1 overseas (~4.2%)'},conditions:{travel:'Premier banking required.'},caps:{},minSpend:0,fee:'$0 (Premier)'},
+{id:'ocbc-nxt',name:'NXT Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'MC',highlight:'1% cashback on $1k+',color:'linear-gradient(135deg,#d4880a,#e8a020)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% cashback when monthly bill $1,000+'},conditions:{general:'Min $1,000/mo spend. Interest-free instalments.'},caps:{},minSpend:1000,fee:'$0'},
+{id:'ocbc-great-eastern',name:'Great Eastern Cashflo',bank:'OCBC',type:'Cashback',ct:'credit',network:'MC',highlight:'1.2% rebate',color:'linear-gradient(135deg,#2a2a32,#3d3d48)',rates:{dining:1.2,groceries:1.2,online:1.2,transport:1.2,contactless:1.2,petrol:1.2,travel:1.2,entertainment:1.2,telco:1.2,utilities:1.2,general:1.2},notes:{general:'Up to 1.2% rebate on all spend'},conditions:{general:'Cap $100/mo.'},caps:{general:100},minSpend:0,fee:'$0'},
+{id:'ocbc-platinum',name:'Platinum Credit Card',bank:'OCBC',type:'Rewards',ct:'credit',network:'MC',highlight:'5 OCBC$ per $5',color:'linear-gradient(135deg,#1a3a4a,#2a5a6a)',rates:{dining:1.8,groceries:0.4,online:1.8,transport:0.4,contactless:0.4,petrol:0.4,travel:1.8,entertainment:1.8,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'5 OCBC$ per $5 on dining, travel, entertainment (~1.8%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-best-denki',name:'BEST-OCBC Card',bank:'OCBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3% BEST Denki',color:'linear-gradient(135deg,#1a3a8c,#2a56b8)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:3,telco:0.3,utilities:0.3,general:0.3},notes:{entertainment:'3% cashback at BEST Denki'},conditions:{entertainment:'BEST Denki only.'},caps:{entertainment:30},minSpend:0,fee:'$0'},
+{id:'ocbc-arts',name:'Arts Card',bank:'OCBC',type:'Rewards',ct:'credit',network:'VISA',highlight:'15 OCBC$ SISTIC',color:'linear-gradient(135deg,#3a6a8c,#5a8aac)',rates:{dining:1,groceries:0.4,online:1.8,transport:0.4,contactless:0.4,petrol:0.4,travel:0.4,entertainment:1.8,telco:0.4,utilities:0.4,general:0.4},notes:{online:'15 OCBC$ per $5 on SISTIC (~1.8%)',entertainment:'Bonus on arts & entertainment'},conditions:{online:'SISTIC purchases.'},caps:{},minSpend:0,fee:'$194.40'},
+{id:'ocbc-premier-visa-inf',name:'Premier Visa Infinite',bank:'OCBC',type:'Miles',ct:'credit',network:'VISA',highlight:'28 OCBC$ per $5 overseas',color:'linear-gradient(135deg,#2a2a34,#404050)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:5,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{travel:'Up to 28 OCBC$ per $5 overseas. Fuel discounts 14-23%.'},conditions:{travel:'Premier banking required.'},caps:{},minSpend:0,fee:'$0 (Premier)'},
 /* ===== CITI ===== */
 {id:'citi-cashback',name:'Cash Back Card',bank:'Citi',type:'Cashback',ct:'credit',network:'MC',highlight:'8% dining/grocery/petrol',color:'linear-gradient(135deg,#003a70,#00254d)',rates:{dining:8,groceries:8,online:0.25,transport:0.25,contactless:0.25,petrol:8,travel:0.25,entertainment:0.25,telco:0.25,utilities:0.25,general:0.25},notes:{dining:'8% on dining',groceries:'8% on groceries',petrol:'8% on petrol'},conditions:{dining:'Cap $25/cat/mo. Min $800/mo.'},caps:{dining:25,groceries:25,petrol:25},minSpend:800,fee:'$194.40'},
 {id:'citi-cashback-plus',name:'Cashback+ Card',bank:'Citi',type:'Cashback',ct:'credit',network:'MC',highlight:'1.6% unlimited',color:'linear-gradient(135deg,#0072ce,#004e9a)',rates:{dining:1.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:1.6,entertainment:1.6,telco:1.6,utilities:1.6,general:1.6},notes:{general:'1.6% unlimited cashback'},conditions:{},caps:{},minSpend:0,fee:'$0'},
@@ -902,9 +931,9 @@ var CARDS_DB=[
 {id:'citi-prestige',name:'Prestige Card',bank:'Citi',type:'Miles',ct:'credit',network:'VISA',highlight:'2 mpd overseas',color:'linear-gradient(135deg,#1a1a1a,#0d0d0d)',rates:{dining:2.3,groceries:2.3,online:2.3,transport:2.3,contactless:2.3,petrol:2.3,travel:3.6,entertainment:2.3,telco:2.3,utilities:2.3,general:2.3},notes:{travel:'2 mpd overseas. 4th night free.'},conditions:{travel:'$535 annual fee.'},caps:{},minSpend:0,fee:'$535'},
 {id:'citi-premiermiles',name:'PremierMiles Card',bank:'Citi',type:'Miles',ct:'credit',network:'VISA',highlight:'2 mpd overseas',color:'linear-gradient(135deg,#5a5a5a,#808080)',rates:{dining:1.6,groceries:1.6,online:1.6,transport:1.6,contactless:1.6,petrol:1.6,travel:3.6,entertainment:1.6,telco:1.6,utilities:1.6,general:0.7},notes:{travel:'2 mpd overseas (~3.6%)',general:'0.4 mpd local'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
 /* ===== HSBC ===== */
-{id:'hsbc-revolution',name:'Revolution Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'4% dining/online',color:'linear-gradient(135deg,#db0011,#a3000d)',rates:{dining:4,groceries:1,online:4,transport:1,contactless:4,petrol:1,travel:1,entertainment:4,telco:1,utilities:1,general:0.4},notes:{dining:'~4% dining, entertainment, online contactless'},conditions:{dining:'Contactless tap required.'},caps:{dining:40},minSpend:0,fee:'$0'},
-{id:'hsbc-live',name:'Live+ Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3% on 6 categories',color:'linear-gradient(135deg,#db0011,#ff1a2d)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:1,travel:1,entertainment:3,telco:3,utilities:1,general:0.25},notes:{dining:'3% dining, groceries, transport, telco, online'},conditions:{dining:'Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20},minSpend:600,fee:'$0'},
-{id:'hsbc-travelone',name:'TravelOne Card',bank:'HSBC',type:'Miles',ct:'credit',network:'VISA',highlight:'2.4 mpd overseas, 0% FX',color:'linear-gradient(135deg,#8c0009,#db0011)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:4.3,entertainment:2,telco:2,utilities:2,general:2},notes:{travel:'2.4 mpd overseas, 0% FX markup (~4.3%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+{id:'hsbc-revolution',name:'Revolution Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'4% dining/online',color:'linear-gradient(135deg,#8c9aad,#b8c4d4)',rates:{dining:4,groceries:1,online:4,transport:1,contactless:4,petrol:1,travel:1,entertainment:4,telco:1,utilities:1,general:0.4},notes:{dining:'~4% dining, entertainment, online contactless'},conditions:{dining:'Contactless tap required.'},caps:{dining:40},minSpend:0,fee:'$0'},
+{id:'hsbc-live',name:'Live+ Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3% on 6 categories',color:'linear-gradient(135deg,#1a1a2e,#e63370)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:1,travel:1,entertainment:3,telco:3,utilities:1,general:0.25},notes:{dining:'3% dining, groceries, transport, telco, online'},conditions:{dining:'Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20},minSpend:600,fee:'$0'},
+{id:'hsbc-travelone',name:'TravelOne Card',bank:'HSBC',type:'Miles',ct:'credit',network:'VISA',highlight:'2.4 mpd overseas, 0% FX',color:'linear-gradient(135deg,#0d0d0d,#1a1a1a)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:4.3,entertainment:2,telco:2,utilities:2,general:2},notes:{travel:'2.4 mpd overseas, 0% FX markup (~4.3%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
 {id:'hsbc-premier-mc',name:'Premier Mastercard',bank:'HSBC',type:'Miles',ct:'credit',network:'MC',highlight:'3 mpd overseas',color:'linear-gradient(135deg,#1a1a1a,#333333)',rates:{dining:2.5,groceries:2.5,online:2.5,transport:2.5,contactless:2.5,petrol:2.5,travel:5.4,entertainment:2.5,telco:2.5,utilities:2.5,general:2.5},notes:{travel:'3 mpd overseas (~5.4%)',general:'1.4 mpd local'},conditions:{travel:'HSBC Premier banking required.'},caps:{},minSpend:0,fee:'$0 (Premier)'},
 {id:'hsbc-advance',name:'Advance Card',bank:'HSBC',type:'Cashback',ct:'credit',network:'VISA',highlight:'3.5% cashback',color:'linear-gradient(135deg,#db0011,#4a0007)',rates:{dining:3.5,groceries:3.5,online:3.5,transport:3.5,contactless:3.5,petrol:1,travel:1,entertainment:3.5,telco:1,utilities:1,general:0.25},notes:{dining:'3.5% on dining, grocery, transport, online'},conditions:{dining:'Advance banking. Min $600/mo.'},caps:{dining:25,groceries:25,online:25,transport:25},minSpend:600,fee:'$0'},
 /* ===== STANDARD CHARTERED ===== */
@@ -935,10 +964,17 @@ var CARDS_DB=[
 {id:'gxs-flexicard',name:'FlexiCard',bank:'GXS',type:'Cashback',ct:'credit',network:'VISA',highlight:'Up to 3% cashback',color:'linear-gradient(135deg,#4f46e5,#7c3aed)',rates:{dining:3,groceries:3,online:3,transport:1,contactless:1,petrol:1,travel:1,entertainment:3,telco:1,utilities:1,general:0.3},notes:{dining:'Up to 3% on dining, groceries, online, entertainment'},conditions:{dining:'Rates rotate monthly. Cap applies.'},caps:{dining:10,groceries:10,online:10,entertainment:10},minSpend:0,fee:'$0'},
 
 /* ===== DEBIT & PREPAID CARDS ===== */
-{id:'dbs-visa-debit',name:'Visa Debit',bank:'DBS',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.3% base cashback',color:'linear-gradient(135deg,#d4232a,#1a1a1a)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'0.3% base cashback on all spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'dbs-visa-debit',name:'Visa Debit (Multi-Currency)',bank:'DBS',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 4% cashback',color:'linear-gradient(135deg,#0a1628,#1a2d4a)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'Up to 4% cashback on selected categories'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'dbs-unionpay-debit',name:'UnionPay Platinum Debit',bank:'DBS',type:'Cashback',ct:'debit',network:'UP',highlight:'11% savings in China',color:'linear-gradient(135deg,#b0b8c4,#d4dbe4)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:2,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{travel:'Up to 11% savings on China spend'},conditions:{travel:'China spend only.'},caps:{},minSpend:0,fee:'$0'},
+{id:'dbs-takashimaya-debit',name:'Takashimaya Debit',bank:'DBS',type:'Cashback',ct:'debit',network:'VISA',highlight:'3% Takashimaya vouchers',color:'linear-gradient(135deg,#e8ddd0,#f0e8dc)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:3},notes:{general:'3% voucher rebates at Takashimaya'},conditions:{general:'Takashimaya only. 10% during sale events.'},caps:{},minSpend:0,fee:'$0'},
+{id:'dbs-safra-debit',name:'SAFRA DBS Debit',bank:'DBS',type:'Cashback',ct:'debit',network:'VISA',highlight:'2% contactless & online',color:'linear-gradient(135deg,#2a2a2a,#4a4a4a)',rates:{dining:0.3,groceries:0.3,online:2,transport:0.3,contactless:2,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{online:'Up to 2% on contactless & online'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'posb-passion-debit',name:'PAssion Debit',bank:'POSB',type:'Cashback',ct:'debit',network:'MC',highlight:'Up to 9% rebates',color:'linear-gradient(135deg,#f0e8e0,#e8d8cc)',rates:{dining:1,groceries:1,online:0.3,transport:1,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'Up to 9% cash rebates on daily spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'posb-hometeamns-debit',name:'HomeTeamNS PAssion Debit',bank:'POSB',type:'Cashback',ct:'debit',network:'MC',highlight:'2% rebate',color:'linear-gradient(135deg,#0a1628,#1a2840)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'Up to 2% cash rebate + HomeTeamNS benefits'},conditions:{},caps:{},minSpend:0,fee:'$0'},
 {id:'posb-everyday-debit',name:'Everyday Debit',bank:'POSB',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#0047ab,#3b82f6)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on dining & grocery contactless'},conditions:{dining:'Contactless only.'},caps:{dining:5},minSpend:0,fee:'$0'},
 {id:'uob-one-debit',name:'One Debit',bank:'UOB',type:'Cashback',ct:'debit',network:'MC',highlight:'Up to 3% cashback',color:'linear-gradient(135deg,#003d82,#1a5fa6)',rates:{dining:3,groceries:3,online:3,transport:3,contactless:3,petrol:3,travel:3,entertainment:3,telco:3,utilities:3,general:3},notes:{general:'Up to 3% cashback on all spend'},conditions:{general:'Min $500/mo spend + salary credit.'},caps:{general:50},minSpend:500,fee:'$0'},
-{id:'ocbc-debit',name:'Debit Card',bank:'OCBC',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#cc0000,#ff1a1a)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on selected categories'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'ocbc-debit',name:'Debit Card',bank:'OCBC',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#d0dbe8,#e8eef4)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on selected categories'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'ocbc-frank-debit',name:'FRANK Debit Card',bank:'OCBC',type:'Cashback',ct:'debit',network:'VISA',highlight:'Up to 1% cashback',color:'linear-gradient(135deg,#2563eb,#3b82f6)',rates:{dining:1,groceries:1,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'1% on dining & grocery categories'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'ocbc-premier-debit',name:'Premier World Elite Debit',bank:'OCBC',type:'Cashback',ct:'debit',network:'MC',highlight:'Travel perks + cashback',color:'linear-gradient(135deg,#0d0d14,#1a1a28)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:1.5,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{travel:'Travel perks. Lounge access. No FX markup.'},conditions:{travel:'Premier banking required.'},caps:{},minSpend:0,fee:'$0 (Premier)'},
 {id:'trust-debit',name:'Trust Debit',bank:'Trust Bank',type:'Cashback',ct:'debit',network:'MC',highlight:'1% cashback',color:'linear-gradient(135deg,#7c3aed,#9333ea)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% cashback on all spend'},conditions:{general:'Base rate. Higher with link-ups.'},caps:{},minSpend:0,fee:'$0'},
 {id:'gxs-debit',name:'GXS Debit',bank:'GXS',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.5% cashback',color:'linear-gradient(135deg,#4f46e5,#6366f1)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:0.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{general:'0.5% cashback on all spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
 {id:'grab-mc',name:'Grab-Mastercard',bank:'Grab',type:'Cashback',ct:'debit',network:'MC',highlight:'8 pts/$1 Grab',color:'linear-gradient(135deg,#00b14f,#009a44)',rates:{dining:2,groceries:2,online:2,transport:8,contactless:2,petrol:2,travel:1,entertainment:2,telco:2,utilities:2,general:1},notes:{transport:'8 GrabRewards pts/$1 (~8%)'},conditions:{transport:'Value varies.'},caps:{},minSpend:0,fee:'$0'},
