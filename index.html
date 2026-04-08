@@ -1395,18 +1395,48 @@
             <button @click="showDeleteConfirm=true" class="w-full py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete All Data</button>
           </div>
         </div>
-        <div class="p-4 rounded-2xl surface text-center">
-          <div class="neon-line w-8 mx-auto mb-3"></div>
-          <!-- Compact monogram crest -->
-          <svg class="mx-auto mb-2" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <div class="p-5 rounded-2xl text-center" :style="{background:isDark?'linear-gradient(180deg,rgba(18,16,12,0.95),rgba(10,8,6,0.98))':'linear-gradient(180deg,rgba(252,250,245,0.98),rgba(245,240,230,0.95))',border:'1px solid '+(isDark?'rgba(212,175,105,0.15)':'rgba(160,130,70,0.12)'),boxShadow:isDark?'0 4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,105,0.06)':'0 2px 16px rgba(120,100,60,0.06)'}">
+          <!-- Ornate divider top -->
+          <svg class="mx-auto mb-3" width="60" height="6" viewBox="0 0 60 6"><path d="M0 3Q10 0 15 3T30 3T45 3Q50 0 60 3" fill="none" :stroke="isDark?'#c9a84c':'#8b7332'" stroke-width="0.8" opacity="0.5"/><circle cx="30" cy="3" r="1.5" :fill="isDark?'#c9a84c':'#8b7332'" opacity="0.4"/></svg>
+          <!-- Regal family crest -->
+          <svg class="mx-auto mb-3" width="52" height="62" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="crest-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" :stop-color="isDark?'#3b82f6':'#2563eb'"/><stop offset="100%" :stop-color="isDark?'#ef4444':'#dc2626'"/></linearGradient>
+              <linearGradient id="crest-gold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" :stop-color="isDark?'#e8d48b':'#a08940'"/><stop offset="45%" :stop-color="isDark?'#c9a84c':'#8b7332'"/><stop offset="100%" :stop-color="isDark?'#a68b3a':'#6b5a28'"/></linearGradient>
+              <linearGradient id="crest-fill" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0%" :stop-color="isDark?'rgba(30,26,18,0.9)':'rgba(250,245,235,0.9)'"/><stop offset="100%" :stop-color="isDark?'rgba(16,14,10,0.95)':'rgba(240,232,218,0.95)'"/></linearGradient>
+              <linearGradient id="crest-text" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" :stop-color="isDark?'#e8d48b':'#7a6528'"/><stop offset="100%" :stop-color="isDark?'#c9a84c':'#5c4a1e'"/></linearGradient>
             </defs>
-            <path d="M50 5 L90 25 L90 55 Q90 80 50 95 Q10 80 10 55 L10 25 Z" fill="none" stroke="url(#crest-g)" stroke-width="3"/>
-            <text x="50" y="60" text-anchor="middle" fill="url(#crest-g)" font-size="30" font-family="Sora,sans-serif" font-weight="800" letter-spacing="2">MA</text>
+            <!-- Shield body -->
+            <path d="M60 4 L108 24 L108 62 Q108 100 60 132 Q12 100 12 62 L12 24 Z" fill="url(#crest-fill)" stroke="url(#crest-gold)" stroke-width="2.5"/>
+            <!-- Inner shield line -->
+            <path d="M60 14 L98 30 L98 60 Q98 92 60 120 Q22 92 22 60 L22 30 Z" fill="none" stroke="url(#crest-gold)" stroke-width="0.8" opacity="0.4"/>
+            <!-- Crown top -->
+            <path d="M38 26 L42 18 L48 24 L54 14 L60 24 L66 14 L72 24 L78 18 L82 26" fill="none" stroke="url(#crest-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="54" cy="14" r="2" fill="url(#crest-gold)" opacity="0.7"/>
+            <circle cx="60" cy="11" r="2.5" fill="url(#crest-gold)"/>
+            <circle cx="66" cy="14" r="2" fill="url(#crest-gold)" opacity="0.7"/>
+            <!-- Horizontal divider with diamond -->
+            <line x1="30" y1="42" x2="90" y2="42" stroke="url(#crest-gold)" stroke-width="0.6" opacity="0.5"/>
+            <rect x="56" y="38" width="8" height="8" rx="1" transform="rotate(45 60 42)" fill="url(#crest-gold)" opacity="0.3"/>
+            <!-- MA monogram — serif style -->
+            <text x="60" y="78" text-anchor="middle" fill="url(#crest-text)" font-size="36" font-family="'Georgia','Times New Roman',serif" font-weight="700" letter-spacing="4" font-style="italic">MA</text>
+            <!-- Laurel leaves left -->
+            <path d="M28 85 Q22 75 26 65" fill="none" stroke="url(#crest-gold)" stroke-width="1" opacity="0.5"/>
+            <path d="M26 80 Q20 78 22 72" fill="none" stroke="url(#crest-gold)" stroke-width="0.7" opacity="0.35"/>
+            <path d="M27 87 Q19 86 20 80" fill="none" stroke="url(#crest-gold)" stroke-width="0.7" opacity="0.35"/>
+            <!-- Laurel leaves right -->
+            <path d="M92 85 Q98 75 94 65" fill="none" stroke="url(#crest-gold)" stroke-width="1" opacity="0.5"/>
+            <path d="M94 80 Q100 78 98 72" fill="none" stroke="url(#crest-gold)" stroke-width="0.7" opacity="0.35"/>
+            <path d="M93 87 Q101 86 100 80" fill="none" stroke="url(#crest-gold)" stroke-width="0.7" opacity="0.35"/>
+            <!-- Bottom scroll ribbon -->
+            <path d="M32 100 Q46 94 60 97 Q74 94 88 100 Q80 106 60 104 Q40 106 32 100Z" fill="url(#crest-gold)" opacity="0.12" stroke="url(#crest-gold)" stroke-width="0.6" opacity="0.3"/>
           </svg>
-          <p class="text-[9px] font-display font-semibold uppercase tracking-[0.2em] animated-gradient-text mb-0.5">Muneer Ahmed</p>
-          <p class="text-[8px] uppercase tracking-[0.25em]" style="color:var(--text4)">VERSO v7.0</p>
+          <!-- Name in regal serif -->
+          <p class="text-[10px] font-semibold uppercase mb-0.5" style="font-family:'Georgia','Times New Roman',serif;letter-spacing:0.22em;" :style="{color:isDark?'#d4b65c':'#6b5a28'}">Muneer Ahmed</p>
+          <!-- Subtle house name -->
+          <p class="text-[7px] uppercase mb-2" style="letter-spacing:0.3em;" :style="{color:isDark?'rgba(201,168,76,0.35)':'rgba(107,90,40,0.3)'}">Ahmed Khaandaan</p>
+          <!-- Ornate divider bottom -->
+          <svg class="mx-auto mb-1" width="40" height="4" viewBox="0 0 40 4"><line x1="0" y1="2" x2="40" y2="2" :stroke="isDark?'#c9a84c':'#8b7332'" stroke-width="0.5" opacity="0.25"/><circle cx="20" cy="2" r="1" :fill="isDark?'#c9a84c':'#8b7332'" opacity="0.3"/></svg>
+          <p class="text-[7px] uppercase" style="letter-spacing:0.25em;" :style="{color:isDark?'rgba(212,182,92,0.25)':'rgba(107,90,40,0.2)'}">VERSO v7.0</p>
         </div>
       </div>
       <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="background:rgba(0,0,0,0.6)" @click.self="showDeleteConfirm=false">
