@@ -8,94 +8,94 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="VERSO">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2306b6d4'/><stop offset='100%25' stop-color='%23a855f7'/></linearGradient></defs><rect rx='22' width='100' height='100' fill='url(%23g)'/><text x='50' y='70' text-anchor='middle' fill='white' font-size='48' font-family='sans-serif' font-weight='900' letter-spacing='-3'>V</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%237c3aed'/><stop offset='100%25' stop-color='%23a78bfa'/></linearGradient></defs><rect rx='22' width='100' height='100' fill='url(%23g)'/><text x='50' y='70' text-anchor='middle' fill='white' font-size='48' font-family='sans-serif' font-weight='900' letter-spacing='-3'>V</text></svg>">
   <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22VERSO%22%2C%22short_name%22%3A%22VERSO%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23050508%22%2C%22theme_color%22%3A%22%23050508%22%2C%22description%22%3A%22The%20smartest%20way%20to%20maximize%20card%20rewards%20in%20Singapore%22%7D">
   <title>VERSO — Card Rewards Optimizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     ::selection { background-color: var(--accent); color: var(--accent-text); }
     [v-cloak] { display: none; }
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     body { font-family: 'Inter', system-ui, sans-serif; overscroll-behavior: none; transition: background 0.5s cubic-bezier(0.65,0.05,0,1), color 0.4s; }
-    .font-display { font-family: 'Outfit', 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.04em; }
-    .font-brand { font-family: 'Outfit', sans-serif; letter-spacing: 0.15em; font-weight: 900; text-transform: uppercase; }
+    .font-display { font-family: 'Sora', 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.03em; }
+    .font-brand { font-family: 'Sora', sans-serif; letter-spacing: 0.18em; font-weight: 800; text-transform: uppercase; }
 
     /* ===== THEME VARIABLES ===== */
-    /* Light: Hot cyan + electric violet — INSANELY vibrant */
+    /* Light: Electric violet + silver — premium neon */
     :root {
-      --accent: #06b6d4;
-      --accent-light: #22d3ee;
-      --accent2: #a855f7;
-      --accent-bg: rgba(6,182,212,0.1);
+      --accent: #7c3aed;
+      --accent-light: #8b5cf6;
+      --accent2: #94a3b8;
+      --accent-bg: rgba(124,58,237,0.07);
       --accent-text: #fff;
-      --accent-glow: rgba(6,182,212,0.25);
+      --accent-glow: rgba(124,58,237,0.2);
 
-      --bg: #f0f5fa;
+      --bg: #f4f4f8;
       --bg2: #ffffff;
-      --bg3: #e4ecf4;
-      --surface: rgba(255,255,255,0.88);
-      --surface-border: rgba(6,182,212,0.1);
-      --surface-hover: #eaf0f8;
-      --text: #0a1628;
-      --text2: #2d4466;
-      --text3: #5a7a9e;
-      --text4: #aabdd4;
-      --header-bg: rgba(240,245,250,0.9);
-      --header-border: rgba(6,182,212,0.12);
-      --glow: 0 2px 16px rgba(6,182,212,0.18), 0 2px 8px rgba(168,85,247,0.1);
+      --bg3: #eaeaf0;
+      --surface: rgba(255,255,255,0.92);
+      --surface-border: rgba(124,58,237,0.07);
+      --surface-hover: #eae8f2;
+      --text: #0c0a14;
+      --text2: #2a2840;
+      --text3: #6b6980;
+      --text4: #c0bfd0;
+      --header-bg: rgba(244,244,248,0.92);
+      --header-border: rgba(124,58,237,0.07);
+      --glow: 0 2px 16px rgba(124,58,237,0.14), 0 2px 8px rgba(148,163,184,0.06);
       --pattern-opacity: 1;
-      --badge-1-bg: linear-gradient(135deg, #06b6d4, #a855f7);
+      --badge-1-bg: linear-gradient(135deg, #7c3aed, #a78bfa);
       --badge-1-text: #fff;
-      --badge-1-glow: 0 2px 20px rgba(6,182,212,0.35), 0 4px 16px rgba(168,85,247,0.25);
-      --badge-2-bg: rgba(168,85,247,0.14);
+      --badge-1-glow: 0 2px 20px rgba(124,58,237,0.3), 0 4px 16px rgba(139,92,246,0.15);
+      --badge-2-bg: rgba(124,58,237,0.08);
       --badge-2-text: #7c3aed;
-      --badge-2-glow: 0 2px 12px rgba(168,85,247,0.15);
-      --badge-3-bg: rgba(6,182,212,0.08);
-      --badge-3-text: #5a7a9e;
+      --badge-2-glow: 0 2px 12px rgba(124,58,237,0.1);
+      --badge-3-bg: rgba(148,163,184,0.08);
+      --badge-3-text: #6b6980;
       --badge-3-glow: none;
-      --neon-line: rgba(6,182,212,0.3);
-      --surface-glow: 0 1px 4px rgba(6,182,212,0.06), 0 0 0 1px rgba(6,182,212,0.04);
-      --surface-glow-hover: 0 4px 30px rgba(6,182,212,0.15), 0 4px 16px rgba(168,85,247,0.1);
+      --neon-line: rgba(124,58,237,0.3);
+      --surface-glow: 0 1px 4px rgba(124,58,237,0.04), 0 0 0 1px rgba(124,58,237,0.03);
+      --surface-glow-hover: 0 4px 30px rgba(124,58,237,0.1), 0 4px 16px rgba(139,92,246,0.06);
     }
 
-    /* Dark: Neon violet + electric cyan — MAXIMUM GLOW */
+    /* Dark: Neon violet + platinum silver — striking luxury */
     .dark, body.dark-bg {
-      --accent: #c084fc;
-      --accent-light: #d8b4fe;
-      --accent2: #22d3ee;
-      --accent-bg: rgba(192,132,252,0.12);
-      --accent-text: #0a0a0a;
-      --accent-glow: rgba(192,132,252,0.35);
+      --accent: #a78bfa;
+      --accent-light: #c4b5fd;
+      --accent2: #cbd5e1;
+      --accent-bg: rgba(167,139,250,0.1);
+      --accent-text: #0a0a10;
+      --accent-glow: rgba(167,139,250,0.35);
 
-      --bg: #050508;
-      --bg2: #09090d;
-      --bg3: #0f0f16;
-      --surface: rgba(14,14,22,0.88);
-      --surface-border: rgba(192,132,252,0.08);
-      --surface-hover: rgba(22,22,35,0.92);
-      --text: #f4f4fb;
-      --text2: rgba(244,244,251,0.75);
-      --text3: rgba(244,244,251,0.4);
-      --text4: rgba(244,244,251,0.12);
-      --header-bg: rgba(5,5,8,0.8);
-      --header-border: rgba(192,132,252,0.15);
-      --glow: 0 0 30px rgba(192,132,252,0.25), 0 0 60px rgba(34,211,238,0.1);
+      --bg: #050510;
+      --bg2: #0a0a18;
+      --bg3: #101022;
+      --surface: rgba(12,12,28,0.92);
+      --surface-border: rgba(167,139,250,0.08);
+      --surface-hover: rgba(20,20,42,0.92);
+      --text: #ededff;
+      --text2: rgba(237,237,255,0.72);
+      --text3: rgba(237,237,255,0.36);
+      --text4: rgba(237,237,255,0.09);
+      --header-bg: rgba(5,5,16,0.88);
+      --header-border: rgba(167,139,250,0.1);
+      --glow: 0 0 28px rgba(167,139,250,0.25), 0 0 56px rgba(139,92,246,0.08);
       --pattern-opacity: 1;
-      --badge-1-bg: linear-gradient(135deg, #c084fc, #22d3ee);
-      --badge-1-text: #0a0a0a;
-      --badge-1-glow: 0 0 24px rgba(192,132,252,0.6), 0 0 48px rgba(34,211,238,0.3);
-      --badge-2-bg: rgba(192,132,252,0.2);
-      --badge-2-text: #d8b4fe;
-      --badge-2-glow: 0 0 14px rgba(192,132,252,0.25);
-      --badge-3-bg: rgba(34,211,238,0.1);
-      --badge-3-text: rgba(244,244,251,0.45);
+      --badge-1-bg: linear-gradient(135deg, #a78bfa, #e2e8f0);
+      --badge-1-text: #0a0a10;
+      --badge-1-glow: 0 0 24px rgba(167,139,250,0.5), 0 0 48px rgba(139,92,246,0.2);
+      --badge-2-bg: rgba(167,139,250,0.14);
+      --badge-2-text: #c4b5fd;
+      --badge-2-glow: 0 0 14px rgba(167,139,250,0.2);
+      --badge-3-bg: rgba(203,213,225,0.07);
+      --badge-3-text: rgba(237,237,255,0.4);
       --badge-3-glow: none;
-      --neon-line: rgba(192,132,252,0.45);
-      --surface-glow: 0 0 0 1px rgba(192,132,252,0.08), 0 0 8px rgba(192,132,252,0.04);
-      --surface-glow-hover: 0 0 36px rgba(192,132,252,0.2), 0 0 0 1px rgba(192,132,252,0.2);
+      --neon-line: rgba(167,139,250,0.45);
+      --surface-glow: 0 0 0 1px rgba(167,139,250,0.06), 0 0 8px rgba(167,139,250,0.03);
+      --surface-glow-hover: 0 0 32px rgba(167,139,250,0.18), 0 0 0 1px rgba(167,139,250,0.14);
     }
 
     body { background: var(--bg); color: var(--text); }
@@ -107,14 +107,14 @@
       position: fixed; inset: 0; z-index: -2; pointer-events: none;
       opacity: 1;
     }
-    /* Light: precision isometric grid — clean, trustworthy, techy */
+    /* Light: violet-silver grid */
     .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%2306b6d4' stroke-width='0.4' opacity='0.15'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%23a855f7' stroke-width='0.4' opacity='0.08'/%3E%3Ccircle cx='0' cy='0' r='1.8' fill='%2306b6d4' opacity='0.2'/%3E%3Ccircle cx='40' cy='0' r='1.8' fill='%2306b6d4' opacity='0.2'/%3E%3Ccircle cx='0' cy='40' r='1.8' fill='%23a855f7' opacity='0.12'/%3E%3Ccircle cx='40' cy='40' r='1.8' fill='%23a855f7' opacity='0.12'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%2306b6d4' opacity='0.1'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%237c3aed' stroke-width='0.4' opacity='0.05'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%2394a3b8' stroke-width='0.4' opacity='0.04'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%237c3aed' opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%2394a3b8' opacity='0.05'/%3E%3C/svg%3E");
       background-size: 40px 40px;
     }
-    /* Dark: neon circuit traces — cyberpunk fintech */
+    /* Dark: neon violet traces */
     .dark .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%23c084fc' stroke-width='0.5' opacity='0.2'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%2322d3ee' stroke-width='0.5' opacity='0.12'/%3E%3Ccircle cx='0' cy='0' r='2' fill='%23c084fc' opacity='0.35'/%3E%3Ccircle cx='40' cy='0' r='2' fill='%23c084fc' opacity='0.35'/%3E%3Ccircle cx='0' cy='40' r='2' fill='%2322d3ee' opacity='0.22'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%2322d3ee' opacity='0.22'/%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23c084fc' opacity='0.18'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%23a78bfa' stroke-width='0.4' opacity='0.1'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%23cbd5e1' stroke-width='0.4' opacity='0.05'/%3E%3Ccircle cx='0' cy='0' r='1.8' fill='%23a78bfa' opacity='0.16'/%3E%3Ccircle cx='40' cy='0' r='1.8' fill='%23a78bfa' opacity='0.16'/%3E%3Ccircle cx='0' cy='40' r='1.5' fill='%23cbd5e1' opacity='0.08'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23cbd5e1' opacity='0.08'/%3E%3C/svg%3E");
       background-size: 40px 40px;
     }
 
@@ -123,14 +123,14 @@
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
       opacity: 1;
     }
-    /* Light: large hex outlines with connector dots */
+    /* Light: violet-silver hex overlay */
     .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%2306b6d4' stroke-width='0.6' opacity='0.12'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%23a855f7' stroke-width='0.6' opacity='0.08'/%3E%3Ccircle cx='30' cy='0' r='2.5' fill='%2306b6d4' opacity='0.14'/%3E%3Ccircle cx='60' cy='17.32' r='2' fill='%2306b6d4' opacity='0.1'/%3E%3Ccircle cx='90' cy='34.64' r='2.5' fill='%23a855f7' opacity='0.1'/%3E%3Cline x1='60' y1='17.32' x2='90' y2='34.64' stroke='%2306b6d4' stroke-width='0.3' opacity='0.08' stroke-dasharray='2 4'/%3E%3Ccircle cx='30' cy='69.28' r='1.5' fill='%23a855f7' opacity='0.06'/%3E%3Ccircle cx='120' cy='51.96' r='1.5' fill='%2306b6d4' opacity='0.06'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%237c3aed' stroke-width='0.5' opacity='0.04'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%2394a3b8' stroke-width='0.5' opacity='0.03'/%3E%3Ccircle cx='30' cy='0' r='2' fill='%237c3aed' opacity='0.05'/%3E%3Ccircle cx='90' cy='34.64' r='2' fill='%2394a3b8' opacity='0.04'/%3E%3C/svg%3E");
       background-size: 120px 104px;
     }
-    /* Dark: neon hex grid with glowing nodes + trace lines */
+    /* Dark: neon violet hex grid */
     .dark .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%23c084fc' stroke-width='0.7' opacity='0.18'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%2322d3ee' stroke-width='0.7' opacity='0.14'/%3E%3Ccircle cx='30' cy='0' r='3' fill='%23c084fc' opacity='0.25'/%3E%3Ccircle cx='60' cy='17.32' r='2.5' fill='%23c084fc' opacity='0.2'/%3E%3Ccircle cx='90' cy='34.64' r='3' fill='%2322d3ee' opacity='0.2'/%3E%3Cline x1='60' y1='17.32' x2='90' y2='34.64' stroke='%2322d3ee' stroke-width='0.4' opacity='0.15' stroke-dasharray='3 5'/%3E%3Cline x1='30' y1='0' x2='60' y2='17.32' stroke='%23c084fc' stroke-width='0.4' opacity='0.12' stroke-dasharray='3 5'/%3E%3Ccircle cx='30' cy='69.28' r='2' fill='%23c084fc' opacity='0.12'/%3E%3Ccircle cx='120' cy='51.96' r='2' fill='%2322d3ee' opacity='0.1'/%3E%3Ccircle cx='0' cy='17.32' r='1.5' fill='%23c084fc' opacity='0.15'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%23a78bfa' stroke-width='0.6' opacity='0.08'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%23cbd5e1' stroke-width='0.6' opacity='0.04'/%3E%3Ccircle cx='30' cy='0' r='2.5' fill='%23a78bfa' opacity='0.12'/%3E%3Ccircle cx='90' cy='34.64' r='2.5' fill='%23cbd5e1' opacity='0.06'/%3E%3Cline x1='60' y1='17.32' x2='90' y2='34.64' stroke='%23a78bfa' stroke-width='0.3' opacity='0.06' stroke-dasharray='3 5'/%3E%3C/svg%3E");
       background-size: 120px 104px;
     }
 
@@ -146,21 +146,18 @@
       background: transparent;
       transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
     }
-    /* Light: soft cyan & violet radial washes */
+    /* Light: subtle violet washes */
     .mesh-bg {
       background:
-        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(6,182,212,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(168,85,247,0.07) 0%, transparent 70%),
-        radial-gradient(circle 200px at 60% 30%, rgba(6,182,212,0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(124,58,237,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(148,163,184,0.04) 0%, transparent 70%);
     }
-    /* Dark: neon glow orbs — violet top-left, cyan bottom-right */
+    /* Dark: neon violet glow orbs */
     .dark .mesh-bg {
       background:
-        radial-gradient(ellipse 600px 500px at 8% 0%, rgba(192,132,252,0.28) 0%, transparent 65%),
-        radial-gradient(ellipse 500px 500px at 92% 95%, rgba(34,211,238,0.2) 0%, transparent 65%),
-        radial-gradient(circle 300px at 50% 40%, rgba(192,132,252,0.12) 0%, transparent 50%),
-        radial-gradient(circle 200px at 75% 20%, rgba(34,211,238,0.1) 0%, transparent 60%),
-        radial-gradient(circle 150px at 25% 70%, rgba(192,132,252,0.08) 0%, transparent 50%);
+        radial-gradient(ellipse 600px 500px at 8% 0%, rgba(167,139,250,0.14) 0%, transparent 65%),
+        radial-gradient(ellipse 500px 500px at 92% 95%, rgba(139,92,246,0.06) 0%, transparent 65%),
+        radial-gradient(circle 250px at 50% 40%, rgba(167,139,250,0.05) 0%, transparent 50%);
     }
 
     /* Gradient wash base layer */
@@ -171,15 +168,14 @@
       z-index: -4;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(6,182,212,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(168,85,247,0.1) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 400px at 50% 50%, rgba(6,182,212,0.05) 0%, transparent 60%);
+        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(124,58,237,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(148,163,184,0.03) 0%, transparent 70%);
     }
     body::after { content: none; }
     .dark body::before, body.dark-bg::before {
       background:
-        radial-gradient(ellipse 900px 700px at 0% 0%, rgba(192,132,252,0.14) 0%, transparent 70%),
-        radial-gradient(ellipse 700px 600px at 100% 100%, rgba(34,211,238,0.12) 0%, transparent 70%);
+        radial-gradient(ellipse 900px 700px at 0% 0%, rgba(167,139,250,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 100% 100%, rgba(139,92,246,0.04) 0%, transparent 70%);
     }
 
     /* ===== GLASSMORPHISM ===== */
@@ -190,9 +186,9 @@
       border-bottom: 1px solid var(--header-border);
     }
     .dark .glass-header {
-      background: rgba(5,5,10,0.7);
-      border-bottom: 1px solid rgba(192,132,252,0.1);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(192,132,252,0.03);
+      background: rgba(5,5,16,0.75);
+      border-bottom: 1px solid rgba(167,139,250,0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(167,139,250,0.03);
     }
 
     /* ===== SURFACES ===== */
@@ -206,7 +202,7 @@
     .surface-h { transition: all 0.25s cubic-bezier(0.65,0.05,0,1); }
     .surface-h:hover {
       background: var(--surface-hover);
-      border-color: rgba(168,85,247,0.12);
+      border-color: rgba(124,58,237,0.12);
       box-shadow: var(--surface-glow-hover);
       transform: translateY(-1px);
     }
@@ -220,8 +216,8 @@
       transition: all 0.25s cubic-bezier(0.65,0.05,0,1);
     }
     .dark .btn-accent {
-      background: linear-gradient(135deg, #c084fc, #22d3ee);
-      box-shadow: 0 0 28px rgba(192,132,252,0.4), 0 0 60px rgba(34,211,238,0.15);
+      background: linear-gradient(135deg, #a78bfa, #e2e8f0);
+      box-shadow: 0 0 20px rgba(167,139,250,0.3), 0 0 40px rgba(139,92,246,0.1);
     }
     .btn-accent:hover { filter: brightness(1.15); transform: translateY(-1px); }
     .btn-accent:active { transform: scale(0.97) translateY(0); filter: brightness(1); }
@@ -314,7 +310,7 @@
       box-shadow: var(--surface-glow), inset 0 1px 0 rgba(255,255,255,0.02), 0 0 0 0 transparent;
     }
     .dark .surface-premium:hover {
-      box-shadow: 0 0 30px rgba(192,132,252,0.15), 0 0 0 1px rgba(192,132,252,0.15), inset 0 1px 0 rgba(255,255,255,0.04);
+      box-shadow: 0 0 30px rgba(167,139,250,0.18), 0 0 0 1px rgba(167,139,250,0.15), inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     /* ===== FLOATING LABEL EFFECT ===== */
@@ -323,16 +319,16 @@
 
     /* ===== NEON LINE ACCENTS (upgraded) ===== */
     .neon-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), transparent); border-radius: 2px; }
-    .dark .neon-line { box-shadow: 0 0 12px var(--accent-glow), 0 0 4px rgba(34,211,238,0.15); }
+    .dark .neon-line { box-shadow: 0 0 12px var(--accent-glow), 0 0 4px rgba(139,92,246,0.15); }
 
     /* ===== BREATHING GLOW on focused search ===== */
     @keyframes breatheGlow {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(6,182,212,0.1); }
-      50% { box-shadow: 0 0 0 6px rgba(6,182,212,0.2), 0 0 20px rgba(6,182,212,0.1); }
+      0%, 100% { box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+      50% { box-shadow: 0 0 0 6px rgba(124,58,237,0.2), 0 0 20px rgba(124,58,237,0.1); }
     }
     .dark @keyframes breatheGlow {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(192,132,252,0.1); }
-      50% { box-shadow: 0 0 0 6px rgba(192,132,252,0.25), 0 0 24px rgba(192,132,252,0.1); }
+      0%, 100% { box-shadow: 0 0 0 3px rgba(167,139,250,0.12); }
+      50% { box-shadow: 0 0 0 6px rgba(167,139,250,0.28), 0 0 24px rgba(167,139,250,0.12); }
     }
     input:focus, select:focus { animation: breatheGlow 2s ease-in-out infinite; }
 
@@ -367,8 +363,8 @@
     /* Neon pulse for #1 card in dark mode */
     .dark .neon-pulse { animation: neonPulse 2.5s ease-in-out infinite alternate; }
     @keyframes neonPulse {
-      0%   { box-shadow: 0 0 20px rgba(192,132,252,0.5), 0 0 50px rgba(34,211,238,0.15); }
-      100% { box-shadow: 0 0 32px rgba(192,132,252,0.7), 0 0 70px rgba(34,211,238,0.3); }
+      0%   { box-shadow: 0 0 20px rgba(167,139,250,0.5), 0 0 50px rgba(139,92,246,0.15); }
+      100% { box-shadow: 0 0 32px rgba(167,139,250,0.7), 0 0 70px rgba(139,92,246,0.3); }
     }
 
     .stagger>*:nth-child(1){animation-delay:0s} .stagger>*:nth-child(2){animation-delay:0.06s} .stagger>*:nth-child(3){animation-delay:0.12s}
@@ -395,7 +391,7 @@
     /* Bottom nav active tab — dual-tone neon underline */
     .tab-active{position:relative}
     .tab-active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:28px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;box-shadow:0 1px 6px var(--accent-glow)}
-    .dark .tab-active::after{box-shadow:0 0 16px var(--accent-glow),0 0 6px rgba(34,211,238,0.25)}
+    .dark .tab-active::after{box-shadow:0 0 16px var(--accent-glow),0 0 6px rgba(139,92,246,0.25)}
 
     /* ===== RANK BADGES — Progressive glow ===== */
     .rank-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
@@ -405,18 +401,18 @@
     .rank-other{background:var(--text4);color:var(--text3);box-shadow:none}
 
     .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.04) 100%)}
-    .dark .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0) 40%,rgba(192,132,252,0.06) 100%)}
+    .dark .card-gradient{background:linear-gradient(135deg,rgba(255,255,255,0.1) 0%,rgba(255,255,255,0) 40%,rgba(167,139,250,0.06) 100%)}
 
     .theme-toggle{width:52px;height:28px;border-radius:14px;position:relative;cursor:pointer;transition:background 0.3s cubic-bezier(0.65,0.05,0,1)}
     .theme-toggle .knob{width:22px;height:22px;border-radius:50%;position:absolute;top:3px;transition:all 0.3s cubic-bezier(0.65,0.05,0,1)}
-    .dark .theme-toggle .knob{box-shadow:0 0 12px rgba(192,132,252,0.5)}
+    .dark .theme-toggle .knob{box-shadow:0 0 12px rgba(167,139,250,0.5)}
 
     /* Dark mode bottom nav glass */
     .dark nav.glass-header {
-      background: rgba(5,5,10,0.72);
-      border-top: 1px solid rgba(192,132,252,0.08);
+      background: rgba(5,5,16,0.75);
+      border-top: 1px solid rgba(167,139,250,0.08);
       border-bottom: none;
-      box-shadow: 0 -4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(192,132,252,0.04);
+      box-shadow: 0 -4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(167,139,250,0.04);
     }
 
     /* ===== CARD TILE — Mini credit card with neon highlights ===== */
@@ -466,7 +462,7 @@
       box-shadow: 0 0 8px var(--accent-glow), 0 0 0 1.5px var(--accent);
     }
     .dark .card-tile-selected {
-      box-shadow: 0 0 14px var(--accent-glow), 0 0 24px rgba(34,211,238,0.12), 0 0 0 1.5px var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow), 0 0 24px rgba(139,92,246,0.12), 0 0 0 1.5px var(--accent);
     }
     .card-tile-selected::after {
       border-color: var(--accent) !important;
@@ -708,8 +704,8 @@
       </div>
       <div class="flex items-center gap-3">
         <!-- Theme toggle -->
-        <div class="theme-toggle" :style="{background: isDark?'rgba(192,132,252,0.2)':'rgba(6,182,212,0.14)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#c084fc':'#06b6d4'}">
+        <div class="theme-toggle" :style="{background: isDark?'rgba(167,139,250,0.2)':'rgba(124,58,237,0.12)'}" @click="toggleTheme">
+          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#a78bfa':'#7c3aed'}">
             <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
             <svg v-else class="w-3.5 h-3.5 text-dark-600" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
           </div>
@@ -741,8 +737,8 @@
       <!-- Theme toggle on onboarding -->
       <div class="flex items-center justify-center gap-3 mb-6 slide-up" style="animation-delay:0.35s">
         <span class="text-xs font-medium" style="color:var(--text3)">Light</span>
-        <div class="theme-toggle" :style="{background: isDark?'rgba(192,132,252,0.2)':'rgba(6,182,212,0.14)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#c084fc':'#06b6d4'}">
+        <div class="theme-toggle" :style="{background: isDark?'rgba(167,139,250,0.2)':'rgba(124,58,237,0.12)'}" @click="toggleTheme">
+          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#a78bfa':'#7c3aed'}">
             <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
             <svg v-else class="w-3.5 h-3.5" style="color:#09090b" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
           </div>
@@ -952,17 +948,37 @@
                   <div class="flex items-center gap-2"><div class="rank-badge rank-1">1</div><span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border" :style="{background:'rgba(255,255,255,0.1)',borderColor:'rgba(255,255,255,0.2)',color:'#fff'}">BEST CARD</span></div>
                   <div class="text-right"><p class="text-4xl font-display font-black leading-none text-white">{{fmtRate(rec.rate)}}</p><p class="text-[10px] text-white/40 uppercase tracking-widest mt-0.5">{{rec.card.type}}</p></div>
                 </div>
-                <h3 class="text-xl font-display font-bold text-white mb-0.5 tracking-tight cursor-pointer" @click.stop="selectedCardDetail=rec.card" style="text-decoration-style:dotted;text-underline-offset:3px" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{rec.card.name}}</h3><p class="text-sm text-white/40">{{rec.card.bank}}</p>
+                <h3 class="text-xl font-display font-bold text-white mb-0.5 tracking-tight cursor-pointer" @click.stop="selectedCardDetail=rec.card" style="text-decoration-style:dotted;text-underline-offset:3px" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{rec.card.name}}</h3>
+                <div class="flex items-center gap-2 mt-1">
+                  <p class="text-sm text-white/40">{{rec.card.bank}}</p>
+                  <span class="px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-wider" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.7)">{{rec.card.network||'VISA'}}</span>
+                </div>
               </div>
             </div>
             <div class="p-4" :style="{background:'var(--surface)',borderTop:'1px solid var(--surface-border)'}">
-              <div class="flex items-start gap-2 mb-2"><svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><p class="text-sm" style="color:var(--text2)">{{rec.reason}}</p></div>
-              <div v-if="rec.conditions" class="flex items-start gap-2"><svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#f59e0b" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg><p class="text-xs" style="color:#d97706">{{rec.conditions}}</p></div>
-              <div v-if="rec.card.minSpend" class="flex items-center gap-2 mt-2 px-3 py-2 rounded-xl" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15)">
-                <svg class="w-4 h-4 flex-shrink-0" style="color:#f59e0b" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <p class="text-xs font-semibold" style="color:#d97706">Requires min. S${{rec.card.minSpend}}/month spend to earn bonus rates</p>
+              <!-- Reward type badge -->
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider" :style="{background:rec.card.type==='Cashback'?'rgba(16,185,129,0.12)':rec.card.type==='Miles'?'rgba(59,130,246,0.12)':'rgba(168,85,247,0.12)',color:rec.card.type==='Cashback'?'#10b981':rec.card.type==='Miles'?'#3b82f6':'#a855f7'}">{{rec.card.type==='Cashback'?'$ Cashback':rec.card.type==='Miles'?'&#9992; Miles':'&#9733; Rewards'}}</span>
+                <span v-if="rec.card.fee" class="px-2 py-1 rounded-lg text-[10px] font-medium" :style="{background:'var(--bg3)',color:'var(--text3)'}">Fee: {{rec.card.fee}}</span>
+                <span v-if="rec.card.caps&&rec.card.caps[selectedCategory]" class="px-2 py-1 rounded-lg text-[10px] font-medium" style="background:rgba(148,163,184,0.1);color:#94a3b8">Cap: S${{rec.card.caps[selectedCategory]}}/mo</span>
               </div>
-              <div v-if="spendAmount>0" class="mt-3 pt-3 flex items-center justify-between" :style="{borderTop:'1px solid var(--surface-border)'}"><span class="text-sm" style="color:var(--text3)">Estimated reward</span><span class="text-lg font-display font-bold text-accent">{{estSavings(rec,spendAmount)}}</span></div>
+              <div class="flex items-start gap-2 mb-2"><svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><p class="text-sm" style="color:var(--text2)">{{rec.reason}}</p></div>
+              <div v-if="rec.conditions" class="flex items-start gap-2"><svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color:#f59e0b" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg><p class="text-xs" style="color:#94a3b8">{{rec.conditions}}</p></div>
+              <div v-if="rec.card.minSpend" class="flex items-center gap-2 mt-2 px-3 py-2 rounded-xl" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15)">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#a78bfa" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-xs font-semibold" style="color:#94a3b8">Requires min. S${{rec.card.minSpend}}/month spend to earn bonus rates</p>
+              </div>
+              <!-- Estimated reward breakdown -->
+              <div v-if="spendAmount>0" class="mt-3 pt-3" :style="{borderTop:'1px solid var(--surface-border)'}">
+                <div class="flex items-center justify-between mb-1"><span class="text-sm" style="color:var(--text3)">Spend</span><span class="text-sm font-semibold" :style="{color:'var(--text)'}">S${{spendAmount.toLocaleString()}}</span></div>
+                <div class="flex items-center justify-between mb-1"><span class="text-sm" style="color:var(--text3)">Rate</span><span class="text-sm font-semibold text-accent">{{fmtRate(rec.rate)}}</span></div>
+                <div v-if="rec.card.type==='Cashback'" class="flex items-center justify-between"><span class="text-sm font-semibold" style="color:var(--text3)">Cashback</span><span class="text-lg font-display font-black" style="color:#10b981">S${{((rec.rate/100)*spendAmount).toFixed(2)}}</span></div>
+                <div v-else-if="rec.card.type==='Miles'" class="space-y-1">
+                  <div class="flex items-center justify-between"><span class="text-sm" style="color:var(--text3)">Miles earned</span><span class="text-lg font-display font-black" style="color:#3b82f6">~{{Math.round((rec.rate/100)*spendAmount/0.018).toLocaleString()}} mi</span></div>
+                  <div class="flex items-center justify-between"><span class="text-[11px]" style="color:var(--text4)">Est. value (1.8¢/mi)</span><span class="text-xs font-semibold" style="color:var(--text3)">~S${{((rec.rate/100)*spendAmount).toFixed(2)}}</span></div>
+                </div>
+                <div v-else class="flex items-center justify-between"><span class="text-sm font-semibold" style="color:var(--text3)">Reward value</span><span class="text-lg font-display font-black text-accent">S${{((rec.rate/100)*spendAmount).toFixed(2)}}</span></div>
+              </div>
             </div>
           </template>
           <template v-else>
@@ -970,10 +986,20 @@
               <div class="card-tile flex items-end justify-start p-1" :style="{background:rec.card.color,width:'48px',height:'32px'}"><div class="card-chip" style="width:6px;height:5px;top:5px;left:4px"></div><div class="card-network" style="font-size:4px">{{rec.card.network||'VISA'}}</div><span class="card-label" style="position:absolute;bottom:2px;left:4px;font-size:6px">{{rec.card.bank.length>6?rec.card.bank.substring(0,6):rec.card.bank}}</span></div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between"><p class="font-semibold text-sm truncate cursor-pointer" :style="{color:'var(--text)'}" @click.stop="selectedCardDetail=rec.card">{{rec.card.name}}</p><span class="text-base font-display font-bold ml-2 flex-shrink-0" :style="{color:idx===1?'var(--text)':'var(--text2)'}">{{fmtRate(rec.rate)}}</span></div>
-                <p class="text-xs" style="color:var(--text3)">{{rec.card.bank}} &middot; {{rec.card.type}}</p><p class="text-xs mt-1" style="color:var(--text2)">{{rec.reason}}</p>
-                <p v-if="rec.conditions" class="text-[11px] mt-1" style="color:#d97706">{{rec.conditions}}</p>
-                <p v-if="rec.card.minSpend" class="text-[11px] mt-0.5 font-semibold" style="color:#d97706">&#9888; Min. spend: S${{rec.card.minSpend}}/mo required</p>
-                <p v-if="spendAmount>0" class="text-xs mt-1" style="color:var(--text3)">Est: <span class="font-semibold text-accent">{{estSavings(rec,spendAmount)}}</span></p>
+                <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                  <span class="text-xs" style="color:var(--text3)">{{rec.card.bank}}</span>
+                  <span class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase" :style="{background:rec.card.type==='Cashback'?'rgba(16,185,129,0.12)':rec.card.type==='Miles'?'rgba(59,130,246,0.12)':'rgba(168,85,247,0.12)',color:rec.card.type==='Cashback'?'#10b981':rec.card.type==='Miles'?'#3b82f6':'#a855f7'}">{{rec.card.type}}</span>
+                  <span class="text-[9px]" style="color:var(--text4)">{{rec.card.network||'VISA'}}</span>
+                  <span v-if="rec.card.fee" class="text-[9px]" style="color:var(--text4)">{{rec.card.fee}}</span>
+                </div>
+                <p class="text-xs mt-1" style="color:var(--text2)">{{rec.reason}}</p>
+                <p v-if="rec.conditions" class="text-[11px] mt-1" style="color:#94a3b8">{{rec.conditions}}</p>
+                <p v-if="rec.card.minSpend" class="text-[11px] mt-0.5 font-semibold" style="color:#94a3b8">&#9888; Min. spend: S${{rec.card.minSpend}}/mo</p>
+                <p v-if="rec.card.caps&&rec.card.caps[selectedCategory]" class="text-[10px] mt-0.5" style="color:#94a3b8">Cap: S${{rec.card.caps[selectedCategory]}}/mo cashback</p>
+                <div v-if="spendAmount>0" class="mt-1.5 pt-1.5 flex items-center justify-between" :style="{borderTop:'1px dashed var(--surface-border)'}">
+                  <span class="text-[11px]" style="color:var(--text3)">{{rec.card.type==='Miles'?'Miles':'Reward'}}</span>
+                  <span class="text-xs font-display font-bold" :style="{color:rec.card.type==='Cashback'?'#10b981':rec.card.type==='Miles'?'#3b82f6':'var(--accent)'}">{{rec.card.type==='Miles'?'~'+Math.round((rec.rate/100)*spendAmount/0.018).toLocaleString()+' mi':'S$'+((rec.rate/100)*spendAmount).toFixed(2)}}</span>
+                </div>
               </div>
             </div></div>
           </template>
@@ -1255,41 +1281,78 @@
     <div v-if="page==='billsplit'" class="pt-5 page-enter">
       <button @click="go('home')" class="flex items-center gap-2 mb-5 transition-colors" style="color:var(--text3)"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg><span class="text-sm font-medium">Back</span></button>
       <h2 class="font-display text-2xl font-black tracking-tighter mb-1" :style="{color:'var(--text)'}">Bill <span class="dual-gradient-text">Split</span></h2>
-      <p class="text-sm mb-5" style="color:var(--text3)">Who should pay to maximize the group's rewards?</p>
-      <!-- Bill amount & category -->
-      <div class="flex gap-3 mb-4">
-        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Bill Amount</label>
-        <div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold" style="color:var(--text3)">S$</span><input v-model.number="billAmount" type="number" min="0" placeholder="100" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div></div>
-        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Category</label>
-        <select v-model="billCategory" class="w-full px-3 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}">
+      <p class="text-sm mb-4" style="color:var(--text3)">Split the bill, maximize everyone's rewards.</p>
+
+      <!-- Amount + Currency row -->
+      <div class="flex gap-2 mb-3">
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1 block" style="color:var(--text3)">Amount</label>
+        <div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold" style="color:var(--text3)">{{billCurrency==='SGD'?'S$':billCurrency}}</span><input v-model.number="billAmount" type="number" min="0" placeholder="100" class="w-full pl-10 pr-3 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}"></div></div>
+        <div style="width:90px"><label class="text-[10px] font-bold uppercase tracking-widest mb-1 block" style="color:var(--text3)">Currency</label>
+        <select v-model="billCurrency" @change="fetchExRate()" class="w-full px-2 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}">
+          <option v-for="cur in currencies" :key="cur" :value="cur">{{cur}}</option>
+        </select></div>
+        <div class="flex-1"><label class="text-[10px] font-bold uppercase tracking-widest mb-1 block" style="color:var(--text3)">Category</label>
+        <select v-model="billCategory" class="w-full px-2 py-3 rounded-xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}">
           <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{cat.icon}} {{cat.label}}</option>
         </select></div>
       </div>
-      <!-- Num people -->
-      <div class="mb-5"><label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">People at the table</label>
-      <div class="flex items-center gap-3"><button @click="billPeople=Math.max(2,billPeople-1)" class="w-10 h-10 rounded-xl border flex items-center justify-center text-lg font-bold transition-all" :style="{borderColor:'var(--surface-border)',color:'var(--text2)'}">-</button><span class="text-2xl font-display font-black w-12 text-center" :style="{color:'var(--text)'}">{{billPeople}}</span><button @click="billPeople=Math.min(12,billPeople+1)" class="w-10 h-10 rounded-xl border flex items-center justify-center text-lg font-bold transition-all" :style="{borderColor:'var(--surface-border)',color:'var(--text2)'}">+</button></div></div>
+
+      <!-- Currency conversion info -->
+      <div v-if="billCurrency!=='SGD'&&billExRate>0" class="mb-3 p-2.5 rounded-xl flex items-center gap-2" :style="{background:'var(--accent-bg)'}">
+        <span class="text-[10px]" style="color:var(--text3)">1 {{billCurrency}} = S${{billExRate.toFixed(4)}}</span>
+        <span class="text-[10px] font-semibold text-accent">Total: S${{billAmountSGD.toFixed(2)}}</span>
+        <span class="text-[9px]" style="color:var(--text4)">MAS rates</span>
+      </div>
+
+      <!-- Split type -->
+      <div class="mb-3">
+        <label class="text-[10px] font-bold uppercase tracking-widest mb-1.5 block" style="color:var(--text3)">Split Type</label>
+        <div class="flex gap-2">
+          <button v-for="st in [{id:'equal',label:'Equal'},{id:'amount',label:'By Amount'},{id:'percent',label:'By %'}]" :key="st.id" @click="billSplitType=st.id" class="type-tab flex-1 text-[11px]" :class="billSplitType===st.id?'type-tab-active':'type-tab-inactive'">{{st.label}}</button>
+        </div>
+      </div>
+
+      <!-- People -->
+      <div class="mb-4">
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="text-[10px] font-bold uppercase tracking-widest" style="color:var(--text3)">People ({{billMembers.length}})</label>
+          <button @click="addBillMember()" class="text-[10px] font-bold text-accent flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>Add</button>
+        </div>
+        <div class="space-y-1.5">
+          <div v-for="(m,mi) in billMembers" :key="mi" class="flex items-center gap-2 p-2 rounded-xl" :style="{background:'var(--bg3)'}">
+            <div class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0" :style="{background:'linear-gradient(135deg,var(--accent),var(--accent2))',color:isDark?'#0a0a0a':'#fff'}">{{(m.name||'?')[0].toUpperCase()}}</div>
+            <input v-model="billMembers[mi].name" type="text" :placeholder="'Person '+(mi+1)" class="flex-1 bg-transparent text-sm font-medium outline-none" :style="{color:'var(--text)'}">
+            <input v-if="billSplitType==='amount'" v-model.number="billMembers[mi].customAmt" type="number" min="0" placeholder="0" class="w-16 px-2 py-1 rounded-lg border text-xs text-center" :style="{background:'var(--surface)',borderColor:'var(--surface-border)',color:'var(--text)'}">
+            <input v-if="billSplitType==='percent'" v-model.number="billMembers[mi].customPct" type="number" min="0" max="100" placeholder="0" class="w-14 px-2 py-1 rounded-lg border text-xs text-center" :style="{background:'var(--surface)',borderColor:'var(--surface-border)',color:'var(--text)'}">
+            <span class="text-xs font-display font-bold w-16 text-right flex-shrink-0" :style="{color:'var(--text2)'}">{{billCurrency==='SGD'?'S$':billCurrency}}{{memberShare(mi).toFixed(2)}}</span>
+            <button v-if="billMembers.length>2" @click="billMembers.splice(mi,1)" class="flex-shrink-0" style="color:var(--text4)"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+          </div>
+        </div>
+      </div>
+
       <!-- Result -->
-      <div v-if="billAmount>0&&billBestCard" class="mt-4">
-        <div class="neon-line w-full mb-5"></div>
+      <div v-if="billAmountSGD>0&&billBestCard" class="mt-2">
+        <div class="neon-line w-full mb-4"></div>
         <div class="p-5 rounded-2xl holo-card" :style="{background:billBestCard.color}">
           <div class="card-gradient absolute inset-0" style="border-radius:16px"></div>
           <div class="relative">
             <div class="flex items-center gap-2 mb-3"><div class="rank-badge rank-1">1</div><span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest" style="background:rgba(255,255,255,0.15);color:#fff">SHOULD PAY</span></div>
             <h3 class="text-lg font-display font-bold text-white tracking-tight">{{billBestCard.name}}</h3>
-            <p class="text-xs text-white/50">{{billBestCard.bank}} &middot; {{fmtRate(billBestRate)}} on {{catLabel(billCategory)}}</p>
-            <div class="mt-3 pt-3 flex items-center justify-between" style="border-top:1px solid rgba(255,255,255,0.1)">
-              <div><p class="text-[10px] text-white/30 uppercase">Reward earned</p><p class="text-lg font-display font-black text-white">{{billBestCard.type==='Miles'?'~'+Math.round((billBestRate/100)*billAmount/0.018).toLocaleString()+' miles':'S$'+((billBestRate/100)*billAmount).toFixed(2)}}</p></div>
-              <div class="text-right"><p class="text-[10px] text-white/30 uppercase">Each person pays</p><p class="text-lg font-display font-black text-white">S${{(billAmount/billPeople).toFixed(2)}}</p></div>
+            <p class="text-xs text-white/50">{{billBestCard.bank}} &middot; {{fmtRate(billBestRate)}} {{billBestCard.type}} on {{catLabel(billCategory)}}</p>
+            <div class="mt-3 pt-3 grid grid-cols-3 gap-2" style="border-top:1px solid rgba(255,255,255,0.1)">
+              <div><p class="text-[9px] text-white/30 uppercase">Reward</p><p class="text-sm font-display font-black text-white">{{billBestCard.type==='Miles'?'~'+Math.round((billBestRate/100)*billAmountSGD/0.018).toLocaleString()+' mi':'S$'+((billBestRate/100)*billAmountSGD).toFixed(2)}}</p></div>
+              <div><p class="text-[9px] text-white/30 uppercase">Each pays</p><p class="text-sm font-display font-black text-white">{{billCurrency==='SGD'?'S$':billCurrency}}{{(billAmount/billMembers.length).toFixed(2)}}</p></div>
+              <div><p class="text-[9px] text-white/30 uppercase">Type</p><p class="text-sm font-display font-black text-white">{{billBestCard.type}}</p></div>
             </div>
           </div>
         </div>
-        <p class="text-xs mt-3 text-center" style="color:var(--text3)">One person pays the full bill with this card, everyone else transfers their share.</p>
+        <p class="text-[10px] mt-2 text-center" style="color:var(--text3)">One person pays with this card, others transfer their share.</p>
         <!-- All options -->
-        <div class="mt-4 space-y-2">
-          <div v-for="(br,bi) in billAllCards" :key="br.card.id" class="flex items-center gap-3 p-3 rounded-xl surface" :style="{opacity:bi===0?1:0.7}">
-            <div class="rank-badge" :class="bi===0?'rank-1':bi===1?'rank-2':bi===2?'rank-3':'rank-other'">{{bi+1}}</div>
-            <div class="card-tile flex items-end justify-start p-1" :style="{background:br.card.color,width:'40px',height:'26px'}"><span class="card-label" style="position:absolute;bottom:2px;left:3px;font-size:5px">{{br.card.bank.substring(0,5)}}</span></div>
-            <div class="flex-1 min-w-0"><p class="text-xs font-medium truncate" :style="{color:'var(--text)'}">{{br.card.name}}</p><p class="text-[10px]" style="color:var(--text3)">{{fmtRate(br.rate)}} → {{br.card.type==='Miles'?'~'+Math.round((br.rate/100)*billAmount/0.018)+' mi':'S$'+((br.rate/100)*billAmount).toFixed(2)}}</p></div>
+        <div class="mt-3 space-y-1.5">
+          <div v-for="(br,bi) in billAllCards" :key="br.card.id" class="flex items-center gap-2.5 p-2.5 rounded-xl surface" :style="{opacity:bi===0?1:0.7}">
+            <div class="rank-badge" :class="bi===0?'rank-1':bi===1?'rank-2':bi===2?'rank-3':'rank-other'" style="width:26px;height:26px;font-size:11px">{{bi+1}}</div>
+            <div class="card-tile flex items-end justify-start p-1" :style="{background:br.card.color,width:'36px',height:'24px'}"><span class="card-label" style="position:absolute;bottom:2px;left:3px;font-size:5px">{{br.card.bank.substring(0,5)}}</span></div>
+            <div class="flex-1 min-w-0"><p class="text-[11px] font-medium truncate" :style="{color:'var(--text)'}">{{br.card.name}}</p><p class="text-[9px]" style="color:var(--text3)">{{fmtRate(br.rate)}} {{br.card.type}} &rarr; {{br.card.type==='Miles'?'~'+Math.round((br.rate/100)*billAmountSGD/0.018)+' mi':'S$'+((br.rate/100)*billAmountSGD).toFixed(2)}}</p></div>
           </div>
         </div>
       </div>
@@ -1332,20 +1395,18 @@
             <button @click="showDeleteConfirm=true" class="w-full py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete All Data</button>
           </div>
         </div>
-        <div class="p-5 rounded-2xl surface text-center">
-          <div class="neon-line w-10 mx-auto mb-4"></div>
-          <!-- Signature monogram -->
-          <div class="w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center glow-border" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">
-            <span class="text-lg font-brand" :style="{color:isDark?'#0a0a0a':'#fff'}">MA</span>
-          </div>
-          <p class="text-[10px] font-display font-bold uppercase tracking-[0.25em] mb-1" style="color:var(--text3)">Designed &amp; Built by</p>
-          <p class="text-sm font-brand animated-gradient-text mb-1">Muneer Ahmed</p>
-          <p class="text-[9px] uppercase tracking-[0.3em] mb-3" style="color:var(--text4)">Ahmed Khaandaan &middot; Est. 2025</p>
-          <div class="flex items-center justify-center gap-1.5">
-            <span class="w-1 h-1 rounded-full" style="background:var(--accent)"></span>
-            <p class="text-[9px] font-display font-bold uppercase tracking-widest" style="color:var(--text4)">VERSO v7.0 &middot; All data local</p>
-            <span class="w-1 h-1 rounded-full" style="background:var(--accent2)"></span>
-          </div>
+        <div class="p-4 rounded-2xl surface text-center">
+          <div class="neon-line w-8 mx-auto mb-3"></div>
+          <!-- Compact monogram crest -->
+          <svg class="mx-auto mb-2" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="crest-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" :stop-color="isDark?'#a78bfa':'#7c3aed'"/><stop offset="100%" :stop-color="isDark?'#c4b5fd':'#8b5cf6'"/></linearGradient>
+            </defs>
+            <path d="M50 5 L90 25 L90 55 Q90 80 50 95 Q10 80 10 55 L10 25 Z" fill="none" stroke="url(#crest-g)" stroke-width="3"/>
+            <text x="50" y="60" text-anchor="middle" fill="url(#crest-g)" font-size="30" font-family="Sora,sans-serif" font-weight="800" letter-spacing="2">MA</text>
+          </svg>
+          <p class="text-[9px] font-display font-semibold uppercase tracking-[0.2em] animated-gradient-text mb-0.5">Muneer Ahmed</p>
+          <p class="text-[8px] uppercase tracking-[0.25em]" style="color:var(--text4)">VERSO v7.0</p>
         </div>
       </div>
       <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="background:rgba(0,0,0,0.6)" @click.self="showDeleteConfirm=false">
@@ -1547,6 +1608,15 @@ V.createApp({
     var billAmount=V.ref(0);
     var billCategory=V.ref('dining');
     var billPeople=V.ref(2);
+    var billCurrency=V.ref('SGD');
+    var billExRate=V.ref(1);
+    var billSplitType=V.ref('equal');
+    var billMembers=V.ref([{name:'',customAmt:0,customPct:50},{name:'',customAmt:0,customPct:50}]);
+    var currencies=['SGD','USD','EUR','GBP','MYR','IDR','THB','JPY','KRW','AUD','CNY','INR','PHP','HKD','TWD','AED'];
+    function addBillMember(){if(billMembers.value.length<12){var pct=Math.floor(100/(billMembers.value.length+1));billMembers.value.push({name:'',customAmt:0,customPct:pct});}}
+    function memberShare(idx){var amt=billAmount.value||0;if(billSplitType.value==='equal')return amt/billMembers.value.length;if(billSplitType.value==='amount')return billMembers.value[idx].customAmt||0;if(billSplitType.value==='percent')return amt*(billMembers.value[idx].customPct||0)/100;return 0;}
+    var billAmountSGD=V.computed(function(){return(billAmount.value||0)*(billCurrency.value==='SGD'?1:billExRate.value);});
+    function fetchExRate(){if(billCurrency.value==='SGD'){billExRate.value=1;return;}var fallbackRates={USD:1.34,EUR:1.46,GBP:1.70,MYR:0.30,IDR:0.000082,THB:0.038,JPY:0.0088,KRW:0.00097,AUD:0.87,CNY:0.185,INR:0.016,PHP:0.024,HKD:0.172,TWD:0.042,AED:0.365};billExRate.value=fallbackRates[billCurrency.value]||1;fetch('https://api.exchangerate-api.com/v4/latest/'+billCurrency.value).then(function(r){return r.ok?r.json():null;}).then(function(d){if(d&&d.rates&&d.rates.SGD)billExRate.value=d.rates.SGD;}).catch(function(){});}
     var avatarInitial=V.computed(function(){return(profile.value.name||'?')[0].toUpperCase();});
     var allBanks=V.computed(function(){var ct=cardTypeFilter.value;return allCards.value.filter(function(c){return c.ct===ct;}).map(function(c){return c.bank;}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();});
     var filteredCards=V.computed(function(){var cards=allCards.value.filter(function(c){return c.ct===cardTypeFilter.value;});if(bankFilter.value)cards=cards.filter(function(c){return c.bank===bankFilter.value;});if(cardSearch.value.trim()){var q=cardSearch.value.toLowerCase().trim();cards=cards.filter(function(c){return(c.name+' '+c.bank+' '+c.type+' '+c.highlight).toLowerCase().indexOf(q)>=0;});}return cards;});
@@ -1577,12 +1647,12 @@ V.createApp({
     var compWinner=V.computed(function(){if(compCards.value.length<2)return null;var best=null,bw=0;for(var i=0;i<compCards.value.length;i++){var w=compWinsFor(compCards.value[i]);if(w>bw){bw=w;best=compCards.value[i];}}return best;});
 
     /* ===== BILL SPLIT ===== */
-    var billAllCards=V.computed(function(){if(billAmount.value<=0||userCards.value.length===0)return[];var recs=[];for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(!card)continue;var r=card.rates[billCategory.value]||0;if(r>0)recs.push({card:card,rate:r});}recs.sort(function(a,b){return b.rate-a.rate;});return recs;});
+    var billAllCards=V.computed(function(){if(billAmountSGD.value<=0||userCards.value.length===0)return[];var recs=[];for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(!card)continue;var r=card.rates[billCategory.value]||0;if(r>0)recs.push({card:card,rate:r});}recs.sort(function(a,b){return b.rate-a.rate;});return recs;});
     var billBestCard=V.computed(function(){return billAllCards.value.length>0?billAllCards.value[0].card:null;});
     var billBestRate=V.computed(function(){return billAllCards.value.length>0?billAllCards.value[0].rate:0;});
 
     /* ===== CONFETTI ===== */
-    function fireConfetti(){var colors=['#06b6d4','#a855f7','#22d3ee','#c084fc','#f59e0b','#ef4444','#22c55e'];for(var i=0;i<30;i++){var el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=colors[Math.floor(Math.random()*colors.length)];el.style.animationDelay=Math.random()*0.8+'s';el.style.animationDuration=(2+Math.random()*1.5)+'s';el.style.borderRadius=Math.random()>0.5?'50%':'2px';el.style.width=(6+Math.random()*6)+'px';el.style.height=(6+Math.random()*6)+'px';document.body.appendChild(el);setTimeout(function(e){e.remove()}.bind(null,el),4000);}}
+    function fireConfetti(){var colors=['#7c3aed','#a78bfa','#8b5cf6','#c4b5fd','#cbd5e1','#e2e8f0','#6d28d9'];for(var i=0;i<30;i++){var el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=colors[Math.floor(Math.random()*colors.length)];el.style.animationDelay=Math.random()*0.8+'s';el.style.animationDuration=(2+Math.random()*1.5)+'s';el.style.borderRadius=Math.random()>0.5?'50%':'2px';el.style.width=(6+Math.random()*6)+'px';el.style.height=(6+Math.random()*6)+'px';document.body.appendChild(el);setTimeout(function(e){e.remove()}.bind(null,el),4000);}}
 
     function go(p){window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){page.value=p;},50);}
     function toggleCard(id){var i=userCards.value.indexOf(id);if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);save();}
@@ -1600,7 +1670,10 @@ V.createApp({
     function pickStore(store){storeSearch.value=store.name;selectedCategory.value=store.category;matchedStore.value=store.name;storeSuggestions.value=[];showDrop.value=false;addRecent(store);go('results');}
     function addRecent(store){var rs=recentSearches.value.filter(function(r){return r.name!==store.name;});rs.unshift({name:store.name,category:store.category});if(rs.length>6)rs=rs.slice(0,6);recentSearches.value=rs;try{localStorage.setItem('cw_recent',JSON.stringify(rs));}catch(e){}}
     function onStoreInput(){var q=storeSearch.value.toLowerCase().trim();if(!q){storeSuggestions.value=[];return;}showDrop.value=true;var local=STORES.filter(function(s){return s.name.toLowerCase().indexOf(q)>=0;}).slice(0,8);storeSuggestions.value=local;if(profile.value.googleApiKey&&q.length>=2){clearTimeout(placesTimer);placesTimer=setTimeout(function(){fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':profile.value.googleApiKey,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({textQuery:storeSearch.value.trim()+' Singapore',locationBias:{circle:{center:{latitude:1.3521,longitude:103.8198},radius:50000}},maxResultCount:5})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){if(!storeSearch.value.trim())return;var goog=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'',category:cat,source:'google'};});var names={};for(var i=0;i<local.length;i++)names[local[i].name.toLowerCase()]=true;var merged=local.slice();for(var j=0;j<goog.length;j++){if(goog[j].name&&!names[goog[j].name.toLowerCase()])merged.push(goog[j]);}storeSuggestions.value=merged.slice(0,10);}).catch(function(){});},400);}}
-    function useMyLocation(){if(!navigator.geolocation)return;geoLoading.value=true;navigator.geolocation.getCurrentPosition(function(pos){geoLoading.value=false;var lat=pos.coords.latitude,lon=pos.coords.longitude;var key=profile.value.googleApiKey;if(key&&key.length>=10){placesSearching.value=true;showDrop.value=true;fetch('https://places.googleapis.com/v1/places:searchNearby',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':key,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({locationRestriction:{circle:{center:{latitude:lat,longitude:lon},radius:200}},maxResultCount:8})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){storeSuggestions.value=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'Unknown',category:cat,source:'google'};});}).catch(function(){showMsg('Could not find nearby places');}).finally(function(){placesSearching.value=false;});}else{placesSearching.value=true;showDrop.value=true;var query='[out:json][timeout:15];(node["amenity"~"restaurant|cafe|fast_food|bar|pub|cinema|fuel"](around:500,'+lat+','+lon+');node["shop"~"supermarket|convenience|mall|department_store|clothes|electronics|mobile_phone"](around:500,'+lat+','+lon+');way["amenity"~"restaurant|cafe|fast_food|fuel"](around:500,'+lat+','+lon+');way["shop"~"supermarket|mall|department_store"](around:500,'+lat+','+lon+');node["tourism"~"hotel|hostel"](around:500,'+lat+','+lon+'););out body 15;';fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(query)}).then(function(r){return r.ok?r.json():{elements:[]};}).then(function(d){var results=(d.elements||[]).map(function(el){var tags=el.tags||{};var name=tags.name||tags['name:en']||'';if(!name)return null;var cat='general';if(tags.amenity==='restaurant'||tags.amenity==='cafe'||tags.amenity==='fast_food'||tags.amenity==='bar'||tags.amenity==='pub')cat='dining';else if(tags.shop==='supermarket'||tags.shop==='convenience')cat='groceries';else if(tags.amenity==='fuel')cat='petrol';else if(tags.amenity==='cinema')cat='entertainment';else if(tags.tourism==='hotel'||tags.tourism==='hostel')cat='travel';else if(tags.shop==='mobile_phone')cat='telco';else if(tags.shop==='mall'||tags.shop==='department_store')cat='general';else if(tags.shop==='clothes'||tags.shop==='electronics')cat='general';return{name:name,category:cat,source:'osm'};}).filter(function(x){return x!==null;});if(results.length>0){storeSuggestions.value=results.slice(0,10);}else{showMsg('No places found nearby. Try searching instead.');}}).catch(function(){showMsg('Could not find nearby places. Try searching instead.');}).finally(function(){placesSearching.value=false;});}},function(){geoLoading.value=false;showMsg('Location access denied');},{enableHighAccuracy:true,timeout:10000});}
+    function useMyLocation(){if(!navigator.geolocation)return;geoLoading.value=true;navigator.geolocation.getCurrentPosition(function(pos){geoLoading.value=false;var lat=pos.coords.latitude,lon=pos.coords.longitude;var key=profile.value.googleApiKey;
+      var doOverpass=function(){placesSearching.value=true;showDrop.value=true;var query='[out:json][timeout:20];(node["amenity"~"restaurant|cafe|fast_food|bar|pub|cinema|fuel|pharmacy|bank"](around:1500,'+lat+','+lon+');node["shop"~"supermarket|convenience|mall|department_store|clothes|electronics|mobile_phone|beauty|jewelry|optician"](around:1500,'+lat+','+lon+');way["amenity"~"restaurant|cafe|fast_food|fuel|cinema"](around:1500,'+lat+','+lon+');way["shop"~"supermarket|mall|department_store|electronics"](around:1500,'+lat+','+lon+');node["tourism"~"hotel|hostel|guest_house"](around:1500,'+lat+','+lon+');node["leisure"~"fitness_centre|sports_centre"](around:1500,'+lat+','+lon+'););out body 30;';fetch('https://overpass-api.de/api/interpreter',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(query)}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){var results=(d.elements||[]).map(function(el){var tags=el.tags||{};var name=tags.name||tags['name:en']||'';if(!name)return null;var cat='general';if(tags.amenity==='restaurant'||tags.amenity==='cafe'||tags.amenity==='fast_food'||tags.amenity==='bar'||tags.amenity==='pub')cat='dining';else if(tags.shop==='supermarket'||tags.shop==='convenience')cat='groceries';else if(tags.amenity==='fuel')cat='petrol';else if(tags.amenity==='cinema'||tags.leisure==='fitness_centre')cat='entertainment';else if(tags.tourism==='hotel'||tags.tourism==='hostel'||tags.tourism==='guest_house')cat='travel';else if(tags.shop==='mobile_phone')cat='telco';else if(tags.shop==='electronics')cat='online';else if(tags.shop==='beauty'||tags.shop==='jewelry')cat='general';return{name:name,category:cat,source:'osm'};}).filter(function(x){return x!==null;});if(results.length>0){storeSuggestions.value=results.slice(0,15);showMsg('Found '+results.length+' places nearby');}else{showMsg('No places found within 1.5km. Try searching instead.');}}).catch(function(err){console.error('Overpass error:',err);showMsg('Location search failed. Try typing a store name.');}).finally(function(){placesSearching.value=false;});};
+      if(key&&key.length>=10){placesSearching.value=true;showDrop.value=true;fetch('https://places.googleapis.com/v1/places:searchNearby',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':key,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({locationRestriction:{circle:{center:{latitude:lat,longitude:lon},radius:1500}},maxResultCount:10})}).then(function(r){if(!r.ok)throw new Error('Google API error');return r.json();}).then(function(d){var places=(d.places||[]);if(places.length===0)throw new Error('No results');storeSuggestions.value=places.map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'Unknown',category:cat,source:'google'};});showMsg('Found '+places.length+' places nearby');}).catch(function(err){console.warn('Google Places failed, falling back to Overpass:',err);doOverpass();}).finally(function(){placesSearching.value=false;});}else{doOverpass();}
+    },function(err){geoLoading.value=false;if(err.code===1)showMsg('Location access denied');else if(err.code===2)showMsg('Location unavailable');else showMsg('Location timed out');},{enableHighAccuracy:true,timeout:15000});}
     function showMsg(msg,type){toast.value={show:true,message:msg,type:type||'success'};setTimeout(function(){toast.value.show=false;},2500);}
     function exportData(){var d={cards:userCards.value,profile:profile.value,customCards:customCards.value};var b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='verso-backup.json';a.click();showMsg('Exported!');}
     function importData(evt){var file=evt.target.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(e){try{var d=JSON.parse(e.target.result);if(d.cards&&Array.isArray(d.cards))userCards.value=d.cards;if(d.customCards&&Array.isArray(d.customCards))customCards.value=d.customCards;if(d.profile){profile.value.name=d.profile.name||profile.value.name;profile.value.googleApiKey=d.profile.googleApiKey||'';}save();showMsg('Imported!');}catch(err){showMsg('Invalid file','error');}};reader.readAsText(file);evt.target.value='';}
@@ -1622,7 +1695,7 @@ V.createApp({
     monthlySavings:monthlySavings,yearlySavings:yearlySavings,scenarios:scenarios,
     optBudget:optBudget,optTotalSpend:optTotalSpend,optAllocations:optAllocations,optMonthlySavings:optMonthlySavings,optYearlySavings:optYearlySavings,applyPreset:applyPreset,
     compareCards:compareCards,compCards:compCards,compBarWidth:compBarWidth,compBestForCat:compBestForCat,compWinsFor:compWinsFor,compWinner:compWinner,userCardObjects:userCardObjects,
-    billAmount:billAmount,billCategory:billCategory,billPeople:billPeople,billAllCards:billAllCards,billBestCard:billBestCard,billBestRate:billBestRate,
+    billAmount:billAmount,billCategory:billCategory,billPeople:billPeople,billAllCards:billAllCards,billBestCard:billBestCard,billBestRate:billBestRate,billCurrency:billCurrency,billExRate:billExRate,billSplitType:billSplitType,billMembers:billMembers,currencies:currencies,addBillMember:addBillMember,memberShare:memberShare,billAmountSGD:billAmountSGD,fetchExRate:fetchExRate,
     go:go,toggleCard:toggleCard,isSelected:isSelected,getCard:getCard,catIcon:catIcon,catLabel:catLabel,fmtRate:fmtRate,estSavings:estSavings,save:save,toggleTheme:toggleTheme,finishSetup:finishSetup,pickCategory:pickCategory,pickStore:pickStore,onStoreInput:onStoreInput,useMyLocation:useMyLocation,showMsg:showMsg,exportData:exportData,importData:importData,deleteAll:deleteAll,startAddCard:startAddCard,saveCustomCard:saveCustomCard,deleteCustomCard:deleteCustomCard,editCustomCard:editCustomCard,searchCardOnline:searchCardOnline,fireConfetti:fireConfetti};
   }
 }).mount('#app');
