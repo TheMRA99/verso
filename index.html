@@ -107,9 +107,9 @@
       position: fixed; inset: 0; z-index: -2; pointer-events: none;
       opacity: 1;
     }
-    /* Light: subtle neutral grid with crimson nodes */
+    /* Light: visible neutral grid with crimson nodes */
     .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%236b7280' stroke-width='0.3' opacity='0.04'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%239f1239' stroke-width='0.3' opacity='0.02'/%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%236b7280' opacity='0.04'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%239f1239' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%239f1239' stroke-width='0.4' opacity='0.06'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%237c3aed' stroke-width='0.4' opacity='0.035'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%239f1239' opacity='0.07'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%237c3aed' opacity='0.04'/%3E%3C/svg%3E");
       background-size: 40px 40px;
     }
     /* Dark: Royal crimson + amethyst HUD grid */
@@ -123,9 +123,9 @@
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
       opacity: 1;
     }
-    /* Light: subtle neutral hex overlay */
+    /* Light: visible hex overlay */
     .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%236b7280' stroke-width='0.4' opacity='0.03'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%239f1239' stroke-width='0.4' opacity='0.015'/%3E%3Ccircle cx='30' cy='0' r='1.5' fill='%236b7280' opacity='0.03'/%3E%3Ccircle cx='90' cy='34.64' r='1.5' fill='%239f1239' opacity='0.02'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%239f1239' stroke-width='0.5' opacity='0.05'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%237c3aed' stroke-width='0.5' opacity='0.03'/%3E%3Ccircle cx='30' cy='0' r='2' fill='%239f1239' opacity='0.05'/%3E%3Ccircle cx='90' cy='34.64' r='2' fill='%237c3aed' opacity='0.03'/%3E%3C/svg%3E");
       background-size: 120px 104px;
     }
     /* Dark: Royal crimson + amethyst hex grid */
@@ -146,11 +146,11 @@
       background: transparent;
       transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
     }
-    /* Light: very subtle washes — keep it clean */
+    /* Light: visible but clean washes */
     .mesh-bg {
       background:
-        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(159,18,57,0.015) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(124,58,237,0.01) 0%, transparent 70%);
+        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(159,18,57,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(124,58,237,0.035) 0%, transparent 70%);
     }
     /* Dark: royal crimson + amethyst glow orbs */
     .dark .mesh-bg {
@@ -168,8 +168,8 @@
       z-index: -4;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(159,18,57,0.015) 0%, transparent 70%),
-        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(124,58,237,0.01) 0%, transparent 70%);
+        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(159,18,57,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(124,58,237,0.03) 0%, transparent 70%);
     }
     body::after { content: none; }
     .dark body::before, body.dark-bg::before {
@@ -269,12 +269,12 @@
       inset: -1.5px;
       border-radius: inherit;
       background: conic-gradient(from var(--border-angle), var(--accent), var(--accent2), transparent, var(--accent));
-      animation: rotateBorder 4s linear infinite;
+      animation: rotateBorder 3s linear infinite;
       z-index: -1;
-      opacity: 0.5;
+      opacity: 0.7;
     }
     .glow-border:hover::before { opacity: 1; }
-    .dark .glow-border::before { opacity: 0.7; }
+    .dark .glow-border::before { opacity: 0.8; }
     .dark .glow-border:hover::before { opacity: 1; }
 
     /* ===== ANIMATED GRADIENT TEXT ===== */
@@ -317,8 +317,9 @@
     .float-label { transition: all 0.3s cubic-bezier(0.65,0.05,0,1); }
     .float-label:focus-within { transform: translateY(-2px); box-shadow: var(--surface-glow-hover); }
 
-    /* ===== NEON LINE ACCENTS (upgraded) ===== */
-    .neon-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), transparent); border-radius: 2px; }
+    /* ===== NEON LINE ACCENTS (animated) ===== */
+    @keyframes neonLineShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .neon-line { height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent)); background-size: 200% 100%; border-radius: 2px; animation: neonLineShift 4s ease infinite; }
     .dark .neon-line { box-shadow: 0 0 12px var(--accent-glow), 0 0 4px rgba(251,113,133,0.1); }
 
     /* ===== BREATHING GLOW on focused search ===== */
@@ -699,7 +700,7 @@
   <header class="sticky top-0 z-50 glass-header" v-if="showHeader">
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-2.5 cursor-pointer" @click="go('home')">
-        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center glow-border" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">
           <svg class="w-5 h-5" :style="{color: isDark?'#09090b':'#fff'}" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
         </div>
         <span class="font-brand text-base" :style="{color:'var(--text)'}">VER<span class="animated-gradient-text">SO</span></span>
