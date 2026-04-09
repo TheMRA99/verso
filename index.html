@@ -24,41 +24,41 @@
     .font-brand { font-family: 'Sora', sans-serif; letter-spacing: 0.18em; font-weight: 800; text-transform: uppercase; }
 
     /* ===== THEME VARIABLES ===== */
-    /* Light: Royal Crimson & Amethyst — jewel-tone regality */
+    /* Light: Clean white + crimson/amethyst accents — sharp, professional */
     :root {
       --accent: #9f1239;
       --accent-light: #be123c;
       --accent2: #7c3aed;
-      --accent-bg: rgba(159,18,57,0.06);
+      --accent-bg: rgba(159,18,57,0.04);
       --accent-text: #fff;
-      --accent-glow: rgba(159,18,57,0.2);
+      --accent-glow: rgba(159,18,57,0.15);
 
-      --bg: #faf6f8;
+      --bg: #f8f9fb;
       --bg2: #ffffff;
-      --bg3: #f0e8ed;
-      --surface: rgba(255,255,255,0.92);
-      --surface-border: rgba(159,18,57,0.06);
-      --surface-hover: #f5edf2;
-      --text: #1a0a12;
-      --text2: #2d1424;
-      --text3: #7a5068;
-      --text4: #c8a8b8;
-      --header-bg: rgba(250,246,248,0.92);
-      --header-border: rgba(159,18,57,0.06);
-      --glow: 0 2px 16px rgba(159,18,57,0.12), 0 2px 8px rgba(124,58,237,0.06);
+      --bg3: #f1f2f5;
+      --surface: rgba(255,255,255,0.96);
+      --surface-border: rgba(0,0,0,0.06);
+      --surface-hover: #f4f5f8;
+      --text: #111827;
+      --text2: #1f2937;
+      --text3: #6b7280;
+      --text4: #d1d5db;
+      --header-bg: rgba(248,249,251,0.92);
+      --header-border: rgba(0,0,0,0.05);
+      --glow: 0 2px 16px rgba(0,0,0,0.06), 0 2px 8px rgba(159,18,57,0.04);
       --pattern-opacity: 1;
       --badge-1-bg: linear-gradient(135deg, #9f1239, #7c3aed);
       --badge-1-text: #fff;
-      --badge-1-glow: 0 2px 20px rgba(159,18,57,0.3), 0 4px 16px rgba(124,58,237,0.1);
-      --badge-2-bg: rgba(159,18,57,0.07);
+      --badge-1-glow: 0 2px 20px rgba(159,18,57,0.2), 0 4px 16px rgba(124,58,237,0.08);
+      --badge-2-bg: rgba(159,18,57,0.06);
       --badge-2-text: #9f1239;
-      --badge-2-glow: 0 2px 12px rgba(159,18,57,0.08);
-      --badge-3-bg: rgba(124,58,237,0.05);
-      --badge-3-text: #7a5068;
+      --badge-2-glow: 0 2px 12px rgba(159,18,57,0.06);
+      --badge-3-bg: rgba(107,114,128,0.06);
+      --badge-3-text: #6b7280;
       --badge-3-glow: none;
-      --neon-line: rgba(159,18,57,0.25);
-      --surface-glow: 0 1px 4px rgba(159,18,57,0.03), 0 0 0 1px rgba(159,18,57,0.02);
-      --surface-glow-hover: 0 4px 30px rgba(159,18,57,0.08), 0 4px 16px rgba(124,58,237,0.04);
+      --neon-line: rgba(159,18,57,0.2);
+      --surface-glow: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.03);
+      --surface-glow-hover: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(159,18,57,0.06);
     }
 
     /* Dark: Royal Night — crimson fire + amethyst on obsidian */
@@ -107,9 +107,9 @@
       position: fixed; inset: 0; z-index: -2; pointer-events: none;
       opacity: 1;
     }
-    /* Light: crimson + amethyst grid */
+    /* Light: subtle neutral grid with crimson nodes */
     .geo-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%239f1239' stroke-width='0.4' opacity='0.05'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%237c3aed' stroke-width='0.4' opacity='0.03'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%239f1239' opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%237c3aed' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0h40v40' fill='none' stroke='%236b7280' stroke-width='0.3' opacity='0.04'/%3E%3Cpath d='M0 40h40V0' fill='none' stroke='%239f1239' stroke-width='0.3' opacity='0.02'/%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%236b7280' opacity='0.04'/%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%239f1239' opacity='0.03'/%3E%3C/svg%3E");
       background-size: 40px 40px;
     }
     /* Dark: Royal crimson + amethyst HUD grid */
@@ -123,9 +123,9 @@
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
       opacity: 1;
     }
-    /* Light: crimson + amethyst hex overlay */
+    /* Light: subtle neutral hex overlay */
     .geo-pattern-2 {
-      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%239f1239' stroke-width='0.5' opacity='0.04'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%237c3aed' stroke-width='0.5' opacity='0.02'/%3E%3Ccircle cx='30' cy='0' r='2' fill='%239f1239' opacity='0.05'/%3E%3Ccircle cx='90' cy='34.64' r='2' fill='%237c3aed' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.32L60 51.96L30 69.28L0 51.96L0 17.32Z' fill='none' stroke='%236b7280' stroke-width='0.4' opacity='0.03'/%3E%3Cpath d='M90 34.64L120 51.96L120 86.6L90 103.92L60 86.6L60 51.96Z' fill='none' stroke='%239f1239' stroke-width='0.4' opacity='0.015'/%3E%3Ccircle cx='30' cy='0' r='1.5' fill='%236b7280' opacity='0.03'/%3E%3Ccircle cx='90' cy='34.64' r='1.5' fill='%239f1239' opacity='0.02'/%3E%3C/svg%3E");
       background-size: 120px 104px;
     }
     /* Dark: Royal crimson + amethyst hex grid */
@@ -146,11 +146,11 @@
       background: transparent;
       transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
     }
-    /* Light: subtle crimson + amethyst washes */
+    /* Light: very subtle washes — keep it clean */
     .mesh-bg {
       background:
-        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(159,18,57,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(124,58,237,0.03) 0%, transparent 70%);
+        radial-gradient(ellipse 500px 400px at 10% 10%, rgba(159,18,57,0.015) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 350px at 90% 85%, rgba(124,58,237,0.01) 0%, transparent 70%);
     }
     /* Dark: royal crimson + amethyst glow orbs */
     .dark .mesh-bg {
@@ -168,8 +168,8 @@
       z-index: -4;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(159,18,57,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(124,58,237,0.03) 0%, transparent 70%);
+        radial-gradient(ellipse 900px 700px at 5% 5%, rgba(159,18,57,0.015) 0%, transparent 70%),
+        radial-gradient(ellipse 700px 600px at 95% 90%, rgba(124,58,237,0.01) 0%, transparent 70%);
     }
     body::after { content: none; }
     .dark body::before, body.dark-bg::before {
@@ -202,7 +202,7 @@
     .surface-h { transition: all 0.25s cubic-bezier(0.65,0.05,0,1); }
     .surface-h:hover {
       background: var(--surface-hover);
-      border-color: rgba(159,18,57,0.1);
+      border-color: rgba(0,0,0,0.1);
       box-shadow: var(--surface-glow-hover);
       transform: translateY(-1px);
     }
@@ -831,7 +831,7 @@
       <!-- Search + Location row -->
       <div class="flex gap-2 mb-3">
         <div class="relative flex-1 store-search-wrap float-label">
-          <svg class="w-4.5 h-4.5 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <svg class="w-[18px] h-[18px] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           <input v-model="storeSearch" @input="onStoreInput" @focus="showDrop=true" type="text" placeholder="Where are you paying?" class="w-full pl-10 pr-9 py-3 rounded-2xl border text-sm transition-colors" :style="{background:'var(--bg3)',borderColor:'var(--surface-border)',color:'var(--text)'}">
           <button v-if="storeSearch" @click="storeSearch='';storeSuggestions=[];showDrop=false" class="absolute right-3 top-1/2 -translate-y-1/2" style="color:var(--text3)"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
           <div v-if="showDrop&&storeSuggestions.length>0" class="absolute left-0 right-0 top-full mt-1 rounded-2xl border shadow-2xl z-40 max-h-64 overflow-y-auto scroll-hide" :style="{background:'var(--surface)',borderColor:'var(--surface-border)'}">
