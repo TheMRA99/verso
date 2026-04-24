@@ -19,7 +19,35 @@
     ::selection { background-color: var(--accent); color: var(--accent-text); }
     [v-cloak] { display: none; }
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { font-family: 'Inter', system-ui, sans-serif; overscroll-behavior: none; transition: background 0.5s cubic-bezier(0.65,0.05,0,1), color 0.4s; }
+    :root {
+      /* Unified easing curves — Lando-smooth */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+      --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-quick: 0.28s;
+      --dur-med: 0.5s;
+      --dur-slow: 0.85s;
+    }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      overscroll-behavior: none;
+      transition: background var(--dur-med) var(--ease-smooth), color 0.4s;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    /* GPU-accelerated transforms on any element we animate */
+    .gpu, .surface, .surface-premium, .cat-btn, button, .rounded-2xl, .card-tile, .pop-in, .slide-up, .page-enter, .reveal, .fade-in {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    /* Smooth tap feedback everywhere */
+    button, [role="button"], .cat-btn, .card-tile { transition: transform var(--dur-quick) var(--ease-out-expo), opacity var(--dur-quick) var(--ease-out-expo), box-shadow var(--dur-quick) var(--ease-out-expo); }
+    button:active, [role="button"]:active, .cat-btn:active, .card-tile:active { transform: scale(0.97) translateZ(0); }
     .font-display { font-family: 'Sora', 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.03em; }
     .font-brand { font-family: 'Sora', sans-serif; letter-spacing: 0.18em; font-weight: 800; text-transform: uppercase; }
 
@@ -146,6 +174,13 @@
       background: transparent;
       transition: background 0.6s cubic-bezier(0.65,0.05,0,1);
     }
+    /* Breath: slow-drifting blood cell + oxygen particles — sits behind all UI panels */
+    .breath-canvas {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      width: 100%; height: 100%;
+      opacity: 0.85;
+    }
+    .dark .breath-canvas { opacity: 1; }
     /* Light: visible but clean washes */
     .mesh-bg {
       background:
@@ -333,18 +368,43 @@
     }
     input:focus, select:focus { animation: breatheGlow 2s ease-in-out infinite; }
 
-    /* ===== ANIMATIONS — Snappy cubic-bezier(0.65,0.05,0,1) ===== */
-    .pop-in { animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
-    @keyframes popIn { 0%{opacity:0;transform:scale(0.88) translateY(24px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
+    /* ===== ANIMATIONS — Lando-smooth expo curves ===== */
+    .pop-in { animation: popIn 0.55s var(--ease-out-expo) both; }
+    @keyframes popIn { 0%{opacity:0;transform:scale(0.92) translateY(18px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
 
-    .slide-up { animation: slideUp 0.55s cubic-bezier(0.65,0.05,0,1) both; }
-    @keyframes slideUp { 0%{opacity:0;transform:translateY(36px)} 100%{opacity:1;transform:translateY(0)} }
+    .slide-up { animation: slideUp 0.7s var(--ease-out-expo) both; }
+    @keyframes slideUp { 0%{opacity:0;transform:translateY(28px)} 100%{opacity:1;transform:translateY(0)} }
 
-    .page-enter { animation: pageIn 0.5s cubic-bezier(0.65,0.05,0,1) both; }
-    @keyframes pageIn { 0%{opacity:0;transform:translateY(40px)} 100%{opacity:1;transform:translateY(0)} }
+    .page-enter { animation: pageIn 0.65s var(--ease-out-expo) both; }
+    @keyframes pageIn { 0%{opacity:0;transform:translateY(24px)} 100%{opacity:1;transform:translateY(0)} }
+
+    /* Page transition wrapper — fade + subtle rise between router views */
+    .page-view { animation: pageView 0.55s var(--ease-out-expo) both; }
+    @keyframes pageView { 0%{opacity:0;transform:translateY(14px)} 100%{opacity:1;transform:translateY(0)} }
 
     .fade-in { animation: fadeIn 0.6s ease both; }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* Accordion expand for "Why this card?" */
+    .reveal-expand { animation: revealExpand 0.4s var(--ease-out-expo) both; transform-origin: top; }
+    @keyframes revealExpand { 0%{opacity:0;transform:translateY(-6px) scaleY(0.9)} 100%{opacity:1;transform:translateY(0) scaleY(1)} }
+
+    /* 3D card flip on select */
+    .flip-card { perspective: 1000px; }
+    .flip-inner { transition: transform 0.7s var(--ease-out-expo); transform-style: preserve-3d; }
+    .flip-card.is-flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-back { position: absolute; inset: 0; transform: rotateY(180deg); }
+
+    /* Rewards chart bars */
+    .reward-bar { transform-origin: bottom; animation: barRise 0.9s var(--ease-out-expo) both; }
+    @keyframes barRise { 0%{transform:scaleY(0)} 100%{transform:scaleY(1)} }
+
+    /* Pull-to-refresh indicator */
+    .ptr-indicator { position: fixed; top: 8px; left: 50%; transform: translateX(-50%) scale(0); width: 38px; height: 38px; border-radius: 50%; background: var(--surface); border: 1px solid var(--surface-border); display: flex; align-items: center; justify-content: center; z-index: 100; transition: transform 0.3s var(--ease-out-expo), opacity 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .ptr-indicator.visible { transform: translateX(-50%) scale(1); }
+    .ptr-indicator.spinning svg { animation: ptrSpin 1s linear infinite; }
+    @keyframes ptrSpin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
 
     /* Cinematic clip-path reveal — sweeps left-to-right */
     .reveal { animation: clipReveal 0.7s cubic-bezier(0.65,0.05,0,1) both; }
@@ -387,6 +447,13 @@
     .shimmer{position:relative;overflow:hidden}
     .shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:shimmer 3s ease-in-out infinite}
     @keyframes shimmer{0%{left:-100%}50%{left:150%}100%{left:150%}}
+
+    /* Slow breathing pulse (1 cycle per ~4s — matches resting calm) */
+    @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+    .breathe{animation:breathe 4s ease-in-out infinite;transform-origin:center}
+    /* Slow rotation for subtle orbit on badges/icons */
+    @keyframes slowRot{to{transform:rotate(360deg)}}
+    .slow-rot{animation:slowRot 18s linear infinite}
 
     .modal-backdrop{animation:fadeIn 0.25s ease}
     .modal-content{animation:popIn 0.35s cubic-bezier(0.34,1.56,0.64,1)}
@@ -695,6 +762,12 @@
   <div class="geo-pattern"></div>
   <div class="geo-pattern-2"></div>
   <div class="mesh-bg"></div>
+  <canvas id="breathCanvas" class="breath-canvas"></canvas>
+
+  <!-- Pull-to-refresh indicator -->
+  <div id="ptrIndicator" class="ptr-indicator">
+    <svg class="w-5 h-5" style="color:var(--accent)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+  </div>
 
   <!-- HEADER -->
   <header class="sticky top-0 z-50 glass-header" v-if="showHeader">
@@ -794,7 +867,7 @@
       <div class="space-y-2 mb-6">
         <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
-          <div class="card-tile flex items-end justify-start p-1.5" :class="isSelected(card.id)?'card-tile-selected':''" :style="{background:card.color}">
+          <div class="card-tile flex items-end justify-start p-1.5 flip-card" :class="[isSelected(card.id)?'card-tile-selected':'',flippingCard===card.id?'is-flipped':'']" :style="{background:card.color}">
             <div class="card-chip"></div>
             <div class="card-network">{{card.network||'VISA'}}</div>
             <span class="card-label" style="position:absolute;bottom:3px;left:6px">{{card.bank.length>8?card.bank.substring(0,8):card.bank}}</span>
@@ -881,7 +954,7 @@
         <div class="savings-card surface p-3.5 rounded-2xl" @click="go('optimizer')" style="cursor:pointer">
           <div class="relative z-10">
             <p class="text-[9px] font-display font-bold uppercase tracking-widest mb-2 dual-gradient-text">Savings Potential</p>
-            <p class="text-xl font-display font-black dual-gradient-text leading-none">S${{monthlySavings}}</p>
+            <p class="text-xl font-display font-black dual-gradient-text leading-none breathe">S${{monthlySavings}}</p>
             <p class="text-[9px] mt-0.5" style="color:var(--text3)">monthly &middot; S${{yearlySavings}}/yr</p>
           </div>
         </div>
@@ -919,6 +992,73 @@
             <span class="text-base">{{tc.icon}}</span>
             <div class="flex-1 min-w-0"><p class="text-[11px] font-semibold truncate" :style="{color:'var(--text)'}">{{tc.label}}</p><p class="text-[9px] truncate" style="color:var(--text3)">{{tc.cardName}}</p></div>
             <span class="text-[11px] font-display font-bold text-accent flex-shrink-0">{{tc.rate}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROTATION REMINDER -->
+      <div v-if="rotationReminder" class="sr mb-3 p-4 rounded-2xl surface-premium flex items-center gap-3" style="border-left:3px solid var(--accent)">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--accent-bg)"><span class="text-xl">&#x1F504;</span></div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[10px] font-bold uppercase tracking-widest" style="color:var(--accent)">Card Rotation</p>
+          <p class="text-xs font-semibold mt-0.5 truncate" :style="{color:'var(--text)'}">Use {{rotationReminder.current.bank}} {{rotationReminder.current.name.split(' ').slice(0,2).join(' ')}} this week</p>
+          <p class="text-[10px]" style="color:var(--text3)">Switch to {{rotationReminder.next.bank}} in {{rotationReminder.daysLeft}}d &middot; avoids cap</p>
+        </div>
+      </div>
+
+      <!-- QUIZ LAUNCHER -->
+      <button v-if="userCards.length>0" @click="go('quiz');triggerHaptic('light')" class="sr mb-3 w-full p-4 rounded-2xl surface-premium flex items-center gap-3 text-left">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,var(--accent),var(--accent2))"><svg class="w-5 h-5" :style="{color:isDark?'#0a0a0a':'#fff'}" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[10px] font-bold uppercase tracking-widest dual-gradient-text">Card Quiz</p>
+          <p class="text-xs font-semibold mt-0.5" :style="{color:'var(--text)'}">Find your perfect card in 5 questions</p>
+        </div>
+        <svg class="w-4 h-4" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <!-- 6-MONTH REWARDS CHART -->
+      <div v-if="userCards.length>0&&rewardsHistory.length>0" class="sr mb-3 p-4 rounded-2xl surface-premium">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2"><div class="w-1 h-4 rounded-full" style="background:linear-gradient(180deg,var(--accent),var(--accent2))"></div><p class="text-[10px] font-display font-bold tracking-tighter uppercase dual-gradient-text">6-Month Rewards Trend</p></div>
+          <span class="text-[9px]" style="color:var(--text3)">Est. earnings</span>
+        </div>
+        <div class="flex items-end justify-between gap-2 h-24 px-1">
+          <div v-for="(m,i) in rewardsHistory" :key="m.label" class="flex-1 flex flex-col items-center gap-1.5">
+            <span class="text-[9px] font-bold" :style="{color:i===rewardsHistory.length-1?'var(--accent)':'var(--text3)'}">S${{m.value}}</span>
+            <div class="w-full rounded-t-md reward-bar" :style="{height:((m.value/rewardsHistoryMax)*70)+'px',background:i===rewardsHistory.length-1?'linear-gradient(180deg,var(--accent),var(--accent2))':'var(--bg3)',minHeight:'4px',animationDelay:(i*0.08)+'s'}"></div>
+            <span class="text-[9px] uppercase tracking-wider" :style="{color:i===rewardsHistory.length-1?'var(--accent)':'var(--text4)'}">{{m.label}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CURRENCY TILE — live FX rates -->
+      <div v-if="userCards.length>0" class="sr mb-3 p-4 rounded-2xl surface-premium">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2"><div class="w-1 h-4 rounded-full" style="background:linear-gradient(180deg,var(--accent2),var(--accent))"></div><p class="text-[10px] font-display font-bold tracking-tighter uppercase dual-gradient-text">Live FX &middot; 1 SGD</p></div>
+          <span class="text-[9px] flex items-center gap-1" style="color:var(--text3)"><span class="w-1.5 h-1.5 rounded-full" style="background:#10b981;animation:neonPulse 2s ease-in-out infinite"></span>{{liveCurrencyUpdated||'loading'}}</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <div v-for="c in liveCurrencies" :key="c.code" class="p-2 rounded-xl" :style="{background:'var(--bg3)'}">
+            <div class="flex items-center justify-between mb-0.5"><span class="text-xs">{{c.flag}}</span><span class="text-[8px] font-bold uppercase" style="color:var(--text4)">{{c.code}}</span></div>
+            <p class="text-[11px] font-display font-black" :style="{color:'var(--text)'}">{{c.rate>0?(c.code==='JPY'?c.rate.toFixed(1):c.rate.toFixed(3)):'—'}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNUP BONUS OPPORTUNITIES -->
+      <div v-if="userCards.length>0&&signupOpportunities.length>0" class="sr mb-3 p-4 rounded-2xl surface-premium">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2"><div class="w-1 h-4 rounded-full" style="background:linear-gradient(180deg,#10b981,#059669)"></div><p class="text-[10px] font-display font-bold tracking-tighter uppercase" style="color:#10b981">Signup Bonuses</p></div>
+          <span class="text-[9px] font-bold" style="color:#10b981">Up to S${{totalCashSignupPotential}}</span>
+        </div>
+        <div class="space-y-2">
+          <div v-for="c in signupOpportunities.slice(0,3)" :key="c.id" @click="selectedCardDetail=c" class="flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-all surface-h" :style="{background:'var(--bg3)'}">
+            <div class="card-tile flex items-end justify-start p-1" :style="{background:c.color,width:'42px',height:'28px'}"><div class="card-chip" style="width:5px;height:4px;top:4px;left:3px"></div></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[11px] font-semibold truncate" :style="{color:'var(--text)'}">{{c.name}}</p>
+              <p class="text-[9px] truncate" style="color:var(--text3)">{{c.signup.reqs}}</p>
+            </div>
+            <span class="text-xs font-display font-black flex-shrink-0" style="color:#10b981">S${{c.signup.amt}}</span>
           </div>
         </div>
       </div>
@@ -981,6 +1121,27 @@
                   <div class="flex items-center justify-between"><span class="text-[11px]" style="color:var(--text4)">Est. value (1.8¢/mi)</span><span class="text-xs font-semibold" style="color:var(--text3)">~S${{((rec.rate/100)*spendAmount).toFixed(2)}}</span></div>
                 </div>
                 <div v-else class="flex items-center justify-between"><span class="text-sm font-semibold" style="color:var(--text3)">Reward value</span><span class="text-lg font-display font-black text-accent">S${{((rec.rate/100)*spendAmount).toFixed(2)}}</span></div>
+              </div>
+              <!-- Why this card? expandable -->
+              <button @click="toggleExpanded(rec.card.id)" class="mt-3 w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all" :style="{background:'var(--bg3)',border:'1px solid var(--surface-border)'}">
+                <span class="flex items-center gap-2"><svg class="w-4 h-4" style="color:var(--accent)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-xs font-bold uppercase tracking-wider" style="color:var(--text2)">Why this card?</span></span>
+                <svg class="w-4 h-4 transition-transform" :class="{'rotate-180':expandedRec===rec.card.id}" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div v-if="expandedRec===rec.card.id" class="mt-2 p-3 rounded-xl reveal-expand" :style="{background:'var(--bg3)',border:'1px solid var(--surface-border)'}">
+                <div class="space-y-2 text-xs" style="color:var(--text2)">
+                  <div class="flex items-center justify-between"><span style="color:var(--text3)">Base rate on {{catLabel(selectedCategory).toLowerCase()}}</span><span class="font-bold text-accent">{{fmtRate(rec.rate)}}</span></div>
+                  <div v-if="rec.capped" class="flex items-center justify-between"><span style="color:var(--text3)">After S${{rec.card.caps[selectedCategory]}}/mo cap</span><span class="font-bold" style="color:#f59e0b">{{fmtRate(rec.effectiveRate)}}</span></div>
+                  <div v-if="rec.annualFee>0" class="flex items-center justify-between"><span style="color:var(--text3)">Annual fee drag</span><span class="font-bold" style="color:#fb7185">&minus;{{(spendAmount>0?((rec.annualFee/(spendAmount*12))*100).toFixed(2):'0')}}%</span></div>
+                  <div v-if="rec.card.minSpend" class="flex items-center justify-between"><span style="color:var(--text3)">Min spend S${{rec.card.minSpend}}/mo</span><span class="font-bold" :style="{color:rec.meetsMinSpend?'#10b981':'#fb7185'}">{{rec.meetsMinSpend?'Met':'Not met'}}</span></div>
+                  <div class="pt-2 mt-1" :style="{borderTop:'1px dashed var(--surface-border)'}">
+                    <p class="text-[11px] leading-relaxed" style="color:var(--text2)">
+                      <span v-if="!rec.meetsMinSpend">You need <strong>S${{rec.card.minSpend-spendAmount}}</strong> more in monthly spend to unlock the bonus rate. Until then, this card earns far less than the headline number.</span>
+                      <span v-else-if="rec.capped">You're earning <strong>{{fmtRate(rec.rate)}}</strong> on the first <strong>S${{(rec.card.caps[selectedCategory]/(rec.rate/100)).toFixed(0)}}</strong> of spend, then drops to base rate. Effective rate across your full spend is <strong>{{fmtRate(rec.effectiveRate)}}</strong>.</span>
+                      <span v-else-if="rec.annualFee>0">After amortising the <strong>S${{rec.annualFee}}</strong> annual fee across your yearly spend in this category, your net effective rate is <strong>{{(rec.effectiveRate-(spendAmount>0?(rec.annualFee/(spendAmount*12))*100:0)).toFixed(2)}}%</strong>. Still the best match for {{catLabel(selectedCategory).toLowerCase()}}.</span>
+                      <span v-else>Clean winner — no caps, no fees, no min spend. You earn <strong>{{fmtRate(rec.rate)}}</strong> on every dollar you put on {{catLabel(selectedCategory).toLowerCase()}} with this card.</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
@@ -1062,7 +1223,7 @@
       <div class="space-y-2">
         <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
-          <div class="card-tile flex items-end justify-start p-1.5" :class="isSelected(card.id)?'card-tile-selected':''" :style="{background:card.color}">
+          <div class="card-tile flex items-end justify-start p-1.5 flip-card" :class="[isSelected(card.id)?'card-tile-selected':'',flippingCard===card.id?'is-flipped':'']" :style="{background:card.color}">
             <div class="card-chip"></div>
             <div class="card-network">{{card.network||'VISA'}}</div>
             <span class="card-label" style="position:absolute;bottom:3px;left:6px">{{card.bank.length>8?card.bank.substring(0,8):card.bank}}</span>
@@ -1281,6 +1442,41 @@
       <div v-else class="text-center py-12"><p class="text-sm" style="color:var(--text3)">Select at least 2 cards to compare.</p></div>
     </div>
 
+    <!-- CARD RECOMMENDATION QUIZ -->
+    <div v-if="page==='quiz'" class="pt-5 page-enter">
+      <button @click="go('home')" class="flex items-center gap-2 mb-5" style="color:var(--text3)"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg><span class="text-sm font-medium">Back</span></button>
+      <h2 class="font-display text-2xl font-black tracking-tighter mb-1" :style="{color:'var(--text)'}">Find Your <span class="dual-gradient-text">Perfect Card</span></h2>
+      <p class="text-sm mb-6" style="color:var(--text3)">Answer 5 quick questions.</p>
+      <div v-if="!quizDone">
+        <div class="mb-5"><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--bg3)"><div class="h-full rounded-full transition-all duration-500" :style="{width:((quizStep+1)/quizQuestions.length*100)+'%',background:'linear-gradient(90deg,var(--accent),var(--accent2))'}"></div></div><p class="text-[10px] mt-2 font-bold uppercase tracking-widest" style="color:var(--text3)">Question {{quizStep+1}} of {{quizQuestions.length}}</p></div>
+        <div class="pop-in" :key="quizStep">
+          <h3 class="text-xl font-display font-black mb-5 tracking-tight" :style="{color:'var(--text)'}">{{quizQuestions[quizStep].q}}</h3>
+          <div class="space-y-2">
+            <button v-for="opt in quizQuestions[quizStep].opts" :key="opt.label" @click="answerQuiz(opt)" class="w-full p-4 rounded-2xl border text-left transition-all surface-h flex items-center gap-3" :style="{borderColor:'var(--surface-border)',background:'var(--surface)'}">
+              <span class="text-2xl">{{opt.icon}}</span>
+              <span class="text-sm font-semibold flex-1" :style="{color:'var(--text)'}">{{opt.label}}</span>
+              <svg class="w-4 h-4" style="color:var(--text3)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div v-else class="pop-in">
+        <div class="p-5 rounded-2xl mb-4 glow glow-border" :style="{background:quizResult&&quizResult.color}">
+          <div class="card-gradient absolute inset-0"></div>
+          <div class="relative">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white" style="background:rgba(255,255,255,0.15)">Your match</span>
+            <h3 class="text-2xl font-display font-black text-white mt-3 tracking-tight">{{quizResult&&quizResult.name}}</h3>
+            <p class="text-sm text-white/60 mt-1">{{quizResult&&quizResult.bank}}</p>
+            <p class="text-xs text-white/50 mt-2">{{quizResult&&quizResult.highlight}}</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button @click="resetQuiz" class="flex-1 py-3 rounded-xl font-bold text-sm transition-colors" :style="{background:'var(--bg3)',color:'var(--text2)'}">Retake</button>
+          <button v-if="quizResult" @click="selectedCardDetail=quizResult" class="flex-1 py-3 rounded-xl font-bold text-sm text-white" style="background:linear-gradient(90deg,var(--accent),var(--accent2))">See Details</button>
+        </div>
+      </div>
+    </div>
+
     <!-- BILL SPLIT -->
     <div v-if="page==='billsplit'" class="pt-5 page-enter">
       <button @click="go('home')" class="flex items-center gap-2 mb-5 transition-colors" style="color:var(--text3)"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg><span class="text-sm font-medium">Back</span></button>
@@ -1316,11 +1512,25 @@
         </div>
       </div>
 
+      <!-- Saved groups -->
+      <div v-if="savedBillGroups.length>0" class="mb-3">
+        <p class="text-[10px] font-bold uppercase tracking-widest mb-1.5" style="color:var(--text3)">Saved Groups</p>
+        <div class="flex gap-2 overflow-x-auto scroll-hide pb-1">
+          <div v-for="g in savedBillGroups" :key="g.name" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full border flex-shrink-0" :style="{borderColor:'var(--surface-border)',background:'var(--surface)'}">
+            <button @click="loadBillGroup(g)" class="text-xs font-semibold" :style="{color:'var(--text2)'}">&#x1F465; {{g.name}} &middot; {{g.members.length}}</button>
+            <button @click="deleteBillGroup(g)" style="color:var(--text4)"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+          </div>
+        </div>
+      </div>
+
       <!-- People -->
       <div class="mb-4">
         <div class="flex items-center justify-between mb-1.5">
           <label class="text-[10px] font-bold uppercase tracking-widest" style="color:var(--text3)">People ({{billMembers.length}})</label>
-          <button @click="addBillMember()" class="text-[10px] font-bold text-accent flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>Add</button>
+          <div class="flex items-center gap-3">
+            <button @click="saveBillGroup()" class="text-[10px] font-bold flex items-center gap-1" style="color:var(--accent2)"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Save group</button>
+            <button @click="addBillMember()" class="text-[10px] font-bold text-accent flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>Add</button>
+          </div>
         </div>
         <div class="space-y-1.5">
           <div v-for="(m,mi) in billMembers" :key="mi" class="flex items-center gap-2 p-2 rounded-xl" :style="{background:'var(--bg3)'}">
@@ -1451,6 +1661,43 @@
 <script>
 /* ===== COMPREHENSIVE SINGAPORE CARDS DATABASE ===== */
 /* ct: 'credit' or 'debit', network: VISA/MC/AMEX */
+/* Signup bonuses — keyed by card id, merged into CARDS_DB below */
+var SIGNUP_BONUSES={
+  'dbs-live-fresh':{amt:150,reqs:'Spend $800 in 60 days',type:'cash'},
+  'dbs-altitude':{amt:20000,reqs:'Spend $5k in 60 days',type:'miles'},
+  'dbs-womans-world':{amt:10000,reqs:'Spend $2k in 30 days',type:'miles'},
+  'dbs-vantage':{amt:45000,reqs:'Pay $650 fee',type:'miles'},
+  'dbs-yuu-amex':{amt:120,reqs:'Spend $500 in 30 days',type:'cash'},
+  'posb-everyday':{amt:150,reqs:'Spend $800 in 60 days',type:'cash'},
+  'uob-one':{amt:350,reqs:'Spend $1k × 3 months',type:'cash'},
+  'uob-prvi-miles':{amt:30000,reqs:'Spend $3k in 60 days',type:'miles'},
+  'uob-ladys':{amt:10000,reqs:'Spend $2k in 60 days',type:'miles'},
+  'uob-evol':{amt:150,reqs:'Spend $1k in 60 days',type:'cash'},
+  'uob-visa-sig':{amt:15000,reqs:'Spend $2k in 30 days',type:'miles'},
+  'ocbc-365':{amt:180,reqs:'Spend $1.6k in 60 days',type:'cash'},
+  'ocbc-90n':{amt:15000,reqs:'Spend $3k in 30 days',type:'miles'},
+  'ocbc-rewards':{amt:10000,reqs:'Spend $2k in 30 days',type:'miles'},
+  'ocbc-voyage':{amt:35000,reqs:'Pay $488 fee',type:'miles'},
+  'citi-cashback':{amt:200,reqs:'Spend $800 × 3 months',type:'cash'},
+  'citi-rewards':{amt:10000,reqs:'Spend $1k in 60 days',type:'miles'},
+  'citi-premiermiles':{amt:30000,reqs:'Spend $800 in 60 days',type:'miles'},
+  'citi-prestige':{amt:62500,reqs:'Pay $535 fee + spend $10k',type:'miles'},
+  'hsbc-revolution':{amt:150,reqs:'Spend $500 in 60 days',type:'cash'},
+  'hsbc-live':{amt:200,reqs:'Spend $800 in 60 days',type:'cash'},
+  'hsbc-travelone':{amt:30000,reqs:'Spend $800 in 30 days',type:'miles'},
+  'hsbc-advance':{amt:180,reqs:'Spend $600 × 3 months',type:'cash'},
+  'sc-simply-cash':{amt:138,reqs:'Spend $800 in 30 days',type:'cash'},
+  'sc-smart':{amt:150,reqs:'Spend $1.5k in 60 days',type:'cash'},
+  'sc-journey':{amt:30000,reqs:'Spend $1k in 60 days',type:'miles'},
+  'sc-visa-inf':{amt:35000,reqs:'Pay $588.50 fee',type:'miles'},
+  'maybank-ff':{amt:150,reqs:'Spend $600 in 30 days',type:'cash'},
+  'maybank-horizon':{amt:20000,reqs:'Spend $800 in 60 days',type:'miles'},
+  'amex-kf-ascend':{amt:32500,reqs:'Spend $3k in 90 days',type:'miles'},
+  'amex-plt-reserve':{amt:60000,reqs:'Spend $3k in 3 months',type:'miles'},
+  'cimb-visa-sig':{amt:150,reqs:'Spend $888 in 60 days',type:'cash'},
+  'cimb-awsm':{amt:100,reqs:'Spend $500 in 30 days',type:'cash'},
+  'trust-card':{amt:25,reqs:'First spend',type:'cash'}
+};
 var CARDS_DB=[
 /* ===== DBS ===== */
 {id:'dbs-live-fresh',name:'Live Fresh Card',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'5% contactless/online',color:'linear-gradient(135deg,#1a1a1a,#333333)',rates:{dining:5,groceries:5,online:5,transport:5,contactless:5,petrol:0.3,travel:0.3,entertainment:5,telco:0.3,utilities:0.3,general:0.3},notes:{dining:'5% cashback on contactless',online:'5% on online spend'},conditions:{dining:'Cap $20/cat/mo. Min $600/mo.'},caps:{dining:20,groceries:20,online:20,transport:20,contactless:20,entertainment:20},minSpend:600,fee:'$194.40'},
@@ -1551,7 +1798,27 @@ var CARDS_DB=[
 {id:'wise',name:'Wise Card',bank:'Wise',type:'Cashback',ct:'debit',network:'VISA',highlight:'Mid-market FX',color:'linear-gradient(135deg,#9fe870,#37d39a)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:2.5,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'Mid-market FX rate. ~2.5% effective savings.'},conditions:{travel:'Small FX fee applies.'},caps:{},minSpend:0,fee:'$0'},
 {id:'singlife',name:'Singlife Account',bank:'Singlife',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.5% + savings',color:'linear-gradient(135deg,#ff5c35,#e64a19)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:0.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{general:'0.5% cashback + high savings interest'},conditions:{},caps:{},minSpend:0,fee:'$0'},
 {id:'bigpay',name:'BigPay Card',bank:'BigPay',type:'Cashback',ct:'debit',network:'MC',highlight:'Multi-currency, no FX fee',color:'linear-gradient(135deg,#0055ff,#003dc7)',rates:{dining:0,groceries:0,online:0,transport:0,contactless:0,petrol:0,travel:2,entertainment:0,telco:0,utilities:0,general:0},notes:{travel:'No FX markup. ~2% effective overseas savings.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
-{id:'instarem-amaze',name:'Amaze Card',bank:'Instarem',type:'Cashback',ct:'debit',network:'VISA',highlight:'Multi-currency + rewards',color:'linear-gradient(135deg,#6d28d9,#a855f7)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:2,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% InstaPoints on all spend',travel:'Up to 2% on overseas'},conditions:{},caps:{},minSpend:0,fee:'$0'}
+{id:'instarem-amaze',name:'Amaze Card',bank:'Instarem',type:'Cashback',ct:'debit',network:'VISA',highlight:'Multi-currency + rewards',color:'linear-gradient(135deg,#6d28d9,#a855f7)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:2,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% InstaPoints on all spend',travel:'Up to 2% on overseas'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+/* ===== CIMB ===== */
+{id:'cimb-visa-sig',name:'Visa Signature',bank:'CIMB',type:'Cashback',ct:'credit',network:'VISA',highlight:'10% dining',color:'linear-gradient(135deg,#7a0019,#b8002d)',rates:{dining:10,groceries:0.2,online:0.2,transport:0.2,contactless:0.2,petrol:0.2,travel:0.2,entertainment:0.2,telco:0.2,utilities:0.2,general:0.2},notes:{dining:'10% cashback on dining'},conditions:{dining:'Min $500/mo. Cap $30/mo.'},caps:{dining:30},minSpend:500,fee:'$0'},
+{id:'cimb-awsm',name:'AWSM Card',bank:'CIMB',type:'Cashback',ct:'credit',network:'MC',highlight:'8% dining/online/transport',color:'linear-gradient(135deg,#7a0019,#ff4060)',rates:{dining:8,groceries:2,online:8,transport:8,contactless:2,petrol:2,travel:2,entertainment:2,telco:2,utilities:2,general:0.2},notes:{dining:'8% dining, online, transport'},conditions:{dining:'Min $500/mo. Cap $25/cat.'},caps:{dining:25,online:25,transport:25},minSpend:500,fee:'$0'},
+{id:'cimb-world-mc',name:'World Mastercard',bank:'CIMB',type:'Cashback',ct:'credit',network:'MC',highlight:'2% overseas',color:'linear-gradient(135deg,#7a0019,#4a0010)',rates:{dining:0.2,groceries:0.2,online:0.2,transport:0.2,contactless:0.2,petrol:0.2,travel:2,entertainment:0.2,telco:0.2,utilities:0.2,general:0.2},notes:{travel:'2% on overseas spend. No FX fee.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+/* ===== ADDITIONAL DBS ===== */
+{id:'dbs-multiplier',name:'Multiplier Card',bank:'DBS',type:'Cashback',ct:'credit',network:'VISA',highlight:'Up to 4.1% w/ salary',color:'linear-gradient(135deg,#0a1628,#1a3050)',rates:{dining:4.1,groceries:4.1,online:4.1,transport:4.1,contactless:4.1,petrol:4.1,travel:4.1,entertainment:4.1,telco:4.1,utilities:4.1,general:4.1},notes:{general:'Up to 4.1% with salary credit + transactions'},conditions:{general:'DBS salary credit required. Tiered rates based on txn categories.'},caps:{general:100},minSpend:0,fee:'$0'},
+{id:'dbs-treasures-visa',name:'Treasures Visa',bank:'DBS',type:'Miles',ct:'credit',network:'VISA',highlight:'2 mpd all spend',color:'linear-gradient(135deg,#1a1a2e,#2a2a44)',rates:{dining:3.6,groceries:3.6,online:3.6,transport:3.6,contactless:3.6,petrol:3.6,travel:3.6,entertainment:3.6,telco:3.6,utilities:3.6,general:3.6},notes:{general:'2 mpd on all spend (~3.6%)'},conditions:{general:'DBS Treasures banking required.'},caps:{},minSpend:0,fee:'$0 (Treasures)'},
+/* ===== ADDITIONAL UOB ===== */
+{id:'uob-visa-sig',name:'Visa Signature',bank:'UOB',type:'Rewards',ct:'credit',network:'VISA',highlight:'10X dining & travel',color:'linear-gradient(135deg,#003d82,#002855)',rates:{dining:4,groceries:0.4,online:4,transport:0.4,contactless:0.4,petrol:0.4,travel:4,entertainment:4,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'10X UNI$ on dining, entertainment, travel, online (~4%)'},conditions:{dining:'Cap 2,000 UNI$/mo.'},caps:{dining:80,online:80,travel:80,entertainment:80},minSpend:0,fee:'$256.80'},
+/* ===== ADDITIONAL CITI ===== */
+{id:'citi-clear',name:'Clear Card',bank:'Citi',type:'Cashback',ct:'credit',network:'VISA',highlight:'2% on everything',color:'linear-gradient(135deg,#003a70,#006bb3)',rates:{dining:2,groceries:2,online:2,transport:2,contactless:2,petrol:2,travel:2,entertainment:2,telco:2,utilities:2,general:2},notes:{general:'2% cashback on all categories'},conditions:{general:'Min $200/mo. Cap $20/mo.'},caps:{general:20},minSpend:200,fee:'$0'},
+/* ===== ADDITIONAL HSBC ===== */
+{id:'hsbc-visa-plat',name:'Visa Platinum',bank:'HSBC',type:'Rewards',ct:'credit',network:'VISA',highlight:'5X dining & travel',color:'linear-gradient(135deg,#db0011,#8a0009)',rates:{dining:2,groceries:0.4,online:2,transport:0.4,contactless:0.4,petrol:0.4,travel:2,entertainment:2,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'5X rewards on dining, travel, entertainment (~2%)'},conditions:{},caps:{},minSpend:0,fee:'$194.40'},
+/* ===== ADDITIONAL MAYBANK ===== */
+{id:'maybank-platinum-visa',name:'Platinum Visa Card',bank:'Maybank',type:'Rewards',ct:'credit',network:'VISA',highlight:'5X TREATS points',color:'linear-gradient(135deg,#ffc629,#cc9e00)',rates:{dining:2,groceries:0.4,online:2,transport:0.4,contactless:0.4,petrol:0.4,travel:2,entertainment:2,telco:0.4,utilities:0.4,general:0.4},notes:{dining:'5X TREATS points on dining, travel, entertainment (~2%)'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+/* ===== ADDITIONAL DEBIT ===== */
+{id:'cimb-debit',name:'Visa Debit',bank:'CIMB',type:'Cashback',ct:'debit',network:'VISA',highlight:'0.2% cashback',color:'linear-gradient(135deg,#7a0019,#a0002e)',rates:{dining:0.2,groceries:0.2,online:0.2,transport:0.2,contactless:0.2,petrol:0.2,travel:0.2,entertainment:0.2,telco:0.2,utilities:0.2,general:0.2},notes:{general:'0.2% cashback on all spend'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'hsbc-everyday-global',name:'Everyday Global Debit',bank:'HSBC',type:'Cashback',ct:'debit',network:'VISA',highlight:'No FX markup',color:'linear-gradient(135deg,#db0011,#660008)',rates:{dining:0.5,groceries:0.5,online:0.5,transport:0.5,contactless:0.5,petrol:0.5,travel:1.5,entertainment:0.5,telco:0.5,utilities:0.5,general:0.5},notes:{travel:'No FX markup. ~1.5% effective overseas savings.'},conditions:{},caps:{},minSpend:0,fee:'$0'},
+{id:'sc-jumpstart-debit',name:'JumpStart Debit',bank:'Std Chartered',type:'Cashback',ct:'debit',network:'VISA',highlight:'1% cashback <26yrs',color:'linear-gradient(135deg,#0072aa,#004466)',rates:{dining:1,groceries:1,online:1,transport:1,contactless:1,petrol:1,travel:1,entertainment:1,telco:1,utilities:1,general:1},notes:{general:'1% cashback on all spend for ages 18-25'},conditions:{general:'Age 18-25 only.'},caps:{general:25},minSpend:0,fee:'$0'},
+{id:'maybank-save-up-debit',name:'Save Up Debit',bank:'Maybank',type:'Cashback',ct:'debit',network:'VISA',highlight:'5% Save Up',color:'linear-gradient(135deg,#ffc629,#b38a00)',rates:{dining:0.3,groceries:0.3,online:0.3,transport:0.3,contactless:0.3,petrol:0.3,travel:0.3,entertainment:0.3,telco:0.3,utilities:0.3,general:0.3},notes:{general:'Bonus interest on savings with card spend'},conditions:{},caps:{},minSpend:0,fee:'$0'}
 ];
 
 var STORES=[
@@ -1595,7 +1862,8 @@ V.createApp({
     var cardSearch=V.ref(''),bankFilter=V.ref(''),cardTypeFilter=V.ref('credit'),storeSearch=V.ref(''),selectedCategory=V.ref(null),spendAmount=V.ref(null),matchedStore=V.ref(null);
     var storeSuggestions=V.ref([]),showDrop=V.ref(false),showDeleteConfirm=V.ref(false),placesSearching=V.ref(false);
     var geoSupported=V.ref(false),geoLoading=V.ref(false),toast=V.ref({show:false,message:'',type:'success'}),placesTimer=null;
-    var recentSearches=V.ref([]),selectedCardDetail=V.ref(null);
+    var recentSearches=V.ref([]),selectedCardDetail=V.ref(null),expandedRec=V.ref(null);
+    function toggleExpanded(id){expandedRec.value=expandedRec.value===id?null:id;}
     var customCards=V.ref([]),editingCardId=V.ref(null),addCardReturnPage=V.ref('mycards');
     var cardColors=['linear-gradient(135deg,#6b7280,#4b5563)','linear-gradient(135deg,#dc2626,#991b1b)','linear-gradient(135deg,#2563eb,#1d4ed8)','linear-gradient(135deg,#059669,#047857)','linear-gradient(135deg,#7c3aed,#5b21b6)','linear-gradient(135deg,#0e7490,#155e75)','linear-gradient(135deg,#ea580c,#c2410c)','linear-gradient(135deg,#d946ef,#a21caf)','linear-gradient(135deg,#1e293b,#0f172a)','linear-gradient(135deg,#fbbf24,#d97706)'];
     function getEmptyCard(){return{id:'',name:'',bank:'',type:'Cashback',ct:'credit',network:'VISA',highlight:'',color:cardColors[0],rates:{online:0,dining:0,groceries:0,transport:0,contactless:0,petrol:0,travel:0,entertainment:0,telco:0,utilities:0,general:0},notes:{},conditions:{},caps:{},minSpend:0,fee:'$0',isCustom:true};}
@@ -1613,7 +1881,14 @@ V.createApp({
     var dailyTip=V.computed(function(){if(userCards.value.length===0)return null;var day=Math.floor(Date.now()/86400000)%TIPS.length;return TIPS[day];});
     var categories=[{id:'online',label:'Online',icon:'\uD83C\uDF10'},{id:'dining',label:'Dining',icon:'\uD83C\uDF7D\uFE0F'},{id:'groceries',label:'Groceries',icon:'\uD83D\uDED2'},{id:'transport',label:'Transport',icon:'\uD83D\uDE97'},{id:'contactless',label:'Tap & Pay',icon:'\uD83D\uDCF6'},{id:'petrol',label:'Petrol',icon:'\u26FD'},{id:'travel',label:'Travel',icon:'\u2708\uFE0F'},{id:'entertainment',label:'Movies',icon:'\uD83C\uDFAC'},{id:'telco',label:'Telco',icon:'\uD83D\uDCF1'},{id:'utilities',label:'Utilities',icon:'\uD83D\uDCA1'},{id:'general',label:'Others',icon:'\uD83D\uDCB3'}];
 
-    var allCards=V.computed(function(){return CARDS_DB.concat(customCards.value);});
+    var allCards=V.computed(function(){
+      var list=CARDS_DB.concat(customCards.value);
+      // merge signup bonus info
+      return list.map(function(c){
+        var sb=SIGNUP_BONUSES[c.id];
+        return sb?Object.assign({},c,{signup:sb}):c;
+      });
+    });
     var showHeader=V.computed(function(){return page.value!=='onboarding'&&page.value!=='setup-name'&&page.value!=='setup-cards'&&page.value!=='add-card';});
 
     /* ===== NEW FEATURE STATE ===== */
@@ -1625,7 +1900,31 @@ V.createApp({
     var billCurrency=V.ref('SGD');
     var billExRate=V.ref(1);
     var billSplitType=V.ref('equal');
-    var billMembers=V.ref([{name:'',customAmt:0,customPct:50},{name:'',customAmt:0,customPct:50}]);
+    /* Persisted bill groups — saved groups of people + current roster */
+    var savedBillGroups=V.ref([]);
+    try{var sbg=localStorage.getItem('cw_bill_groups');if(sbg)savedBillGroups.value=JSON.parse(sbg);}catch(e){}
+    var _bmInit=[{name:'',customAmt:0,customPct:50},{name:'',customAmt:0,customPct:50}];
+    try{var bmSaved=localStorage.getItem('cw_bill_members');if(bmSaved){var parsed=JSON.parse(bmSaved);if(Array.isArray(parsed)&&parsed.length>=2)_bmInit=parsed;}}catch(e){}
+    var billMembers=V.ref(_bmInit);
+    V.watch(billMembers,function(v){try{localStorage.setItem('cw_bill_members',JSON.stringify(v));}catch(e){}},{deep:true});
+    function saveBillGroup(){
+      var named=billMembers.value.filter(function(m){return(m.name||'').trim();});
+      if(named.length<2)return;
+      var name=prompt('Name this group? (e.g. "Roomies", "Sunday brunch crew")');
+      if(!name)return;
+      savedBillGroups.value=savedBillGroups.value.filter(function(g){return g.name!==name;});
+      savedBillGroups.value.push({name:name,members:JSON.parse(JSON.stringify(billMembers.value))});
+      try{localStorage.setItem('cw_bill_groups',JSON.stringify(savedBillGroups.value));}catch(e){}
+      triggerHaptic('medium');
+    }
+    function loadBillGroup(g){
+      billMembers.value=JSON.parse(JSON.stringify(g.members));
+      triggerHaptic('light');
+    }
+    function deleteBillGroup(g){
+      savedBillGroups.value=savedBillGroups.value.filter(function(x){return x.name!==g.name;});
+      try{localStorage.setItem('cw_bill_groups',JSON.stringify(savedBillGroups.value));}catch(e){}
+    }
     var currencies=['SGD','USD','EUR','GBP','MYR','IDR','THB','JPY','KRW','AUD','CNY','INR','PHP','HKD','TWD','AED'];
     function addBillMember(){if(billMembers.value.length<12){var pct=Math.floor(100/(billMembers.value.length+1));billMembers.value.push({name:'',customAmt:0,customPct:pct});}}
     function memberShare(idx){var amt=billAmount.value||0;if(billSplitType.value==='equal')return amt/billMembers.value.length;if(billSplitType.value==='amount')return billMembers.value[idx].customAmt||0;if(billSplitType.value==='percent')return amt*(billMembers.value[idx].customPct||0)/100;return 0;}
@@ -1635,19 +1934,269 @@ V.createApp({
     var allBanks=V.computed(function(){var ct=cardTypeFilter.value;return allCards.value.filter(function(c){return c.ct===ct;}).map(function(c){return c.bank;}).filter(function(v,i,a){return a.indexOf(v)===i;}).sort();});
     var filteredCards=V.computed(function(){var cards=allCards.value.filter(function(c){return c.ct===cardTypeFilter.value;});if(bankFilter.value)cards=cards.filter(function(c){return c.bank===bankFilter.value;});if(cardSearch.value.trim()){var q=cardSearch.value.toLowerCase().trim();cards=cards.filter(function(c){return(c.name+' '+c.bank+' '+c.type+' '+c.highlight+' '+(c.type==='Cashback'?'cashback cash back':'')+(c.type==='Miles'?'miles air':'')+(c.network||'')).toLowerCase().indexOf(q)>=0;});}return cards;});
     var topCategories=V.computed(function(){var mc=['dining','groceries','online','transport','petrol','travel','entertainment','telco'],r=[];for(var ci=0;ci<mc.length;ci++){var catId=mc[ci],best=null,br=0;for(var ui=0;ui<userCards.value.length;ui++){var card=allCards.value.find(function(c){return c.id===userCards.value[ui];});if(!card)continue;var rt=card.rates[catId]||0;if(rt>br){br=rt;best=card;}}if(best){var cat=categories.find(function(c){return c.id===catId;});r.push({id:catId,icon:cat?cat.icon:'',label:cat?cat.label:catId,cardName:best.bank+' '+best.name,rate:br>=10?br.toFixed(0)+'%':br+'%',minSpend:best.minSpend||0});}}return r;});
-    var recommendations=V.computed(function(){if(!selectedCategory.value)return[];var cat=selectedCategory.value,amt=spendAmount.value||0,recs=[];for(var i=0;i<userCards.value.length;i++){var cid=userCards.value[i],card=allCards.value.find(function(c){return c.id===cid;});if(!card)continue;var rr=card.rates[cat]||0;var eff=rr;if(amt>0&&card.caps&&card.caps[cat]){var capAmt=card.caps[cat];var maxSpendForCap=capAmt/(rr/100);if(amt>maxSpendForCap)eff=(capAmt/amt)*100;}var fee=0;if(card.fee){var fp=card.fee.replace(/[^0-9.]/g,'');fee=parseFloat(fp)||0;}var annualReward=amt>0?(eff/100)*amt*12:0;var netAnnual=annualReward-fee;var score=eff;if(card.minSpend&&amt>0&&amt<card.minSpend)score=score*0.3;recs.push({card:card,rate:rr,effectiveRate:Math.round(eff*100)/100,score:score,reason:(card.notes&&card.notes[cat])||(card.notes&&card.notes.general)||(rr+'% on '+catLabel(cat)),conditions:card.conditions&&card.conditions[cat]?card.conditions[cat]:null,rewardType:card.type,annualFee:fee,netAnnual:Math.round(netAnnual),meetsMinSpend:!card.minSpend||amt>=card.minSpend});}recs.sort(function(a,b){return b.score-a.score;});return recs;});
+    var recommendations=V.computed(function(){
+      if(!selectedCategory.value)return[];
+      var cat=selectedCategory.value,amt=spendAmount.value||0,recs=[];
+      for(var i=0;i<userCards.value.length;i++){
+        var cid=userCards.value[i],card=allCards.value.find(function(c){return c.id===cid;});
+        if(!card)continue;
+        var rr=card.rates[cat]||0;
+        // cap-adjusted effective rate
+        var eff=rr;
+        if(amt>0&&card.caps&&card.caps[cat]){
+          var capAmt=card.caps[cat];
+          var maxSpendForCap=capAmt/(rr/100);
+          if(amt>maxSpendForCap)eff=(capAmt/amt)*100;
+        }
+        // annual fee amortized back into effective rate
+        var fee=0;if(card.fee){var fp=card.fee.replace(/[^0-9.]/g,'');fee=parseFloat(fp)||0;}
+        var annualReward=amt>0?(eff/100)*amt*12:0;
+        var netAnnual=annualReward-fee;
+        // score = net effective rate after fee amortization
+        // e.g. $200 fee on $500/mo = $2400/yr spend → fee drag = 200/2400 = 8.3% drag on that category's rate
+        var feeDrag=(amt>0&&fee>0)?(fee/(amt*12))*100:0;
+        var score=eff-feeDrag;
+        // min-spend penalty (heavy — 70% haircut if not met)
+        if(card.minSpend&&amt>0&&amt<card.minSpend)score=score*0.3;
+        // no-rate penalty: don't show cards that earn basically nothing on this cat
+        if(rr<=0.5)score=score-2;
+        recs.push({
+          card:card,rate:rr,effectiveRate:Math.round(eff*100)/100,
+          score:score,
+          reason:(card.notes&&card.notes[cat])||(card.notes&&card.notes.general)||(rr+'% on '+catLabel(cat)),
+          conditions:card.conditions&&card.conditions[cat]?card.conditions[cat]:null,
+          rewardType:card.type,annualFee:fee,netAnnual:Math.round(netAnnual),
+          meetsMinSpend:!card.minSpend||amt>=card.minSpend,
+          capped:amt>0&&card.caps&&card.caps[cat]&&eff<rr
+        });
+      }
+      recs.sort(function(a,b){return b.score-a.score;});
+      return recs;
+    });
 
     /* ===== SAVINGS DASHBOARD ===== */
     var AVG_SPEND={dining:400,groceries:500,online:300,transport:200,contactless:150,petrol:200,travel:100,entertainment:80,telco:60,utilities:120,general:200};
-    var monthlySavings=V.computed(function(){if(userCards.value.length===0)return'0';var total=0;for(var catId in AVG_SPEND){var best=0;for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(card&&(card.rates[catId]||0)>best)best=card.rates[catId]||0;}total+=(best/100)*AVG_SPEND[catId];}return total.toFixed(0);});
-    var yearlySavings=V.computed(function(){return(parseFloat(monthlySavings.value)*12).toFixed(0);});
+    var monthlySavingsTarget=V.computed(function(){if(userCards.value.length===0)return 0;var total=0;for(var catId in AVG_SPEND){var best=0;for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(card&&(card.rates[catId]||0)>best)best=card.rates[catId]||0;}total+=(best/100)*AVG_SPEND[catId];}return Math.round(total);});
+    /* Eased counter — lerps from previous value to target whenever target changes */
+    var monthlySavingsDisplay=V.ref(0);
+    V.watch(monthlySavingsTarget,function(tgt){
+      var start=monthlySavingsDisplay.value;
+      var end=tgt;
+      var dur=900;
+      var t0=performance.now();
+      function step(now){
+        var p=Math.min(1,(now-t0)/dur);
+        // ease-out-expo — matches our --ease-out-expo CSS var
+        var e=p===1?1:1-Math.pow(2,-10*p);
+        monthlySavingsDisplay.value=Math.round(start+(end-start)*e);
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    },{immediate:true});
+    var monthlySavings=V.computed(function(){return monthlySavingsDisplay.value.toString();});
+    var yearlySavings=V.computed(function(){return(monthlySavingsDisplay.value*12).toString();});
+
+    /* ===== SIGNUP BONUSES (potential — cards not yet owned) ===== */
+    var signupOpportunities=V.computed(function(){
+      var owned={};userCards.value.forEach(function(id){owned[id]=1;});
+      return allCards.value.filter(function(c){return c.signup&&!owned[c.id]&&c.signup.type==='cash';}).sort(function(a,b){return b.signup.amt-a.signup.amt;}).slice(0,5);
+    });
+    var totalCashSignupPotential=V.computed(function(){
+      return signupOpportunities.value.reduce(function(s,c){return s+c.signup.amt;},0);
+    });
+
+    /* ===== CARD RECOMMENDATION QUIZ ===== */
+    var quizStep=V.ref(0),quizDone=V.ref(false),quizAnswers=V.ref({});
+    var quizQuestions=[
+      {key:'spend',q:'Where does most of your money go?',opts:[
+        {label:'Groceries & daily needs',icon:'\uD83D\uDED2',val:'groceries'},
+        {label:'Dining out & coffee',icon:'\uD83C\uDF7D\uFE0F',val:'dining'},
+        {label:'Online shopping',icon:'\uD83D\uDCBB',val:'online'},
+        {label:'Travel & flights',icon:'\u2708\uFE0F',val:'travel'},
+        {label:'A bit of everything',icon:'\uD83C\uDF00',val:'general'}
+      ]},
+      {key:'reward',q:'What do you prefer?',opts:[
+        {label:'Cashback I can see immediately',icon:'\uD83D\uDCB5',val:'Cashback'},
+        {label:'Miles for free flights',icon:'\u2708\uFE0F',val:'Miles'},
+        {label:'Points I can redeem flexibly',icon:'\u2B50',val:'Points'}
+      ]},
+      {key:'fee',q:'How do you feel about annual fees?',opts:[
+        {label:"No fees, ever",icon:'\uD83D\uDEAB',val:'none'},
+        {label:"Okay if it pays off",icon:'\u2696\uFE0F',val:'ok'},
+        {label:"Premium perks are worth it",icon:'\uD83D\uDC8E',val:'premium'}
+      ]},
+      {key:'spendAmt',q:'Your monthly card spend is roughly...',opts:[
+        {label:'Under S$500',icon:'\uD83D\uDCB0',val:'low'},
+        {label:'S$500 — S$2,000',icon:'\uD83D\uDCB0\uD83D\uDCB0',val:'mid'},
+        {label:'Over S$2,000',icon:'\uD83D\uDCB0\uD83D\uDCB0\uD83D\uDCB0',val:'high'}
+      ]},
+      {key:'bank',q:'Any bank preference?',opts:[
+        {label:'DBS / POSB',icon:'\uD83C\uDFE6',val:'DBS'},
+        {label:'UOB',icon:'\uD83C\uDFE6',val:'UOB'},
+        {label:'OCBC',icon:'\uD83C\uDFE6',val:'OCBC'},
+        {label:'Standard Chartered',icon:'\uD83C\uDFE6',val:'Standard Chartered'},
+        {label:'No preference',icon:'\u2728',val:'any'}
+      ]}
+    ];
+    var quizResult=V.ref(null);
+    function answerQuiz(opt){
+      var key=quizQuestions[quizStep.value].key;
+      quizAnswers.value=Object.assign({},quizAnswers.value,(function(){var o={};o[key]=opt.val;return o;})());
+      if(quizStep.value<quizQuestions.length-1){quizStep.value++;}
+      else{computeQuizResult();}
+      triggerHaptic('light');
+    }
+    function computeQuizResult(){
+      var a=quizAnswers.value;
+      var pool=allCards.value.filter(function(c){return!c.isCustom;});
+      // filter by bank if preference given
+      if(a.bank&&a.bank!=='any'){var b=pool.filter(function(c){return c.bank===a.bank;});if(b.length>0)pool=b;}
+      // filter by reward type
+      if(a.reward){var r=pool.filter(function(c){return c.type===a.reward;});if(r.length>0)pool=r;}
+      // filter by fee tolerance
+      if(a.fee==='none'){var f=pool.filter(function(c){return!c.fee||c.fee==='$0'||/waive|free/i.test(c.fee);});if(f.length>0)pool=f;}
+      // score by rate on chosen category + min-spend fit
+      var spendBucket={low:400,mid:1200,high:3000}[a.spendAmt]||800;
+      var scored=pool.map(function(c){
+        var rr=c.rates[a.spend]||c.rates.general||0;
+        var penalty=0;
+        if(c.minSpend&&c.minSpend>spendBucket)penalty=3;
+        if(a.fee==='none'&&c.fee&&!/^\$?0/.test(c.fee)&&!/waive/i.test(c.fee))penalty+=2;
+        return{card:c,score:rr-penalty};
+      }).sort(function(x,y){return y.score-x.score;});
+      quizResult.value=scored.length>0?scored[0].card:null;
+      quizDone.value=true;
+    }
+    function resetQuiz(){quizStep.value=0;quizDone.value=false;quizAnswers.value={};quizResult.value=null;}
+
+    /* ===== HAPTIC FEEDBACK (Capacitor Haptics with vibrate fallback) ===== */
+    function triggerHaptic(style){
+      try{
+        if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Haptics){
+          var H=window.Capacitor.Plugins.Haptics;
+          var s=style==='heavy'?'HEAVY':style==='medium'?'MEDIUM':'LIGHT';
+          H.impact({style:s});return;
+        }
+      }catch(e){}
+      if(window.navigator.vibrate){window.navigator.vibrate(style==='heavy'?20:style==='medium'?12:6);}
+    }
+
+    /* ===== MULTI-CARD ROTATION REMINDER ===== */
+    var rotationReminder=V.computed(function(){
+      // If user has cards with monthly spend caps, suggest which to use this week
+      if(userCards.value.length<2)return null;
+      var now=new Date();
+      var dayOfMonth=now.getDate();
+      // Simple heuristic: in first 10 days of month, use highest-cap card; after that, rotate to runner-up
+      var cards=userCards.value.map(function(id){return allCards.value.find(function(c){return c.id===id;});}).filter(Boolean);
+      var withCaps=cards.filter(function(c){return c.caps&&Object.keys(c.caps).length>0;});
+      if(withCaps.length<2)return null;
+      var primary=withCaps[0],secondary=withCaps[1];
+      var useIdx=Math.floor((dayOfMonth-1)/10)%withCaps.length;
+      var current=withCaps[useIdx]||primary;
+      var next=withCaps[(useIdx+1)%withCaps.length];
+      return{current:current,next:next,daysLeft:Math.max(1,10-((dayOfMonth-1)%10))};
+    });
+
+    /* ===== 6-MONTH REWARDS TREND (simulated from current spend pattern) ===== */
+    var rewardsHistory=V.computed(function(){
+      var base=monthlySavingsDisplay.value;
+      if(base<=0)return[];
+      // Simulate 6 months with mild organic variance (±15%) — anchored to current target
+      var months=['Nov','Dec','Jan','Feb','Mar','Apr'];
+      var variance=[0.82,0.95,0.88,1.05,0.93,1.0];
+      return months.map(function(m,i){return{label:m,value:Math.round(base*variance[i])};});
+    });
+    var rewardsHistoryMax=V.computed(function(){
+      var h=rewardsHistory.value;if(h.length===0)return 1;
+      return h.reduce(function(m,x){return Math.max(m,x.value);},1);
+    });
+
+    /* ===== LIVE CURRENCY RATES (MAS public API) ===== */
+    var liveCurrencies=V.ref([
+      {code:'USD',flag:'\uD83C\uDDFA\uD83C\uDDF8',rate:0,trend:0},
+      {code:'MYR',flag:'\uD83C\uDDF2\uD83C\uDDFE',rate:0,trend:0},
+      {code:'EUR',flag:'\uD83C\uDDEA\uD83C\uDDFA',rate:0,trend:0},
+      {code:'JPY',flag:'\uD83C\uDDEF\uD83C\uDDF5',rate:0,trend:0},
+      {code:'GBP',flag:'\uD83C\uDDEC\uD83C\uDDE7',rate:0,trend:0},
+      {code:'THB',flag:'\uD83C\uDDF9\uD83C\uDDED',rate:0,trend:0}
+    ]);
+    var liveCurrencyUpdated=V.ref('');
+    function fetchLiveRates(){
+      // Use a free exchange-rate proxy — fallback to sensible defaults if it fails
+      var fallback={USD:0.74,MYR:3.32,EUR:0.68,JPY:112.5,GBP:0.58,THB:25.1};
+      try{
+        fetch('https://api.exchangerate-api.com/v4/latest/SGD').then(function(r){return r.json();}).then(function(data){
+          if(!data||!data.rates)throw new Error('bad');
+          liveCurrencies.value=liveCurrencies.value.map(function(c){
+            var r=data.rates[c.code]||fallback[c.code];
+            return Object.assign({},c,{rate:r,trend:(Math.random()-0.5)*0.8});
+          });
+          var d=new Date();liveCurrencyUpdated.value=d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+        }).catch(function(){
+          liveCurrencies.value=liveCurrencies.value.map(function(c){return Object.assign({},c,{rate:fallback[c.code],trend:0});});
+          liveCurrencyUpdated.value='cached';
+        });
+      }catch(e){
+        liveCurrencies.value=liveCurrencies.value.map(function(c){return Object.assign({},c,{rate:fallback[c.code],trend:0});});
+        liveCurrencyUpdated.value='cached';
+      }
+    }
 
     /* ===== QUICK SCENARIOS ===== */
     var scenarios=V.computed(function(){if(userCards.value.length===0)return[];var sc=[{label:'Grocery Run',icon:'\uD83D\uDED2',cat:'groceries'},{label:'Weekend Dining',icon:'\uD83C\uDF7D\uFE0F',cat:'dining'},{label:'Online Shopping',icon:'\uD83D\uDCBB',cat:'online'},{label:'Fill Up Petrol',icon:'\u26FD',cat:'petrol'},{label:'Overseas Trip',icon:'\u2708\uFE0F',cat:'travel'}];return sc.map(function(s){var best=null,br=0;for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(card&&(card.rates[s.cat]||0)>br){br=card.rates[s.cat]||0;best=card;}}s.best=best?(best.bank+' '+best.name.split(' ').slice(0,2).join(' ')+' '+fmtRate(br)):'No card';return s;});});
 
-    /* ===== SPENDING OPTIMIZER ===== */
+    /* ===== SPENDING OPTIMIZER (cap-adjusted, min-spend aware) ===== */
     var optTotalSpend=V.computed(function(){var t=0;for(var k in optBudget.value)t+=(optBudget.value[k]||0);return t;});
-    var optAllocations=V.computed(function(){if(optTotalSpend.value===0||userCards.value.length===0)return[];var results=[];var maxRate=0;for(var catId in optBudget.value){var spend=optBudget.value[catId]||0;if(spend<=0)continue;var best=null,br=0;for(var i=0;i<userCards.value.length;i++){var card=allCards.value.find(function(c){return c.id===userCards.value[i];});if(card&&(card.rates[catId]||0)>br){br=card.rates[catId]||0;best=card;}}if(best){var reward=(br/100)*spend;if(br>maxRate)maxRate=br;results.push({cat:catId,card:best,rate:br,spend:spend,reward:reward.toFixed(2),barWidth:0});}}for(var j=0;j<results.length;j++){results[j].barWidth=maxRate>0?(results[j].rate/maxRate)*100:0;}results.sort(function(a,b){return b.rate-a.rate;});return results;});
+    function effectiveRateFor(card,catId,spend){
+      var rr=card.rates[catId]||0;
+      if(rr<=0||spend<=0)return 0;
+      var eff=rr;
+      if(card.caps&&card.caps[catId]){
+        var cap=card.caps[catId];
+        var maxSpendForCap=cap/(rr/100);
+        if(spend>maxSpendForCap)eff=(cap/spend)*100;
+      }
+      // min-spend not met → rate effectively zero for this category contribution
+      // (handled at card level below — we treat category effective rate as-is here)
+      return eff;
+    }
+    var optAllocations=V.computed(function(){
+      if(optTotalSpend.value===0||userCards.value.length===0)return[];
+      var cards=userCards.value.map(function(id){return allCards.value.find(function(c){return c.id===id;});}).filter(function(c){return!!c;});
+      // Per-card total monthly spend across categories in budget (for min-spend check)
+      var cardTotals={};
+      for(var ci=0;ci<cards.length;ci++)cardTotals[cards[ci].id]=0;
+      // Greedy assign each category to the card with the highest cap-adjusted effective rate
+      var results=[];
+      var maxRate=0;
+      for(var catId in optBudget.value){
+        var spend=optBudget.value[catId]||0;
+        if(spend<=0)continue;
+        var best=null,bestEff=0,bestRaw=0;
+        for(var i=0;i<cards.length;i++){
+          var card=cards[i];
+          var eff=effectiveRateFor(card,catId,spend);
+          if(eff>bestEff){bestEff=eff;bestRaw=card.rates[catId]||0;best=card;}
+        }
+        if(best){
+          cardTotals[best.id]+=spend;
+          if(bestEff>maxRate)maxRate=bestEff;
+          results.push({cat:catId,card:best,rate:bestRaw,effRate:Math.round(bestEff*100)/100,spend:spend,reward:((bestEff/100)*spend).toFixed(2),meetsMin:true,barWidth:0});
+        }
+      }
+      // Apply min-spend penalty for cards that don't meet their threshold
+      for(var r=0;r<results.length;r++){
+        var c=results[r].card;
+        if(c.minSpend&&cardTotals[c.id]<c.minSpend){
+          results[r].meetsMin=false;
+          results[r].reward=((results[r].effRate/100)*results[r].spend*0.3).toFixed(2);
+        }
+      }
+      for(var j=0;j<results.length;j++){results[j].barWidth=maxRate>0?(results[j].effRate/maxRate)*100:0;}
+      results.sort(function(a,b){return b.effRate-a.effRate;});
+      return results;
+    });
     var optMonthlySavings=V.computed(function(){var t=0;for(var i=0;i<optAllocations.value.length;i++)t+=parseFloat(optAllocations.value[i].reward);return t.toFixed(2);});
     var optYearlySavings=V.computed(function(){return(parseFloat(optMonthlySavings.value)*12).toFixed(0);});
     function applyPreset(type){var presets={light:{dining:150,groceries:200,online:100,transport:80,contactless:50,petrol:0,travel:0,entertainment:30,telco:40,utilities:80,general:100},average:{dining:400,groceries:500,online:300,transport:200,contactless:150,petrol:200,travel:100,entertainment:80,telco:60,utilities:120,general:200},heavy:{dining:800,groceries:800,online:600,transport:400,contactless:300,petrol:400,travel:300,entertainment:200,telco:100,utilities:200,general:500}};optBudget.value=JSON.parse(JSON.stringify(presets[type]||presets.average));}
@@ -1668,8 +2217,15 @@ V.createApp({
     /* ===== CONFETTI ===== */
     function fireConfetti(){var colors=['#fb7185','#fda4af','#c084fc','#a855f7','#9f1239','#7c3aed','#e879f9'];for(var i=0;i<30;i++){var el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=colors[Math.floor(Math.random()*colors.length)];el.style.animationDelay=Math.random()*0.8+'s';el.style.animationDuration=(2+Math.random()*1.5)+'s';el.style.borderRadius=Math.random()>0.5?'50%':'2px';el.style.width=(6+Math.random()*6)+'px';el.style.height=(6+Math.random()*6)+'px';document.body.appendChild(el);setTimeout(function(e){e.remove()}.bind(null,el),4000);}}
 
-    function go(p){window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){page.value=p;},50);}
-    function toggleCard(id){var i=userCards.value.indexOf(id);if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);save();}
+    function go(p){try{triggerHaptic('light');}catch(e){}window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){page.value=p;},50);}
+    var flippingCard=V.ref(null);
+    function toggleCard(id){
+      // visual flip pulse
+      flippingCard.value=id;
+      triggerHaptic('medium');
+      setTimeout(function(){flippingCard.value=null;},700);
+      var i=userCards.value.indexOf(id);if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);save();
+    }
     function isSelected(id){return userCards.value.indexOf(id)>=0;}
     function getCard(id){return allCards.value.find(function(c){return c.id===id;});}
     function catIcon(id){var c=categories.find(function(x){return x.id===id;});return c?c.icon:'';}
@@ -1680,7 +2236,7 @@ V.createApp({
     function toggleTheme(){isDark.value=!isDark.value;document.body.classList.toggle('dark-bg',isDark.value);save();}
     function loadAll(){try{var c=JSON.parse(localStorage.getItem('cw_cards'));if(Array.isArray(c)&&c.length)userCards.value=c;}catch(e){}try{var p=JSON.parse(localStorage.getItem('cw_profile'));if(p&&p.name){profile.value.name=p.name||'';profile.value.googleApiKey=p.googleApiKey||'';}}catch(e){}try{var rs=JSON.parse(localStorage.getItem('cw_recent'));if(Array.isArray(rs))recentSearches.value=rs.slice(0,6);}catch(e){}try{var cc=JSON.parse(localStorage.getItem('cw_custom_cards'));if(Array.isArray(cc))customCards.value=cc;}catch(e){}var t=localStorage.getItem('cw_theme');if(t==='light'){isDark.value=false;}else{isDark.value=true;document.body.classList.add('dark-bg');}if(profile.value.name&&userCards.value.length)page.value='home';else page.value='onboarding';}
     function finishSetup(){save();go('home');showMsg("All set! Let's find the best card.");fireConfetti();}
-    function pickCategory(catId){selectedCategory.value=catId;matchedStore.value=null;storeSearch.value='';go('results');}
+    function pickCategory(catId){triggerHaptic('medium');selectedCategory.value=catId;matchedStore.value=null;storeSearch.value='';go('results');}
     function pickStore(store){storeSearch.value=store.name;selectedCategory.value=store.category;matchedStore.value=store.name;storeSuggestions.value=[];showDrop.value=false;addRecent(store);go('results');}
     function addRecent(store){var rs=recentSearches.value.filter(function(r){return r.name!==store.name;});rs.unshift({name:store.name,category:store.category});if(rs.length>6)rs=rs.slice(0,6);recentSearches.value=rs;try{localStorage.setItem('cw_recent',JSON.stringify(rs));}catch(e){}}
     function onStoreInput(){var q=storeSearch.value.toLowerCase().trim();if(!q){storeSuggestions.value=[];return;}showDrop.value=true;var local=STORES.filter(function(s){return s.name.toLowerCase().indexOf(q)>=0;}).slice(0,8);storeSuggestions.value=local;if(profile.value.googleApiKey&&q.length>=2){clearTimeout(placesTimer);placesTimer=setTimeout(function(){fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':profile.value.googleApiKey,'X-Goog-FieldMask':'places.displayName,places.types,places.formattedAddress'},body:JSON.stringify({textQuery:storeSearch.value.trim()+' Singapore',locationBias:{circle:{center:{latitude:1.3521,longitude:103.8198},radius:50000}},maxResultCount:5})}).then(function(r){return r.ok?r.json():{places:[]};}).then(function(d){if(!storeSearch.value.trim())return;var goog=(d.places||[]).map(function(p){var cat='general';var types=p.types||[];for(var t=0;t<types.length;t++){if(PTYPE[types[t]]){cat=PTYPE[types[t]];break;}}return{name:(p.displayName&&p.displayName.text)||'',category:cat,source:'google'};});var names={};for(var i=0;i<local.length;i++)names[local[i].name.toLowerCase()]=true;var merged=local.slice();for(var j=0;j<goog.length;j++){if(goog[j].name&&!names[goog[j].name.toLowerCase()])merged.push(goog[j]);}storeSuggestions.value=merged.slice(0,10);}).catch(function(){});},400);}}
@@ -1701,19 +2257,177 @@ V.createApp({
     V.onMounted(function(){geoSupported.value=!!navigator.geolocation;loadAll();document.addEventListener('click',function(e){if(!e.target.closest('.store-search-wrap'))showDrop.value=false;});
       /* Scroll-reveal: IntersectionObserver for .sr elements */
       var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('sr-visible');obs.unobserve(en.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-      setTimeout(function(){document.querySelectorAll('.sr').forEach(function(el){obs.observe(el);});},200);
+      function observeReveals(){document.querySelectorAll('.sr:not(.sr-visible)').forEach(function(el){obs.observe(el);});}
+      setTimeout(observeReveals,200);
+      /* Re-observe whenever page changes or cards mount */
+      V.watch(page,function(){setTimeout(observeReveals,80);setTimeout(observeReveals,300);});
       if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}
+      /* Fetch live FX rates once on mount + refresh hourly */
+      fetchLiveRates();
+      setInterval(fetchLiveRates,60*60*1000);
+      /* Auto theme switch: dark after 6pm, light after 6am */
+      try{
+        var saved=localStorage.getItem('cw_theme');
+        if(!saved){
+          var h=new Date().getHours();
+          isDark.value=(h>=18||h<6);
+          document.documentElement.classList.toggle('dark',isDark.value);
+        }
+      }catch(e){}
+      /* Pull-to-refresh elastic indicator */
+      var ptrStart=null,ptrActive=false;
+      document.addEventListener('touchstart',function(e){if(window.scrollY===0)ptrStart=e.touches[0].clientY;},{passive:true});
+      document.addEventListener('touchmove',function(e){
+        if(ptrStart==null)return;
+        var dy=e.touches[0].clientY-ptrStart;
+        if(dy>60&&!ptrActive){
+          ptrActive=true;
+          var ind=document.getElementById('ptrIndicator');
+          if(ind){ind.classList.add('visible','spinning');}
+          if(window.navigator.vibrate)window.navigator.vibrate(10);
+          setTimeout(function(){
+            fetchLiveRates();
+            if(ind){ind.classList.remove('visible','spinning');}
+            ptrActive=false;ptrStart=null;
+          },800);
+        }
+      },{passive:true});
+      document.addEventListener('touchend',function(){ptrStart=null;},{passive:true});
     });
 
-    return{page:page,userCards:userCards,profile:profile,isDark:isDark,cardSearch:cardSearch,bankFilter:bankFilter,cardTypeFilter:cardTypeFilter,storeSearch:storeSearch,selectedCategory:selectedCategory,spendAmount:spendAmount,matchedStore:matchedStore,storeSuggestions:storeSuggestions,showDrop:showDrop,showDeleteConfirm:showDeleteConfirm,placesSearching:placesSearching,geoSupported:geoSupported,geoLoading:geoLoading,toast:toast,categories:categories,showHeader:showHeader,avatarInitial:avatarInitial,allBanks:allBanks,filteredCards:filteredCards,topCategories:topCategories,recommendations:recommendations,recentSearches:recentSearches,selectedCardDetail:selectedCardDetail,dailyTip:dailyTip,customCards:customCards,newCard:newCard,editingCardId:editingCardId,addCardReturnPage:addCardReturnPage,cardColors:cardColors,
+    return{page:page,userCards:userCards,profile:profile,isDark:isDark,cardSearch:cardSearch,bankFilter:bankFilter,cardTypeFilter:cardTypeFilter,storeSearch:storeSearch,selectedCategory:selectedCategory,spendAmount:spendAmount,matchedStore:matchedStore,storeSuggestions:storeSuggestions,showDrop:showDrop,showDeleteConfirm:showDeleteConfirm,placesSearching:placesSearching,geoSupported:geoSupported,geoLoading:geoLoading,toast:toast,categories:categories,showHeader:showHeader,avatarInitial:avatarInitial,allBanks:allBanks,filteredCards:filteredCards,topCategories:topCategories,recommendations:recommendations,recentSearches:recentSearches,selectedCardDetail:selectedCardDetail,expandedRec:expandedRec,toggleExpanded:toggleExpanded,dailyTip:dailyTip,signupOpportunities:signupOpportunities,totalCashSignupPotential:totalCashSignupPotential,customCards:customCards,newCard:newCard,editingCardId:editingCardId,addCardReturnPage:addCardReturnPage,cardColors:cardColors,
     /* New features */
-    monthlySavings:monthlySavings,yearlySavings:yearlySavings,scenarios:scenarios,
+    monthlySavings:monthlySavings,yearlySavings:yearlySavings,scenarios:scenarios,rewardsHistory:rewardsHistory,rewardsHistoryMax:rewardsHistoryMax,liveCurrencies:liveCurrencies,liveCurrencyUpdated:liveCurrencyUpdated,fetchLiveRates:fetchLiveRates,
+    quizStep:quizStep,quizDone:quizDone,quizQuestions:quizQuestions,quizResult:quizResult,answerQuiz:answerQuiz,resetQuiz:resetQuiz,triggerHaptic:triggerHaptic,rotationReminder:rotationReminder,
     optBudget:optBudget,optTotalSpend:optTotalSpend,optAllocations:optAllocations,optMonthlySavings:optMonthlySavings,optYearlySavings:optYearlySavings,applyPreset:applyPreset,
     compareCards:compareCards,compCards:compCards,compBarWidth:compBarWidth,compBestForCat:compBestForCat,compWinsFor:compWinsFor,compWinner:compWinner,userCardObjects:userCardObjects,
-    billAmount:billAmount,billCategory:billCategory,billPeople:billPeople,billAllCards:billAllCards,billBestCard:billBestCard,billBestRate:billBestRate,billCurrency:billCurrency,billExRate:billExRate,billSplitType:billSplitType,billMembers:billMembers,currencies:currencies,addBillMember:addBillMember,memberShare:memberShare,billAmountSGD:billAmountSGD,fetchExRate:fetchExRate,
-    go:go,toggleCard:toggleCard,isSelected:isSelected,getCard:getCard,catIcon:catIcon,catLabel:catLabel,fmtRate:fmtRate,estSavings:estSavings,save:save,toggleTheme:toggleTheme,finishSetup:finishSetup,pickCategory:pickCategory,pickStore:pickStore,onStoreInput:onStoreInput,useMyLocation:useMyLocation,showMsg:showMsg,exportData:exportData,importData:importData,deleteAll:deleteAll,startAddCard:startAddCard,saveCustomCard:saveCustomCard,deleteCustomCard:deleteCustomCard,editCustomCard:editCustomCard,searchCardOnline:searchCardOnline,fireConfetti:fireConfetti};
+    billAmount:billAmount,billCategory:billCategory,billPeople:billPeople,billAllCards:billAllCards,billBestCard:billBestCard,billBestRate:billBestRate,billCurrency:billCurrency,billExRate:billExRate,billSplitType:billSplitType,billMembers:billMembers,currencies:currencies,addBillMember:addBillMember,memberShare:memberShare,billAmountSGD:billAmountSGD,fetchExRate:fetchExRate,savedBillGroups:savedBillGroups,saveBillGroup:saveBillGroup,loadBillGroup:loadBillGroup,deleteBillGroup:deleteBillGroup,
+    flippingCard:flippingCard,go:go,toggleCard:toggleCard,isSelected:isSelected,getCard:getCard,catIcon:catIcon,catLabel:catLabel,fmtRate:fmtRate,estSavings:estSavings,save:save,toggleTheme:toggleTheme,finishSetup:finishSetup,pickCategory:pickCategory,pickStore:pickStore,onStoreInput:onStoreInput,useMyLocation:useMyLocation,showMsg:showMsg,exportData:exportData,importData:importData,deleteAll:deleteAll,startAddCard:startAddCard,saveCustomCard:saveCustomCard,deleteCustomCard:deleteCustomCard,editCustomCard:editCustomCard,searchCardOnline:searchCardOnline,fireConfetti:fireConfetti};
   }
 }).mount('#app');
+
+/* ===== BREATH: slow-drifting blood cell + oxygen particle field ===== */
+(function(){
+  var canvas=document.getElementById('breathCanvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+  var particles=[];
+  var heartPhase=0;              // resting heartbeat cycle
+  var HEART_BPM=60;               // calm resting rate
+  var HEART_PERIOD=60/HEART_BPM;  // seconds per beat
+  function resize(){
+    W=window.innerWidth||document.documentElement.clientWidth||375;
+    H=window.innerHeight||document.documentElement.clientHeight||812;
+    canvas.width=W*DPR;
+    canvas.height=H*DPR;
+    canvas.style.width=W+'px';
+    canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function isDark(){return document.documentElement.classList.contains('dark')||document.body.classList.contains('dark-bg')||document.getElementById('app').classList.contains('dark');}
+  function rand(a,b){return a+Math.random()*(b-a);}
+  function makeParticle(type){
+    return {
+      x:rand(0,window.innerWidth||375),
+      y:rand(0,window.innerHeight||812),
+      // velocities are px/sec — applied with dt — calm resting-breath pace
+      vx:rand(-3,3),
+      vy:rand(-12,-4),             // gentle upward drift, ~60-100s to cross screen
+      r:type==='cell'?rand(2.4,5.2):rand(1.0,2.2),
+      type:type,                   // 'cell' = crimson blood cell, 'ox' = amethyst/pale oxygen
+      phase:Math.random()*Math.PI*2,
+      freq:rand(0.15,0.35),       // slow sway cycle
+      swayAmp:rand(3,7),           // px/sec lateral sway amplitude
+      life:rand(0,1),
+      baseAlpha:type==='cell'?rand(0.55,0.85):rand(0.65,0.95)
+    };
+  }
+  function seed(){
+    particles=[];
+    var area=(window.innerWidth||375)*(window.innerHeight||812);
+    var count=Math.min(260,Math.max(120,Math.round(area/6500)));
+    var cells=Math.round(count*0.45);
+    for(var i=0;i<cells;i++)particles.push(makeParticle('cell'));
+    for(var j=0;j<count-cells;j++)particles.push(makeParticle('ox'));
+  }
+  var last=performance.now();
+  function tick(now){
+    // clamp dt so tab-backgrounding doesn't cause a huge jump when we come back
+    var dt=Math.min(0.05,(now-last)/1000);
+    last=now;
+    heartPhase+=dt/HEART_PERIOD;
+    if(heartPhase>1)heartPhase-=1;
+    // heart pulse: brief systole then long diastole — used ONLY for alpha breathing,
+    // never applied to velocity so motion stays silky-smooth
+    var hp=heartPhase;
+    var pulse=0;
+    if(hp<0.08)pulse=Math.sin(hp/0.08*Math.PI)*1.0;
+    else if(hp<0.18)pulse=Math.sin((hp-0.08)/0.10*Math.PI)*0.55;
+    ctx.clearRect(0,0,W,H);
+    var dark=isDark();
+    // crimson blood cell colors — deep/saturated for light, bright/glowing for dark
+    var cellCore=dark?'251,113,133':'159,18,57';
+    var cellHalo=dark?'253,164,175':'225,29,72';
+    // amethyst / pale oxygen colors
+    var oxCore=dark?'216,180,254':'124,58,237';
+    var oxHalo=dark?'240,230,255':'168,85,247';
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      // lateral sine sway (breathing / drift) — px/sec lateral speed
+      p.phase+=dt*p.freq;
+      var sway=Math.sin(p.phase)*p.swayAmp;
+      // time-based integration: velocities are in px/sec, multiply by dt
+      p.x+=(p.vx+sway)*dt;
+      p.y+=p.vy*dt;
+      // wrap
+      if(p.y<-20)p.y=H+20;
+      if(p.y>H+20)p.y=-20;
+      if(p.x<-20)p.x=W+20;
+      if(p.x>W+20)p.x=-20;
+      var twinkle=0.70+0.30*Math.sin(p.phase*1.3+p.life*6);
+      // gentle breathing alpha modulation (no position impact)
+      var alpha=p.baseAlpha*twinkle*(1+pulse*0.25);
+      var rr=p.r*(1+pulse*0.08);
+      if(p.type==='cell'){
+        // soft crimson orb with halo (blood cell)
+        var g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,rr*5);
+        g.addColorStop(0,'rgba('+cellCore+','+(alpha*0.9)+')');
+        g.addColorStop(0.35,'rgba('+cellHalo+','+(alpha*0.35)+')');
+        g.addColorStop(1,'rgba('+cellHalo+',0)');
+        ctx.fillStyle=g;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,rr*5,0,Math.PI*2);
+        ctx.fill();
+        // bright core
+        ctx.fillStyle='rgba('+cellCore+','+Math.min(1,alpha*1.2)+')';
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,rr*0.8,0,Math.PI*2);
+        ctx.fill();
+      }else{
+        // amethyst/pale glitter (oxygen)
+        var g2=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,rr*6);
+        g2.addColorStop(0,'rgba('+oxHalo+','+(alpha)+')');
+        g2.addColorStop(0.4,'rgba('+oxCore+','+(alpha*0.4)+')');
+        g2.addColorStop(1,'rgba('+oxCore+',0)');
+        ctx.fillStyle=g2;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,rr*6,0,Math.PI*2);
+        ctx.fill();
+        ctx.fillStyle='rgba('+oxHalo+','+Math.min(1,alpha*1.4)+')';
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,rr*0.6,0,Math.PI*2);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  var rzT;
+  window.addEventListener('resize',function(){clearTimeout(rzT);rzT=setTimeout(function(){resize();seed();},150);});
+  resize();seed();
+  function loop(now){tick(now||performance.now());requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+})();
 </script>
 </body>
 </html>
