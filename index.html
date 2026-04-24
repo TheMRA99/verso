@@ -389,12 +389,25 @@
     .reveal-expand { animation: revealExpand 0.4s var(--ease-out-expo) both; transform-origin: top; }
     @keyframes revealExpand { 0%{opacity:0;transform:translateY(-6px) scaleY(0.9)} 100%{opacity:1;transform:translateY(0) scaleY(1)} }
 
-    /* 3D card flip on select */
-    .flip-card { perspective: 1000px; }
-    .flip-inner { transition: transform 0.7s var(--ease-out-expo); transform-style: preserve-3d; }
-    .flip-card.is-flipped .flip-inner { transform: rotateY(180deg); }
-    .flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-    .flip-back { position: absolute; inset: 0; transform: rotateY(180deg); }
+    /* Theme swap — short masked crossfade instead of per-element tween storm */
+    html.theme-switching *,
+    html.theme-switching *::before,
+    html.theme-switching *::after { transition: none !important; animation: none !important; }
+    .theme-flash {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background: radial-gradient(circle at var(--tx,50%) var(--ty,50%), var(--accent) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.45s var(--ease-out-expo);
+      mix-blend-mode: overlay;
+    }
+    .theme-flash.active { opacity: 0.25; }
+
+    /* 3D card flip on select — lightweight single-element transform */
+    .flip-card { transform-style: flat; will-change: transform; transition: transform 0.38s var(--ease-out-expo); }
+    .flip-card.is-flipped { transform: rotateY(180deg) scale(0.96); }
+
+    /* Card row — narrow transition (only colors + border, not "all") */
+    .card-row { transition: background-color 0.25s var(--ease-smooth), border-color 0.25s var(--ease-smooth), transform 0.2s var(--ease-out-expo); }
+    .card-row:active { transform: scale(0.985); }
 
     /* Rewards chart bars */
     .reward-bar { transform-origin: bottom; animation: barRise 0.9s var(--ease-out-expo) both; }
@@ -865,7 +878,7 @@
         <button @click="userCards=[];save()" class="text-xs transition-colors" style="color:var(--text3)">Clear all</button>
       </div>
       <div class="space-y-2 mb-6">
-        <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
+        <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="card-row flex items-center gap-3.5 p-3.5 rounded-2xl border cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
           <div class="card-tile flex items-end justify-start p-1.5 flip-card" :class="[isSelected(card.id)?'card-tile-selected':'',flippingCard===card.id?'is-flipped':'']" :style="{background:card.color}">
             <div class="card-chip"></div>
@@ -1221,7 +1234,7 @@
         <button v-for="bank in allBanks" :key="bank" @click="bankFilter=bankFilter===bank?'':bank" class="px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-all" :class="bankFilter===bank?'btn-accent':''" :style="bankFilter!==bank?{background:'var(--accent-bg)',color:'var(--text2)'}:{}">{{bank}}</button>
       </div>
       <div class="space-y-2">
-        <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="flex items-center gap-3.5 p-3.5 rounded-2xl border transition-all cursor-pointer surface-h"
+        <div v-for="card in filteredCards" :key="card.id" @click="toggleCard(card.id)" class="card-row flex items-center gap-3.5 p-3.5 rounded-2xl border cursor-pointer surface-h"
              :style="{background:isSelected(card.id)?'var(--accent-bg)':'var(--surface)',borderColor:isSelected(card.id)?'var(--accent)':'var(--surface-border)'}">
           <div class="card-tile flex items-end justify-start p-1.5 flip-card" :class="[isSelected(card.id)?'card-tile-selected':'',flippingCard===card.id?'is-flipped':'']" :style="{background:card.color}">
             <div class="card-chip"></div>
@@ -2219,12 +2232,18 @@ V.createApp({
 
     function go(p){try{triggerHaptic('light');}catch(e){}window.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){page.value=p;},50);}
     var flippingCard=V.ref(null);
+    var _saveTimer=null;
+    function debouncedSave(){if(_saveTimer)clearTimeout(_saveTimer);_saveTimer=setTimeout(save,250);}
     function toggleCard(id){
-      // visual flip pulse
+      triggerHaptic('light');
+      // Flip state mutation is the cheap part; do it first so Vue reacts immediately
+      var i=userCards.value.indexOf(id);
+      if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);
+      // Visual flip — kept short (400ms) and only on the tile, not the whole row
       flippingCard.value=id;
-      triggerHaptic('medium');
-      setTimeout(function(){flippingCard.value=null;},700);
-      var i=userCards.value.indexOf(id);if(i>=0)userCards.value.splice(i,1);else userCards.value.push(id);save();
+      setTimeout(function(){if(flippingCard.value===id)flippingCard.value=null;},400);
+      // Push localStorage write off the interaction frame + debounce rapid multi-taps
+      debouncedSave();
     }
     function isSelected(id){return userCards.value.indexOf(id)>=0;}
     function getCard(id){return allCards.value.find(function(c){return c.id===id;});}
@@ -2233,7 +2252,28 @@ V.createApp({
     function fmtRate(r){if(r>=10)return r.toFixed(0)+'%';if(r===Math.floor(r))return r+'%';return r.toFixed(1)+'%';}
     function estSavings(rec,amt){var s=(rec.effectiveRate/100)*amt;if(rec.rewardType==='Miles')return'~'+Math.round(s/0.018).toLocaleString()+' miles (~S$'+s.toFixed(2)+')';if(rec.rewardType==='Rewards')return'S$'+s.toFixed(2)+' value';return'S$'+s.toFixed(2)+' cashback';}
     function save(){try{localStorage.setItem('cw_cards',JSON.stringify(userCards.value));localStorage.setItem('cw_profile',JSON.stringify(profile.value));localStorage.setItem('cw_theme',isDark.value?'dark':'light');localStorage.setItem('cw_custom_cards',JSON.stringify(customCards.value));}catch(e){}}
-    function toggleTheme(){isDark.value=!isDark.value;document.body.classList.toggle('dark-bg',isDark.value);save();}
+    function toggleTheme(){
+      triggerHaptic('light');
+      var root=document.documentElement;
+      var flip=function(){isDark.value=!isDark.value;document.body.classList.toggle('dark-bg',isDark.value);};
+      // If the browser supports View Transitions, use them for a baked-in crossfade
+      if(document.startViewTransition){
+        document.startViewTransition(flip);
+        // Persist off main thread
+        setTimeout(save,0);
+        return;
+      }
+      // Fallback: kill all CSS transitions during the flip to avoid paint storm
+      root.classList.add('theme-switching');
+      // Force reflow so the no-transition rule applies before we flip classes
+      void root.offsetWidth;
+      flip();
+      // Next frame, allow transitions again — everything is already at its new color
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){root.classList.remove('theme-switching');});
+      });
+      setTimeout(save,0);
+    }
     function loadAll(){try{var c=JSON.parse(localStorage.getItem('cw_cards'));if(Array.isArray(c)&&c.length)userCards.value=c;}catch(e){}try{var p=JSON.parse(localStorage.getItem('cw_profile'));if(p&&p.name){profile.value.name=p.name||'';profile.value.googleApiKey=p.googleApiKey||'';}}catch(e){}try{var rs=JSON.parse(localStorage.getItem('cw_recent'));if(Array.isArray(rs))recentSearches.value=rs.slice(0,6);}catch(e){}try{var cc=JSON.parse(localStorage.getItem('cw_custom_cards'));if(Array.isArray(cc))customCards.value=cc;}catch(e){}var t=localStorage.getItem('cw_theme');if(t==='light'){isDark.value=false;}else{isDark.value=true;document.body.classList.add('dark-bg');}if(profile.value.name&&userCards.value.length)page.value='home';else page.value='onboarding';}
     function finishSetup(){save();go('home');showMsg("All set! Let's find the best card.");fireConfetti();}
     function pickCategory(catId){triggerHaptic('medium');selectedCategory.value=catId;matchedStore.value=null;storeSearch.value='';go('results');}
