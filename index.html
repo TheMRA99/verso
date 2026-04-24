@@ -19,6 +19,9 @@
     ::selection { background-color: var(--accent); color: var(--accent-text); }
     [v-cloak] { display: none; }
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    /* App-like: no text selection on UI chrome; allow it only on inputs + explicit .selectable */
+    html, body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    input, textarea, select, [contenteditable="true"], .selectable { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
     :root {
       /* Unified easing curves — Lando-smooth */
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
