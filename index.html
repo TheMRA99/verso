@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="VERSO">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%239f1239'/><stop offset='100%25' stop-color='%237c3aed'/></linearGradient></defs><rect rx='22' width='100' height='100' fill='url(%23g)'/><text x='50' y='70' text-anchor='middle' fill='white' font-size='48' font-family='sans-serif' font-weight='900' letter-spacing='-3'>V</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%239f1239'/><stop offset='100%25' stop-color='%237c3aed'/></linearGradient></defs><rect rx='22' width='100' height='100' fill='url(%23g)'/><g transform='translate(15 8) scale(1.75)' fill='none' stroke='white'><path d='M20 2L34.5 10.5V29.5L20 38L5.5 29.5V10.5L20 2Z' stroke-width='1.5' stroke-linejoin='round' opacity='0.6'/><path d='M16.5 8c-1.7 0-3.1 1.4-3.1 3.1s1.4 3.1 3.1 3.1c.5 0 .9-.1 1.3-.3-1.6-.5-2.7-2-2.7-3.8s1.1-3.3 2.7-3.8c-.4-.2-.8-.3-1.3-.3z' fill='white' stroke='none'/><path d='M22.6 8.7l.4 1.1 1.1.4-1.1.4-.4 1.1-.4-1.1-1.1-.4 1.1-.4z' fill='white' stroke='none'/><circle cx='26.6' cy='10.8' r='0.6' fill='white' stroke='none'/><text x='20' y='28' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='13.5' fill='white' stroke='none'>MA</text><path d='M13 33l3-3 4 2 4-3 3 4' stroke-width='1.2' stroke-linejoin='round' stroke-linecap='round' opacity='0.75'/></g></svg>">
   <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22VERSO%22%2C%22short_name%22%3A%22VERSO%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23050508%22%2C%22theme_color%22%3A%22%23050508%22%2C%22description%22%3A%22The%20smartest%20way%20to%20maximize%20card%20rewards%20in%20Singapore%22%7D">
   <title>VERSO — Card Rewards Optimizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -790,7 +790,20 @@
     <div class="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-2.5 cursor-pointer" @click="go('home')">
         <div class="w-9 h-9 rounded-xl flex items-center justify-center glow-border" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">
-          <svg class="w-5 h-5" :style="{color: isDark?'#09090b':'#fff'}" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          <svg class="w-6 h-6" :style="{color: isDark?'#09090b':'#fff'}" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Hexagon frame -->
+            <path d="M20 2L34.5 10.5V29.5L20 38L5.5 29.5V10.5L20 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
+            <!-- Crescent moon -->
+            <path d="M16.5 8c-1.7 0-3.1 1.4-3.1 3.1s1.4 3.1 3.1 3.1c.5 0 .9-.1 1.3-.3-1.6-.5-2.7-2-2.7-3.8s1.1-3.3 2.7-3.8c-.4-.2-.8-.3-1.3-.3z" fill="currentColor"/>
+            <!-- 4-point sparkle -->
+            <path d="M22.6 8.7l.4 1.1 1.1.4-1.1.4-.4 1.1-.4-1.1-1.1-.4 1.1-.4z" fill="currentColor"/>
+            <!-- Tiny dot star -->
+            <circle cx="26.6" cy="10.8" r="0.6" fill="currentColor"/>
+            <!-- MA wordmark -->
+            <text x="20" y="28" text-anchor="middle" font-family="'Sora','Space Grotesk','Inter',sans-serif" font-weight="900" font-size="13.5" letter-spacing="-0.6" fill="currentColor">MA</text>
+            <!-- Mountain peak silhouette -->
+            <path d="M13 33l3-3 4 2 4-3 3 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" fill="none" opacity="0.7"/>
+          </svg>
         </div>
         <span class="font-brand text-base" :style="{color:'var(--text)'}">VER<span class="animated-gradient-text">SO</span></span>
       </div>
@@ -814,7 +827,14 @@
       <div class="neon-line w-24 mx-auto mb-6 glow"></div>
       <!-- Animated logo -->
       <div class="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center glow-border reveal" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">
-        <svg class="w-10 h-10" :style="{color:isDark?'#0a0a0a':'#fff'}" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+        <svg class="w-14 h-14" :style="{color:isDark?'#0a0a0a':'#fff'}" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <path d="M20 2L34.5 10.5V29.5L20 38L5.5 29.5V10.5L20 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
+          <path d="M16.5 8c-1.7 0-3.1 1.4-3.1 3.1s1.4 3.1 3.1 3.1c.5 0 .9-.1 1.3-.3-1.6-.5-2.7-2-2.7-3.8s1.1-3.3 2.7-3.8c-.4-.2-.8-.3-1.3-.3z" fill="currentColor"/>
+          <path d="M22.6 8.7l.4 1.1 1.1.4-1.1.4-.4 1.1-.4-1.1-1.1-.4 1.1-.4z" fill="currentColor"/>
+          <circle cx="26.6" cy="10.8" r="0.6" fill="currentColor"/>
+          <text x="20" y="28" text-anchor="middle" font-family="'Sora','Space Grotesk','Inter',sans-serif" font-weight="900" font-size="13.5" letter-spacing="-0.6" fill="currentColor">MA</text>
+          <path d="M13 33l3-3 4 2 4-3 3 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" fill="none" opacity="0.7"/>
+        </svg>
       </div>
       <h1 class="font-brand text-6xl tracking-wider mb-4 reveal" :style="{color:'var(--text)'}">VER<span class="animated-gradient-text">SO</span></h1>
       <p class="text-lg mb-2 reveal-up font-semibold" style="animation-delay:0.25s;color:var(--text2)">Flip to the right card. Every time.</p>
