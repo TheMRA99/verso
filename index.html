@@ -787,13 +787,6 @@
         <span class="font-brand text-base" :style="{color:'var(--text)'}">VER<span class="animated-gradient-text">SO</span></span>
       </div>
       <div class="flex items-center gap-3">
-        <!-- Theme toggle -->
-        <div class="theme-toggle" :style="{background: isDark?'rgba(251,113,133,0.15)':'rgba(159,18,57,0.1)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#fb7185':'#9f1239'}">
-            <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
-            <svg v-else class="w-3.5 h-3.5 text-dark-600" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
-          </div>
-        </div>
         <button @click="go('profile')" class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm btn-accent">{{avatarInitial}}</button>
       </div>
     </div>
@@ -817,17 +810,6 @@
           <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-display font-bold text-lg text-white" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">{{step.n}}</div>
           <div><p class="font-semibold" :style="{color:'var(--text)'}">{{step.t}}</p><p class="text-sm mt-0.5" style="color:var(--text3)">{{step.d}}</p></div>
         </div>
-      </div>
-      <!-- Theme toggle on onboarding -->
-      <div class="flex items-center justify-center gap-3 mb-6 slide-up" style="animation-delay:0.35s">
-        <span class="text-xs font-medium" style="color:var(--text3)">Light</span>
-        <div class="theme-toggle" :style="{background: isDark?'rgba(251,113,133,0.15)':'rgba(159,18,57,0.1)'}" @click="toggleTheme">
-          <div class="knob flex items-center justify-center" :style="{transform:isDark?'translateX(24px)':'translateX(3px)', background:isDark?'#fb7185':'#9f1239'}">
-            <svg v-if="!isDark" class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
-            <svg v-else class="w-3.5 h-3.5" style="color:#09090b" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
-          </div>
-        </div>
-        <span class="text-xs font-medium" style="color:var(--text3)">Dark</span>
       </div>
       <button @click="go('setup-name')" class="w-full py-4 rounded-2xl btn-accent font-display font-bold text-lg tracking-tight transition-all slide-up" style="animation-delay:0.4s">GET STARTED</button>
       <div class="neon-line w-12 mx-auto mt-8 mb-3"></div><p class="text-xs" style="color:var(--text4)">All data stored on your device. No sign-up.</p>
