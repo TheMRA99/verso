@@ -14,7 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     ::selection { background-color: var(--accent); color: var(--accent-text); }
     [v-cloak] { display: none; }
@@ -1615,28 +1615,34 @@
             <button @click="showDeleteConfirm=true" class="w-full py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.08);color:#ef4444">Delete All Data</button>
           </div>
         </div>
-        <div class="p-5 rounded-2xl text-center" :style="{background:isDark?'linear-gradient(180deg,rgba(10,2,6,0.96),rgba(6,2,10,0.98))':'linear-gradient(180deg,rgba(250,246,248,0.98),rgba(244,238,242,0.96))',border:'1px solid '+(isDark?'rgba(251,113,133,0.08)':'rgba(159,18,57,0.07)'),boxShadow:isDark?'0 4px 24px rgba(0,0,0,0.4)':'0 2px 12px rgba(159,18,57,0.04)'}">
-          <!-- Thin rule top -->
-          <div class="mx-auto mb-4" :style="{width:'40px',height:'1px',background:isDark?'rgba(251,113,133,0.15)':'rgba(159,18,57,0.1)'}"></div>
-          <!-- Minimal crest with signature MA -->
-          <svg class="mx-auto mb-3" width="48" height="56" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+        <!-- ===== MAKER'S MARK — Muneer Ahmed (drop this block into any app) ===== -->
+        <div class="makers-mark p-6 rounded-2xl text-center" :style="{background:isDark?'linear-gradient(180deg,#0a0a0a,#0f0a06)':'linear-gradient(180deg,#faf6ed,#f4ecd8)',border:'1px solid '+(isDark?'rgba(212,175,55,0.18)':'rgba(139,111,46,0.18)'),boxShadow:isDark?'0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(212,175,55,0.08)':'0 4px 20px rgba(139,111,46,0.06)'}">
+          <!-- Hexagon crest with elegant serif MA -->
+          <svg class="mx-auto mb-4" width="80" height="100" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" fill="none">
             <defs>
-              <linearGradient id="crest-stroke" x1="0" y1="0" x2="0.5" y2="1"><stop offset="0%" :stop-color="isDark?'rgba(251,113,133,0.4)':'rgba(159,18,57,0.25)'"/><stop offset="100%" :stop-color="isDark?'rgba(192,132,252,0.25)':'rgba(124,58,237,0.15)'"/></linearGradient>
+              <linearGradient id="mm-gold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" :stop-color="isDark?'#e6c97a':'#a07f3a'"/>
+                <stop offset="50%" :stop-color="isDark?'#d4af37':'#8b6f2e'"/>
+                <stop offset="100%" :stop-color="isDark?'#a8862a':'#6b5320'"/>
+              </linearGradient>
             </defs>
-            <!-- Shield outline only — thin, understated -->
-            <path d="M60 8 L104 26 L104 60 Q104 96 60 126 Q16 96 16 60 L16 26 Z" fill="none" stroke="url(#crest-stroke)" stroke-width="1.5"/>
-            <!-- MA monogram — bold, heavy, masculine -->
-            <text x="60" y="82" text-anchor="middle" :fill="isDark?'rgba(251,113,133,0.7)':'rgba(159,18,57,0.6)'" font-size="46" font-family="'Sora','Arial Black',sans-serif" font-weight="900" letter-spacing="-2">MA</text>
-            <!-- Subtle underline flourish beneath signature -->
-            <path d="M36 88 Q48 95 60 90 Q72 85 84 90" fill="none" :stroke="isDark?'rgba(192,132,252,0.2)':'rgba(124,58,237,0.15)'" stroke-width="0.8" stroke-linecap="round"/>
+            <!-- Elongated vertical hexagon -->
+            <path d="M60 4 L106 30 L106 120 L60 146 L14 120 L14 30 Z" stroke="url(#mm-gold)" stroke-width="1.6" stroke-linejoin="miter"/>
+            <!-- "MA" monogram in elegant serif — Cinzel for that Roman/luxury weight -->
+            <text x="60" y="98" text-anchor="middle" font-family="'Cinzel','Playfair Display','Times New Roman',serif" font-weight="600" font-size="62" letter-spacing="-3" fill="url(#mm-gold)">MA</text>
           </svg>
-          <!-- Name — bold uppercase (dynamic) -->
-          <p class="mb-0.5" style="font-family:'Sora',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;" :style="{color:isDark?'rgba(250,240,244,0.5)':'rgba(26,10,18,0.45)'}">Muneer Ahmed</p>
-          <!-- House name — whisper quiet -->
-          <p class="text-[7px] uppercase mb-2.5" style="letter-spacing:0.28em;" :style="{color:isDark?'rgba(251,113,133,0.2)':'rgba(159,18,57,0.18)'}">Ahmed Khaandaan</p>
-          <!-- Thin rule bottom -->
-          <div class="mx-auto mb-1.5" :style="{width:'24px',height:'1px',background:isDark?'rgba(192,132,252,0.1)':'rgba(124,58,237,0.07)'}"></div>
-          <p class="text-[7px] uppercase" style="letter-spacing:0.22em;" :style="{color:isDark?'rgba(192,132,252,0.18)':'rgba(124,58,237,0.15)'}">VERSO v7.0</p>
+          <!-- MUNEER AHMED — primary serif wordmark -->
+          <p style="font-family:'Cinzel','Playfair Display',serif;font-size:13px;font-weight:600;letter-spacing:0.32em;" :style="{color:isDark?'#d4af37':'#8b6f2e'}">MUNEER AHMED</p>
+          <!-- Decorative line with diamond center -->
+          <svg class="mx-auto my-2.5" width="160" height="8" viewBox="0 0 160 8" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="4" x2="72" y2="4" :stroke="isDark?'rgba(212,175,55,0.55)':'rgba(139,111,46,0.45)'" stroke-width="0.6"/>
+            <path d="M80 1 L83 4 L80 7 L77 4 Z" :fill="isDark?'#d4af37':'#8b6f2e'"/>
+            <line x1="88" y1="4" x2="150" y2="4" :stroke="isDark?'rgba(212,175,55,0.55)':'rgba(139,111,46,0.45)'" stroke-width="0.6"/>
+          </svg>
+          <!-- AHMED KHAANDAAN — subtitle -->
+          <p style="font-family:'Cinzel','Playfair Display',serif;font-size:9px;font-weight:500;letter-spacing:0.45em;" :style="{color:isDark?'rgba(212,175,55,0.7)':'rgba(139,111,46,0.65)'}">AHMED KHAANDAAN</p>
+          <!-- Version — whisper-quiet under the mark -->
+          <p class="mt-4 text-[8px] uppercase" style="letter-spacing:0.3em;" :style="{color:isDark?'rgba(212,175,55,0.3)':'rgba(139,111,46,0.3)'}">VERSO v7.0</p>
         </div>
       </div>
       <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" style="background:rgba(0,0,0,0.6)" @click.self="showDeleteConfirm=false">
