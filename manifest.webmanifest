@@ -1,0 +1,28 @@
+{
+  "name": "Verso",
+  "short_name": "Verso",
+  "description": "Singapore credit card rewards optimizer. Maximize cashback and miles across every category.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0206",
+  "theme_color": "#0a0206",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["finance", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192 256x256 384x384 512x512 1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "192x192 256x256 384x384 512x512 1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

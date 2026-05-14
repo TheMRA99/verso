@@ -2,28 +2,39 @@
   "name": "verso",
   "version": "7.0.0",
   "description": "VERSO — The smartest way to maximize card rewards in Singapore",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "build": "cp index.html www/index.html && npx cap copy android",
+    "icons": "npx @capacitor/assets generate --iconBackgroundColor '#0a0206' --iconBackgroundColorDark '#0a0206' --splashBackgroundColor '#0a0206' --splashBackgroundColorDark '#0a0206'",
+    "copy-www": "mkdir -p www && cp index.html www/index.html && cp privacy.html www/privacy.html && cp sw.js www/sw.js && cp manifest.webmanifest www/manifest.webmanifest && cp makers-mark.png www/makers-mark.png && cp apple-touch-icon.png www/apple-touch-icon.png && cp apple-touch-icon-precomposed.png www/apple-touch-icon-precomposed.png && cp favicon.png www/favicon.png",
+    "build": "npm run copy-www && npx cap copy android",
+    "build-ios": "npm run copy-www && npx cap copy ios",
     "open": "npx cap open android",
-    "sync": "npx cap sync android"
+    "open-ios": "npx cap open ios",
+    "sync": "npx cap sync android",
+    "sync-ios": "npx cap sync ios",
+    "add-android": "npm run copy-www && npx cap add android",
+    "add-ios": "npm run copy-www && npx cap add ios"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheMRA99/verso.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["finance", "credit-cards", "rewards", "singapore"],
+  "author": "Muneer Ahmed",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/TheMRA99/verso/issues"
   },
   "homepage": "https://themra99.github.io/verso/",
+  "type": "commonjs",
   "dependencies": {
     "@capacitor/android": "^8.3.0",
     "@capacitor/cli": "^8.3.0",
     "@capacitor/core": "^8.3.0",
-    "@capacitor/haptics": "^8.0.2"
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.3.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5"
   }
 }
