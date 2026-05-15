@@ -803,6 +803,44 @@
 
   <main class="max-w-lg mx-auto px-4 pb-28">
 
+    <!-- ===== GLOBAL CARD DETAIL MODAL — works from any page ===== -->
+    <div v-if="selectedCardDetail" class="fixed inset-0 z-50 flex items-end justify-center modal-backdrop" style="background:rgba(0,0,0,0.5)" @click.self="selectedCardDetail=null">
+      <div class="w-full max-w-lg rounded-t-3xl border-t border-x overflow-hidden modal-content" :style="{background:'var(--bg)',borderColor:'var(--surface-border)'}">
+        <div class="p-5 relative" :style="{background:selectedCardDetail.color}">
+          <div class="card-gradient absolute inset-0" style="border-radius:24px 24px 0 0"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-display font-bold text-white tracking-tight">{{selectedCardDetail.name}}</h3>
+              <button @click="selectedCardDetail=null" aria-label="Close" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,0.15)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </div>
+            <p class="text-sm text-white/50">{{selectedCardDetail.bank}} &middot; {{selectedCardDetail.type}} &middot; {{selectedCardDetail.network||'VISA'}}</p>
+            <p v-if="selectedCardDetail.highlight" class="text-xs text-white/40 mt-1">{{selectedCardDetail.highlight}}</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="text-[10px] font-display font-bold uppercase tracking-widest mb-3" style="color:var(--text3)">Reward Rates</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div v-for="cat in categories" :key="cat.id" class="flex items-center justify-between p-2.5 rounded-xl" :style="{background: (selectedCardDetail.rates&&selectedCardDetail.rates[cat.id]||0)>=3?'var(--accent-bg)':'var(--bg3)'}">
+              <span class="text-xs" :style="{color: (selectedCardDetail.rates&&selectedCardDetail.rates[cat.id]||0)>=3?'var(--text)':'var(--text3)'}">{{cat.icon}} {{cat.label}}</span>
+              <span class="text-xs font-display font-bold" :style="{color: (selectedCardDetail.rates&&selectedCardDetail.rates[cat.id]||0)>=3?'var(--accent)':'var(--text3)'}">{{fmtRate((selectedCardDetail.rates&&selectedCardDetail.rates[cat.id])||0)}}</span>
+            </div>
+          </div>
+          <div v-if="selectedCardDetail.fee||selectedCardDetail.minSpend" class="mt-4 pt-3 flex gap-4" :style="{borderTop:'1px solid var(--surface-border)'}">
+            <div v-if="selectedCardDetail.fee"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Annual Fee</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">{{selectedCardDetail.fee}}</p></div>
+            <div v-if="selectedCardDetail.minSpend"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Min Spend</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">S${{selectedCardDetail.minSpend}}/mo</p></div>
+          </div>
+          <!-- Add to wallet shortcut if not yet owned -->
+          <div v-if="!selectedCardDetail.isCustom&&!isSelected(selectedCardDetail.id)" class="mt-4 pt-3" :style="{borderTop:'1px solid var(--surface-border)'}">
+            <button @click="toggleCard(selectedCardDetail.id);selectedCardDetail=null" class="w-full py-2.5 rounded-xl font-bold text-sm text-white" style="background:linear-gradient(90deg,var(--accent),var(--accent2))">+ Add to my wallet</button>
+          </div>
+          <div v-if="selectedCardDetail.isCustom" class="mt-4 pt-3 flex gap-2" :style="{borderTop:'1px solid var(--surface-border)'}">
+            <button @click="editCustomCard(selectedCardDetail)" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" :style="{background:'var(--accent-bg)',color:'var(--accent)'}">Edit Card</button>
+            <button @click="deleteCustomCard(selectedCardDetail.id);selectedCardDetail=null" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ONBOARDING -->
     <div v-if="page==='onboarding'" class="pt-16 text-center">
       <div class="neon-line w-24 mx-auto mb-6 glow"></div>
@@ -1166,39 +1204,6 @@
               </div>
             </div></div>
           </template>
-        </div>
-      </div>
-      <!-- Card Detail Modal -->
-      <div v-if="selectedCardDetail" class="fixed inset-0 z-50 flex items-end justify-center modal-backdrop" style="background:rgba(0,0,0,0.5)" @click.self="selectedCardDetail=null">
-        <div class="w-full max-w-lg rounded-t-3xl border-t border-x overflow-hidden modal-content" :style="{background:'var(--bg)',borderColor:'var(--surface-border)'}">
-          <div class="p-5" :style="{background:selectedCardDetail.color}">
-            <div class="card-gradient absolute inset-0" style="border-radius:24px 24px 0 0"></div>
-            <div class="relative">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-xl font-display font-bold text-white tracking-tight">{{selectedCardDetail.name}}</h3>
-                <button @click="selectedCardDetail=null" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,0.15)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
-              </div>
-              <p class="text-sm text-white/50">{{selectedCardDetail.bank}} &middot; {{selectedCardDetail.type}} &middot; {{selectedCardDetail.network}}</p>
-              <p class="text-xs text-white/30 mt-1">{{selectedCardDetail.highlight}}</p>
-            </div>
-          </div>
-          <div class="p-5">
-            <p class="text-[10px] font-display font-bold uppercase tracking-widest mb-3" style="color:var(--text3)">Reward Rates</p>
-            <div class="grid grid-cols-2 gap-2">
-              <div v-for="cat in categories" :key="cat.id" class="flex items-center justify-between p-2.5 rounded-xl" :style="{background: selectedCardDetail.rates[cat.id]>=3?'var(--accent-bg)':'var(--bg3)'}">
-                <span class="text-xs" :style="{color: selectedCardDetail.rates[cat.id]>=3?'var(--text)':'var(--text3)'}">{{cat.icon}} {{cat.label}}</span>
-                <span class="text-xs font-display font-bold" :style="{color: selectedCardDetail.rates[cat.id]>=3?'var(--accent)':'var(--text3)'}">{{fmtRate(selectedCardDetail.rates[cat.id]||0)}}</span>
-              </div>
-            </div>
-            <div v-if="selectedCardDetail.fee||selectedCardDetail.minSpend" class="mt-4 pt-3 flex gap-4" :style="{borderTop:'1px solid var(--surface-border)'}">
-              <div v-if="selectedCardDetail.fee"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Annual Fee</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">{{selectedCardDetail.fee}}</p></div>
-              <div v-if="selectedCardDetail.minSpend"><p class="text-[10px] uppercase tracking-wider" style="color:var(--text3)">Min Spend</p><p class="text-sm font-semibold" :style="{color:'var(--text)'}">S${{selectedCardDetail.minSpend}}/mo</p></div>
-            </div>
-            <div v-if="selectedCardDetail.isCustom" class="mt-4 pt-3 flex gap-2" :style="{borderTop:'1px solid var(--surface-border)'}">
-              <button @click="editCustomCard(selectedCardDetail)" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" :style="{background:'var(--accent-bg)',color:'var(--accent)'}">Edit Card</button>
-              <button @click="deleteCustomCard(selectedCardDetail.id);selectedCardDetail=null" class="flex-1 py-2.5 rounded-xl text-sm font-medium transition-colors" style="background:rgba(239,68,68,0.1);color:#ef4444">Delete</button>
-            </div>
-          </div>
         </div>
       </div>
       <div v-if="recommendations.length===0" class="text-center py-16 pop-in">
