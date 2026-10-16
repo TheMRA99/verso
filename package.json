@@ -1,11 +1,11 @@
 {
-  "name": "recto",
+  "name": "verso",
   "version": "7.0.0",
-  "description": "RECTO — The smartest way to maximize card rewards in Singapore",
+  "description": "VERSO — The smartest way to maximize card rewards in Singapore",
   "main": "index.html",
   "scripts": {
     "icons": "npx @capacitor/assets generate --iconBackgroundColor '#0a0206' --iconBackgroundColorDark '#0a0206' --splashBackgroundColor '#0a0206' --splashBackgroundColorDark '#0a0206'",
-    "copy-www": "mkdir -p www && cp index.html www/index.html && cp cards.json www/cards.json && cp privacy.html www/privacy.html && cp sw.js www/sw.js && cp manifest.webmanifest www/manifest.webmanifest && cp makers-mark.png www/makers-mark.png && cp apple-touch-icon.png www/apple-touch-icon.png && cp apple-touch-icon-precomposed.png www/apple-touch-icon-precomposed.png && cp favicon.png www/favicon.png",
+    "copy-www": "mkdir -p www && cp index.html www/index.html && cp cards.json www/cards.json && cp privacy.html www/privacy.html && cp terms.html www/terms.html && cp sw.js www/sw.js && cp manifest.webmanifest www/manifest.webmanifest && cp makers-mark.png www/makers-mark.png && cp apple-touch-icon.png www/apple-touch-icon.png && cp apple-touch-icon-precomposed.png www/apple-touch-icon-precomposed.png && cp favicon.png www/favicon.png",
     "build": "npm run copy-www && npx cap copy android",
     "build-ios": "npm run copy-www && npx cap copy ios",
     "open": "npx cap open android",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheMRA99/recto.git"
+    "url": "git+https://github.com/TheMRA99/verso.git"
   },
   "keywords": ["finance", "credit-cards", "rewards", "singapore"],
   "author": "Muneer Ahmed",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TheMRA99/recto/issues"
+    "url": "https://github.com/TheMRA99/verso/issues"
   },
-  "homepage": "https://themra99.github.io/recto/",
+  "homepage": "https://themra99.github.io/verso/",
   "type": "commonjs",
   "dependencies": {
     "@capacitor/android": "^8.3.0",

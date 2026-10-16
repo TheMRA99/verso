@@ -1,6 +1,6 @@
 {
-  "name": "Recto",
-  "short_name": "Recto",
+  "name": "Verso",
+  "short_name": "Verso",
   "description": "Singapore credit card rewards optimizer. Maximize cashback and miles across every category.",
   "start_url": "./",
   "scope": "./",

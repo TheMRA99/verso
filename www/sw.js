@@ -1,4 +1,4 @@
-var CACHE='recto-v13';
+var CACHE='verso-v15';
 var URLS=['./', './index.html', './privacy.html', './manifest.webmanifest', './cards.json', './apple-touch-icon.png', './favicon.png', './makers-mark.png'];
 self.addEventListener('install', function(e) {
   // Resilient precache: cache what we can, never fail install on a single 404 —

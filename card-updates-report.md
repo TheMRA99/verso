@@ -1,4 +1,4 @@
-# RECTO Card Database Audit Report
+# VERSO Card Database Audit Report
 
 **Date:** 2026-05-18
 **Database file:** `D:\Code\card-optimizer\cards.json`
@@ -266,7 +266,7 @@ These cards' core terms appear consistent with cards.json — minor fee differen
 
 **Coverage:** ~40 cards audited out of 98 total. Remaining ~58 cards (mostly niche/co-brand, debit cards, and prepaid travel cards like YouTrip/Revolut/Wise) were not researched in this pass. The audited set covers the most widely-held cards per task brief.
 
-**Most important changes for RECTO users to address first:**
+**Most important changes for VERSO users to address first:**
 1. HSBC Revolution (4 mpd permanent — under-credited in DB)
 2. Trust Bank (Mar 2026 structure overhaul — current entry is stale)
 3. Citi Cash Back (cap structure changed to combined S$80)

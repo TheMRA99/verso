@@ -1,7 +1,7 @@
 {
   "dataVersion": 4,
   "updated": "2026-05-18",
-  "note": "RECTO Singapore card database. v4: corrected UOB KrisFlyer Debit terms (annual fee S$54.50, bonus cap 5% of MAB).",
+  "note": "VERSO Singapore card database. v4: corrected UOB KrisFlyer Debit terms (annual fee S$54.50, bonus cap 5% of MAB).",
   "signupBonuses": {
     "dbs-live-fresh": {
       "amt": 150,

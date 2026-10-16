@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "recto",
+      "name": "verso",
       "runtimeExecutable": "node",
       "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');h.createServer((q,r)=>{let u=q.url.split('?')[0];if(u==='/')u='/index.html';let fp=p.join('.',u);f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end('Not found');}else{const m={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'};r.writeHead(200,{'Content-Type':(m[p.extname(fp)]||'text/plain')+';charset=utf-8'});r.end(d);}});}).listen(3456,()=>console.log('Listening on 3456'))"],
       "port": 3456
