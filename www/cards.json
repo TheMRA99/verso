@@ -1,7 +1,7 @@
 {
-  "dataVersion": 5,
+  "dataVersion": 6,
   "updated": "2026-11-12",
-  "note": "VERSO Singapore card database. v5 (12 Nov 2026): 46 of 100 cards re-verified against issuer pages in Nov 2026. Cards without a \"verified\" date still carry the May 2026 figures and may be out of date. Caps are stored as reward dollars per month; where a card uses one shared or quarterly pool, the note says so.",
+  "note": "Rates re-verified against issuer sources on 12 November 2026 for 56 of 94 cards; the rest still carry May 2026 figures. Six entries were removed in this pass because they are not obtainable Singapore credit cards: DBS Multiplier (a savings account), RHB Shell and DBS Compass (Malaysian and Hong Kong products), and the GrabPay Card, NTUC Plus! Visa and SC Spree (all discontinued). Caps are stored as reward dollars per month; where a card uses one shared or quarterly pool, the note says so. Reward rates, caps and fees change often — always confirm current terms with the issuer before applying or spending.",
   "signupBonuses": {
     "dbs-live-fresh": {
       "amt": 150,
@@ -291,7 +291,7 @@
       "type": "Cashback",
       "ct": "credit",
       "network": "VISA",
-      "highlight": "21% at Esso",
+      "highlight": "Up to 21.6% off fuel at Esso (pump discount)",
       "color": "linear-gradient(135deg,#0c2d6b,#1a3a7a)",
       "rates": {
         "dining": 0.3,
@@ -299,7 +299,7 @@
         "online": 0.3,
         "transport": 0.3,
         "contactless": 0.3,
-        "petrol": 21,
+        "petrol": 0.4,
         "travel": 0.3,
         "entertainment": 0.3,
         "telco": 0.3,
@@ -307,14 +307,16 @@
         "general": 0.3
       },
       "notes": {
-        "petrol": "Up to 21.3% savings at Esso"
+        "petrol": "Card cashback is 0.4%. The headline Esso savings are an instant discount at the pump, not cashback.",
+        "general": "Up to about 21.6% in fuel savings at Esso stations only, made up of an 18% instant fuel discount plus a 3.6% bonus on at least S$180 of nett fuel spend. That is a discount at the pump, not a reward paid to you, and it does not apply at Shell, Caltex or SPC. Card cashback itself is 0.4%."
       },
       "conditions": {
         "petrol": "Esso stations only."
       },
       "caps": {},
       "minSpend": 0,
-      "fee": "$194.40"
+      "fee": "$194.40",
+      "verified": "2026-11-12"
     },
     {
       "id": "dbs-yuu-amex",
@@ -377,44 +379,6 @@
       "minSpend": 800,
       "fee": "$196.20",
       "verified": "2026-11-12"
-    },
-    {
-      "id": "dbs-compass",
-      "name": "Compass Visa",
-      "bank": "DBS",
-      "type": "Cashback",
-      "ct": "credit",
-      "network": "VISA",
-      "highlight": "5% Grab/Shopee/grocery",
-      "color": "linear-gradient(135deg,#d4232a,#ff3838)",
-      "rates": {
-        "dining": 2,
-        "groceries": 5,
-        "online": 5,
-        "transport": 5,
-        "contactless": 2,
-        "petrol": 2,
-        "travel": 2,
-        "entertainment": 2,
-        "telco": 2,
-        "utilities": 2,
-        "general": 0.3
-      },
-      "notes": {
-        "groceries": "5% FairPrice, Giant",
-        "online": "5% Shopee, Lazada",
-        "transport": "5% Grab"
-      },
-      "conditions": {
-        "groceries": "Min $800/mo. Cap $20/cat."
-      },
-      "caps": {
-        "groceries": 20,
-        "online": 20,
-        "transport": 20
-      },
-      "minSpend": 800,
-      "fee": "$194.40"
     },
     {
       "id": "dbs-vantage",
@@ -495,10 +459,10 @@
       "rates": {
         "dining": 5,
         "groceries": 5,
-        "online": 10,
+        "online": 5,
         "transport": 5,
         "contactless": 5,
-        "petrol": 20.1,
+        "petrol": 6,
         "travel": 0.3,
         "entertainment": 5,
         "telco": 3,
@@ -507,10 +471,10 @@
       },
       "notes": {
         "dining": "5% dining incl. Lazada/Shopee",
-        "online": "10% SimplyGo + online food delivery",
+        "online": "5% on online shopping; the 10% rate covers online food delivery and SimplyGo only",
         "groceries": "5% at Sheng Siong & Redmart (cap $20/mo each)",
         "telco": "3% telco (min $800)",
-        "petrol": "20.1% at SPC stations",
+        "petrol": "6% card rebate on SPC fuel. The headline ~20% figure is a stacked discount at SPC pumps, not cashback, and does not apply at other stations",
         "general": "10% on SimplyGo and online food delivery, 5% on dine-out, online shopping and Sheng Siong, 6% on SPC fuel. Bonus cap about S$120 a month; S$800 min monthly spend for most categories."
       },
       "conditions": {
@@ -519,12 +483,10 @@
       "caps": {
         "dining": 30,
         "groceries": 20,
-        "online": 30,
         "transport": 20,
         "telco": 30,
         "entertainment": 20,
-        "utilities": 30,
-        "petrol": 30
+        "utilities": 30
       },
       "minSpend": 800,
       "fee": "$196.20",
@@ -543,7 +505,7 @@
         "dining": 3.33,
         "groceries": 8,
         "online": 3.33,
-        "transport": 10,
+        "transport": 3.33,
         "contactless": 5,
         "petrol": 5,
         "travel": 3.33,
@@ -554,7 +516,7 @@
       },
       "notes": {
         "dining": "10% at McDonald’s only; other dining earns the base 3.33%",
-        "transport": "10% on Grab and SimplyGo; other transport earns the base rate",
+        "transport": "10% on Grab rides and SimplyGo only; all other transport earns the base 3.33%",
         "general": "Tiered: S$600/S$1,000/S$2,000 a month plus 10 transactions. Bonus cashback is one shared pool capped at S$120 a month.",
         "online": "10% at Shopee Singapore only; other online earns the base 3.33%"
       },
@@ -565,7 +527,6 @@
         "dining": 120,
         "groceries": 120,
         "online": 120,
-        "transport": 120,
         "utilities": 120
       },
       "minSpend": 600,
@@ -937,40 +898,6 @@
       "fee": "$0"
     },
     {
-      "id": "ocbc-ntuc",
-      "name": "NTUC Plus! Visa",
-      "bank": "OCBC",
-      "type": "Cashback",
-      "ct": "credit",
-      "network": "VISA",
-      "highlight": "6% FairPrice",
-      "color": "linear-gradient(135deg,#d42020,#0039a6)",
-      "rates": {
-        "dining": 1,
-        "groceries": 6,
-        "online": 1,
-        "transport": 1,
-        "contactless": 1,
-        "petrol": 1,
-        "travel": 1,
-        "entertainment": 1,
-        "telco": 1,
-        "utilities": 1,
-        "general": 0.5
-      },
-      "notes": {
-        "groceries": "Up to 6% at FairPrice/Unity"
-      },
-      "conditions": {
-        "groceries": "NTUC members. Cap applies."
-      },
-      "caps": {
-        "groceries": 30
-      },
-      "minSpend": 0,
-      "fee": "$0"
-    },
-    {
       "id": "ocbc-rewards",
       "name": "OCBC Rewards Card",
       "bank": "OCBC",
@@ -993,7 +920,7 @@
         "general": 0.4
       },
       "notes": {
-        "online": "15X OCBC$ (6 mpd) at Watsons, Lazada, Shopee, Taobao and TikTok Shop till 31 Mar 2027"
+        "online": "4 mpd (~7.2%) on online spend. The higher 15X / 6 mpd rate is limited to Watsons, Lazada, Shopee, Taobao and TikTok Shop until 31 Mar 2027"
       },
       "conditions": {
         "online": "Selected merchants only."
@@ -1173,7 +1100,7 @@
       "type": "Cashback",
       "ct": "credit",
       "network": "VISA",
-      "highlight": "3% BEST Denki",
+      "highlight": "3% at BEST Denki stores",
       "color": "linear-gradient(135deg,#1a3a8c,#2a56b8)",
       "rates": {
         "dining": 0.3,
@@ -1183,22 +1110,22 @@
         "contactless": 0.3,
         "petrol": 0.3,
         "travel": 0.3,
-        "entertainment": 3,
+        "entertainment": 0.3,
         "telco": 0.3,
         "utilities": 0.3,
         "general": 0.3
       },
       "notes": {
-        "entertainment": "3% cashback at BEST Denki"
+        "entertainment": "3% applies at BEST Denki stores only; cinema and other entertainment earn the base rate",
+        "general": "The 3% rebate applies at BEST Denki stores only. The extra 2% to 2.5% ended 1 Jan 2025 and OCBC$ stopped being awarded on 1 Jul 2025. Everything else earns the base rate."
       },
       "conditions": {
         "entertainment": "BEST Denki only."
       },
-      "caps": {
-        "entertainment": 30
-      },
+      "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "ocbc-arts",
@@ -1256,7 +1183,7 @@
         "general": 2.5
       },
       "notes": {
-        "travel": "Up to 28 OCBC$ per $5 overseas. Fuel discounts 14-23%."
+        "travel": "Accelerated OCBC$ on overseas spend. Any fuel savings quoted by the bank are pump discounts, not card rewards"
       },
       "conditions": {
         "travel": "Premier banking required."
@@ -1342,7 +1269,7 @@
       "bank": "Citi",
       "type": "Miles",
       "ct": "credit",
-      "network": "VISA",
+      "network": "MC",
       "highlight": "4 mpd on online & ride-hailing",
       "color": "linear-gradient(135deg,#003a70,#1a5fa6)",
       "rates": {
@@ -1827,39 +1754,8 @@
         "dining": 40
       },
       "minSpend": 0,
-      "fee": "$194.40"
-    },
-    {
-      "id": "sc-spree",
-      "name": "Spree Card",
-      "bank": "Std Chartered",
-      "type": "Cashback",
-      "ct": "credit",
-      "network": "VISA",
-      "highlight": "2% online shopping",
-      "color": "linear-gradient(135deg,#e91e8c,#c4167a)",
-      "rates": {
-        "dining": 1,
-        "groceries": 1,
-        "online": 2,
-        "transport": 1,
-        "contactless": 1,
-        "petrol": 1,
-        "travel": 1,
-        "entertainment": 1,
-        "telco": 1,
-        "utilities": 1,
-        "general": 1
-      },
-      "notes": {
-        "online": "2% on online shopping"
-      },
-      "conditions": {},
-      "caps": {
-        "online": 20
-      },
-      "minSpend": 0,
-      "fee": "$0"
+      "fee": "$192.60",
+      "verified": "2026-11-12"
     },
     {
       "id": "maybank-ff",
@@ -2174,8 +2070,8 @@
       "highlight": "5% dining/groceries",
       "color": "linear-gradient(135deg,#c41e1e,#8b0000)",
       "rates": {
-        "dining": 5,
-        "groceries": 5,
+        "dining": 10,
+        "groceries": 0.3,
         "online": 1,
         "transport": 1,
         "contactless": 1,
@@ -2187,17 +2083,18 @@
         "general": 0.3
       },
       "notes": {
-        "dining": "5% dining & groceries"
+        "dining": "10% on dining, capped at S$25 a cycle",
+        "general": "Dining and health & wellness are the bonus categories, each capped at S$25 per billing cycle and needing at least S$800 of spend that cycle. Everything else, supermarkets and transport included, earns 0.3%."
       },
       "conditions": {
         "dining": "Min $500/mo."
       },
       "caps": {
-        "dining": 30,
-        "groceries": 30
+        "dining": 25
       },
-      "minSpend": 500,
-      "fee": "$0"
+      "minSpend": 800,
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "boc-shengsiong",
@@ -2222,16 +2119,18 @@
         "general": 0.3
       },
       "notes": {
-        "groceries": "6% at Sheng Siong"
+        "groceries": "6% at Sheng Siong",
+        "general": "Annual fee rose from S$32.70 to S$98.10 on 15 Jun 2025. The Sheng Siong rebate is capped at S$35 per billing cycle and drops to 0.3% in any cycle where the minimum spend is not met."
       },
       "conditions": {
-        "groceries": "Sheng Siong only. Cap $60."
+        "groceries": "Min S$600 spend elsewhere per cycle, else 0.3%. Cap S$35/cycle."
       },
       "caps": {
-        "groceries": 60
+        "groceries": 35
       },
-      "minSpend": 0,
-      "fee": "$0"
+      "minSpend": 600,
+      "fee": "$98.10",
+      "verified": "2026-11-12"
     },
     {
       "id": "boc-lazcard",
@@ -2245,7 +2144,7 @@
       "rates": {
         "dining": 1,
         "groceries": 1,
-        "online": 6,
+        "online": 0.3,
         "transport": 1,
         "contactless": 1,
         "petrol": 1,
@@ -2256,49 +2155,13 @@
         "general": 0.3
       },
       "notes": {
-        "online": "6% on Lazada"
+        "online": "6% on Lazada only, capped at S$20 a month; other online spend earns the base 0.3%"
       },
       "conditions": {
         "online": "Lazada only. Cap $20."
       },
-      "caps": {
-        "online": 20
-      },
+      "caps": {},
       "minSpend": 0,
-      "fee": "$0"
-    },
-    {
-      "id": "rhb-shell",
-      "name": "Shell Card",
-      "bank": "RHB",
-      "type": "Cashback",
-      "ct": "credit",
-      "network": "VISA",
-      "highlight": "8.8% Shell",
-      "color": "linear-gradient(135deg,#ffcc00,#e6b800)",
-      "rates": {
-        "dining": 0.3,
-        "groceries": 0.3,
-        "online": 0.3,
-        "transport": 0.3,
-        "contactless": 0.3,
-        "petrol": 8.8,
-        "travel": 0.3,
-        "entertainment": 0.3,
-        "telco": 0.3,
-        "utilities": 0.3,
-        "general": 0.3
-      },
-      "notes": {
-        "petrol": "Up to 8.8% savings at Shell"
-      },
-      "conditions": {
-        "petrol": "Shell stations only. Min $500/mo."
-      },
-      "caps": {
-        "petrol": 50
-      },
-      "minSpend": 500,
       "fee": "$0"
     },
     {
@@ -2419,14 +2282,14 @@
         "transport": 0.3,
         "contactless": 0.3,
         "petrol": 0.3,
-        "travel": 2,
+        "travel": 0.3,
         "entertainment": 0.3,
         "telco": 0.3,
         "utilities": 0.3,
         "general": 0.3
       },
       "notes": {
-        "travel": "Up to 11% savings on China spend"
+        "travel": "The savings on China spend do not apply to other travel, which earns the base 0.3%"
       },
       "conditions": {
         "travel": "China spend only."
@@ -2780,38 +2643,6 @@
       "fee": "$0"
     },
     {
-      "id": "grab-mc",
-      "name": "Grab-Mastercard",
-      "bank": "Grab",
-      "type": "Cashback",
-      "ct": "debit",
-      "network": "MC",
-      "highlight": "8 pts/$1 Grab",
-      "color": "linear-gradient(135deg,#00b14f,#009a44)",
-      "rates": {
-        "dining": 2,
-        "groceries": 2,
-        "online": 2,
-        "transport": 8,
-        "contactless": 2,
-        "petrol": 2,
-        "travel": 1,
-        "entertainment": 2,
-        "telco": 2,
-        "utilities": 2,
-        "general": 1
-      },
-      "notes": {
-        "transport": "8 GrabRewards pts/$1 (~8%)"
-      },
-      "conditions": {
-        "transport": "Value varies."
-      },
-      "caps": {},
-      "minSpend": 0,
-      "fee": "$0"
-    },
-    {
       "id": "shopback-visa",
       "name": "ShopBack Card",
       "bank": "ShopBack",
@@ -2853,7 +2684,7 @@
       "type": "Cashback",
       "ct": "debit",
       "network": "MC",
-      "highlight": "Best FX overseas",
+      "highlight": "0% FX fee, wholesale rates",
       "color": "linear-gradient(135deg,#5046e5,#7c6bf5)",
       "rates": {
         "dining": 0,
@@ -2862,21 +2693,20 @@
         "transport": 0,
         "contactless": 0,
         "petrol": 0,
-        "travel": 3,
+        "travel": 0,
         "entertainment": 0,
         "telco": 0,
         "utilities": 0,
         "general": 0
       },
       "notes": {
-        "travel": "Best FX. No markup. Up to 3% overseas."
+        "general": "No cashback. The benefit is a 0% FX fee and wholesale exchange rates on foreign spend."
       },
-      "conditions": {
-        "travel": "Prepaid. No local rewards."
-      },
+      "conditions": {},
       "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "revolut",
@@ -2885,30 +2715,29 @@
       "type": "Cashback",
       "ct": "debit",
       "network": "VISA",
-      "highlight": "Best FX, multi-currency",
+      "highlight": "0% weekday FX fee (Standard plan)",
       "color": "linear-gradient(135deg,#0d0d0d,#1a1a2e)",
       "rates": {
-        "dining": 0.1,
-        "groceries": 0.1,
-        "online": 0.1,
-        "transport": 0.1,
-        "contactless": 0.1,
-        "petrol": 0.1,
-        "travel": 2,
-        "entertainment": 0.1,
-        "telco": 0.1,
-        "utilities": 0.1,
-        "general": 0.1
+        "dining": 0,
+        "groceries": 0,
+        "online": 0,
+        "transport": 0,
+        "contactless": 0,
+        "petrol": 0,
+        "travel": 0,
+        "entertainment": 0,
+        "telco": 0,
+        "utilities": 0,
+        "general": 0
       },
       "notes": {
-        "travel": "Interbank FX rate. ~2% effective savings vs banks."
+        "general": "No cashback on the Standard plan. 0% FX fee on weekdays, 1% at weekends, and a S$5,000 monthly fair-usage limit before a further 1% applies."
       },
-      "conditions": {
-        "travel": "Free plan: $1,000/mo FX limit."
-      },
+      "conditions": {},
       "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "wise",
@@ -2917,7 +2746,7 @@
       "type": "Cashback",
       "ct": "debit",
       "network": "VISA",
-      "highlight": "Mid-market FX",
+      "highlight": "Low-cost currency conversion",
       "color": "linear-gradient(135deg,#9fe870,#37d39a)",
       "rates": {
         "dining": 0,
@@ -2926,21 +2755,20 @@
         "transport": 0,
         "contactless": 0,
         "petrol": 0,
-        "travel": 2.5,
+        "travel": 0,
         "entertainment": 0,
         "telco": 0,
         "utilities": 0,
         "general": 0
       },
       "notes": {
-        "travel": "Mid-market FX rate. ~2.5% effective savings."
+        "general": "No cashback. Wise charges a conversion fee of roughly 0.23% to 0.26%, which is usually still cheaper than a bank card abroad."
       },
-      "conditions": {
-        "travel": "Small FX fee applies."
-      },
+      "conditions": {},
       "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "singlife",
@@ -2979,7 +2807,7 @@
       "type": "Cashback",
       "ct": "debit",
       "network": "MC",
-      "highlight": "Multi-currency, no FX fee",
+      "highlight": "Low-cost prepaid card for travel",
       "color": "linear-gradient(135deg,#0055ff,#003dc7)",
       "rates": {
         "dining": 0,
@@ -2988,19 +2816,20 @@
         "transport": 0,
         "contactless": 0,
         "petrol": 0,
-        "travel": 2,
+        "travel": 0,
         "entertainment": 0,
         "telco": 0,
         "utilities": 0,
         "general": 0
       },
       "notes": {
-        "travel": "No FX markup. ~2% effective overseas savings."
+        "general": "A prepaid Visa e-wallet regulated by MAS. Its benefit is low-cost foreign spend rather than a reward rate."
       },
       "conditions": {},
       "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "instarem-amaze",
@@ -3009,29 +2838,29 @@
       "type": "Cashback",
       "ct": "debit",
       "network": "VISA",
-      "highlight": "Multi-currency + rewards",
+      "highlight": "Passes rewards through to your linked card",
       "color": "linear-gradient(135deg,#6d28d9,#a855f7)",
       "rates": {
-        "dining": 1,
-        "groceries": 1,
-        "online": 1,
-        "transport": 1,
-        "contactless": 1,
-        "petrol": 1,
-        "travel": 2,
-        "entertainment": 1,
-        "telco": 1,
-        "utilities": 1,
-        "general": 1
+        "dining": 0,
+        "groceries": 0,
+        "online": 0,
+        "transport": 0,
+        "contactless": 0,
+        "petrol": 0,
+        "travel": 0,
+        "entertainment": 0,
+        "telco": 0,
+        "utilities": 0,
+        "general": 0
       },
       "notes": {
-        "general": "1% InstaPoints on all spend",
-        "travel": "Up to 2% on overseas"
+        "general": "Amaze itself pays no cashback. It passes spend through to the credit card you link, so you earn that card’s rewards, less an FX spread of roughly 1.8% to 2%."
       },
       "conditions": {},
       "caps": {},
       "minSpend": 0,
-      "fee": "$0"
+      "fee": "$0",
+      "verified": "2026-11-12"
     },
     {
       "id": "cimb-visa-sig",
@@ -3049,7 +2878,7 @@
         "transport": 0.2,
         "contactless": 0.2,
         "petrol": 0.2,
-        "travel": 10,
+        "travel": 0.2,
         "entertainment": 0.2,
         "telco": 0.2,
         "utilities": 0.2,
@@ -3057,15 +2886,14 @@
       },
       "notes": {
         "general": "10% on online shopping, groceries, beauty and wellness, pet shops and vets, and cruises. 0.2% beyond the cap.",
-        "travel": "10% on cruises only"
+        "travel": "10% applies to cruises only; other travel earns the base 0.2%"
       },
       "conditions": {
         "online": "Min S$800 posted per statement month. Cap S$100/mo total, S$20 per category."
       },
       "caps": {
         "online": 20,
-        "groceries": 20,
-        "travel": 20
+        "groceries": 20
       },
       "minSpend": 800,
       "fee": "$0",
@@ -3094,7 +2922,7 @@
         "general": 0.2
       },
       "notes": {
-        "dining": "8% dining, online, transport",
+        "dining": "1% unlimited on dining, with no cap and no minimum spend",
         "general": "Unlimited 1% on dining, entertainment, online shopping and telco. No minimum spend, no cap."
       },
       "conditions": {},
@@ -3133,40 +2961,6 @@
       "minSpend": 1000,
       "fee": "$0",
       "verified": "2026-11-12"
-    },
-    {
-      "id": "dbs-multiplier",
-      "name": "Multiplier Card",
-      "bank": "DBS",
-      "type": "Cashback",
-      "ct": "credit",
-      "network": "VISA",
-      "highlight": "Up to 4.1% w/ salary",
-      "color": "linear-gradient(135deg,#0a1628,#1a3050)",
-      "rates": {
-        "dining": 4.1,
-        "groceries": 4.1,
-        "online": 4.1,
-        "transport": 4.1,
-        "contactless": 4.1,
-        "petrol": 4.1,
-        "travel": 4.1,
-        "entertainment": 4.1,
-        "telco": 4.1,
-        "utilities": 4.1,
-        "general": 4.1
-      },
-      "notes": {
-        "general": "Up to 4.1% with salary credit + transactions"
-      },
-      "conditions": {
-        "general": "DBS salary credit required. Tiered rates based on txn categories."
-      },
-      "caps": {
-        "general": 100
-      },
-      "minSpend": 0,
-      "fee": "$0"
     },
     {
       "id": "dbs-treasures-visa",
@@ -3223,7 +3017,7 @@
         "general": 0.3
       },
       "notes": {
-        "dining": "10X UNI$ on dining, entertainment, travel, online (~4%)",
+        "dining": "Dining is not a 10X category on this card; it earns the base rate",
         "travel": "4 mpd overseas (min S$1,000/statement), cap S$120 cashback/mo equivalent",
         "general": "Two separate 4 mpd buckets (overseas spend; local petrol/contactless/SimplyGo). Each needs S$1,000 per statement period and is capped at about S$86 of reward."
       },
