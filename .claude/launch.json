@@ -4,7 +4,7 @@
     {
       "name": "verso",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');h.createServer((q,r)=>{let u=q.url.split('?')[0];if(u==='/')u='/index.html';let fp=p.join('.',u);f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end('Not found');}else{const m={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'};r.writeHead(200,{'Content-Type':(m[p.extname(fp)]||'text/plain')+';charset=utf-8'});r.end(d);}});}).listen(3456,()=>console.log('Listening on 3456'))"],
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');const m={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2','.woff':'font/woff','.webmanifest':'application/manifest+json','.ico':'image/x-icon','.txt':'text/plain'};h.createServer((q,r)=>{let u=decodeURIComponent(q.url.split('?')[0]);if(u==='/')u='/index.html';const fp=p.join('.',u);f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end('Not found');}else{const t=m[p.extname(fp)]||'application/octet-stream';const ch=t.indexOf('font/')===0||t.indexOf('image/')===0?t:t+';charset=utf-8';r.writeHead(200,{'Content-Type':ch});r.end(d);}});}).listen(3456,()=>console.log('Listening on 3456'))"],
       "port": 3456
     }
   ]

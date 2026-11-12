@@ -6,9 +6,7 @@
   <title>Privacy Policy · Verso</title>
   <meta name="description" content="Privacy policy for Verso — a Singapore credit-card rewards optimizer. No accounts, no tracking, all data stays on your device.">
   <meta name="theme-color" content="#0a0206">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./fonts/fonts.css">
   <style>
     :root {
       --bg: #0a0206;
@@ -46,7 +44,7 @@
       color: var(--text-3);
     }
     .display {
-      font-family: 'Fraunces', Georgia, serif;
+      font-family: 'Sora', system-ui, sans-serif;
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 0.95;
@@ -60,7 +58,7 @@
       -webkit-text-fill-color: transparent;
     }
     h2 {
-      font-family: 'Fraunces', Georgia, serif;
+      font-family: 'Sora', system-ui, sans-serif;
       font-size: 24px;
       font-weight: 600;
       letter-spacing: -0.015em;
@@ -123,19 +121,27 @@
   <main>
     <p class="kicker">PRIVACY POLICY · VERSO</p>
     <h1 class="display">Privacy<span class="accent">.</span></h1>
-    <p class="meta" style="margin-top:16px">LAST UPDATED 16 OCTOBER 2026</p>
+    <p class="meta" style="margin-top:16px">LAST UPDATED 11 NOVEMBER 2026</p>
 
     <div class="rule-thick" style="margin-top:32px"></div>
 
     <p class="lead">
-      Verso stores everything on your device. There are no accounts, we run no servers that hold your data, and we never see your cards, your name, or your usage. Your information stays with you.
+      Verso keeps your information on your device. There are no accounts, we run no servers that hold your data, and we never see your cards, your name, or your usage. A few small, anonymous requests do leave your device to keep the app up to date; they are listed below.
     </p>
 
     <h2>What we store, and where</h2>
-    <p>Your profile name, the cards you select, and your preferences are stored <strong>locally on your device</strong> (in browser/app storage). This data is never transmitted to us and we have no access to it. Deleting the app or clearing its data permanently erases it.</p>
+    <p>Your profile name, the cards you select, and your preferences are stored <strong>locally on your device</strong> (in browser/app storage). This data is not sent to us and we have no access to it. Deleting the app or clearing its data permanently erases it.</p>
 
     <h2>No account, no tracking</h2>
-    <p>Verso requires no sign-up, email, or login. We do not collect personal data, do not track you across sites, and do not sell or share any data — because we never receive it.</p>
+    <p>Verso requires no sign-up, email, or login. We do not collect personal data, do not track you across sites, and do not sell or share any data — because we never receive it. The requests listed above are made by your device directly to those services, not through us.</p>
+
+    <h2>What leaves your device</h2>
+    <p>The app itself loads <strong>no third-party scripts, fonts, analytics or ads</strong>. The only network requests it makes are these:</p>
+    <p><strong>Hosting.</strong> Verso is served by GitHub Pages. Like any web host, GitHub's servers may log technical details of your visit, such as your IP address. See GitHub's privacy statement for how it handles this.</p>
+    <p><strong>Card data.</strong> The app downloads the latest card rates and rules from that same site. No personal data is sent with this request.</p>
+    <p><strong>Exchange rates.</strong> To convert foreign-currency spend, the app fetches public exchange rates from the Monetary Authority of Singapore (MAS), and from a public fallback service (exchangerate-api.com) if MAS is unavailable. These requests carry no personal data from Verso.</p>
+    <p><strong>Near me.</strong> Only if you tap the location button, your device's approximate coordinates are sent once to OpenStreetMap's Overpass service to find nearby shops. Verso does not store your location.</p>
+    <p><strong>Google Places.</strong> Optional, and described in the next section.</p>
 
     <h2>Optional Google Places feature</h2>
     <p>If you choose to enable smart store detection by adding your own Google Places API key, the merchant or place name you type is sent to <strong>Google</strong> to identify its category, governed by Google's Privacy Policy (<a href="https://policies.google.com/privacy">policies.google.com/privacy</a>). This feature is <strong>off by default</strong> and only runs if you enable it. We do not receive or store these queries.</p>

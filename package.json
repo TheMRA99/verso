@@ -1,12 +1,14 @@
 {
   "name": "verso",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "VERSO — The smartest way to maximize card rewards in Singapore",
   "main": "index.html",
   "scripts": {
     "icons": "npx @capacitor/assets generate --iconBackgroundColor '#0a0206' --iconBackgroundColorDark '#0a0206' --splashBackgroundColor '#0a0206' --splashBackgroundColorDark '#0a0206'",
-    "copy-www": "mkdir -p www && cp index.html www/index.html && cp cards.json www/cards.json && cp privacy.html www/privacy.html && cp terms.html www/terms.html && cp sw.js www/sw.js && cp manifest.webmanifest www/manifest.webmanifest && cp makers-mark.png www/makers-mark.png && cp apple-touch-icon.png www/apple-touch-icon.png && cp apple-touch-icon-precomposed.png www/apple-touch-icon-precomposed.png && cp favicon.png www/favicon.png",
-    "build": "npm run copy-www && npx cap copy android",
+    "css": "npx --yes tailwindcss@3.4.17 -c tailwind.config.js -i build/tailwind.input.css -o assets/tailwind.css --minify",
+    "bundle-data": "node scripts/bundle-data.js",
+    "copy-www": "mkdir -p www && cp index.html www/index.html && cp cards.json www/cards.json && cp privacy.html www/privacy.html && cp terms.html www/terms.html && cp sw.js www/sw.js && cp manifest.webmanifest www/manifest.webmanifest && cp makers-mark.png www/makers-mark.png && cp apple-touch-icon.png www/apple-touch-icon.png && cp apple-touch-icon-precomposed.png www/apple-touch-icon-precomposed.png && cp favicon.png www/favicon.png && cp -r vendor assets fonts icons www/",
+    "build": "npm run css && npm run bundle-data && npm run copy-www && npx cap copy android",
     "build-ios": "npm run copy-www && npx cap copy ios",
     "open": "npx cap open android",
     "open-ios": "npx cap open ios",
